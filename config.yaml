@@ -1,0 +1,53 @@
+Server:
+    Host: 0.0.0.0
+    Port: "20005"
+    MaxDeviceEvents: 100
+    MaxGlobalEvents: 500
+Client:
+    Host: 10.32.1.110
+    Port: "20005"
+    ReconnectInitial: 1s
+    ReconnectMax: 1m
+Queue:
+    BufferSize: 500
+Logging:
+    LogDir: log
+    Filename: app.log
+    MaxSize: 10
+    MaxBackups: 5
+    MaxAge: 28
+    Compress: true
+    Level: warn
+    EnableConsole: true
+    EnableFile: true
+    PrettyConsole: true
+    SamplingEnabled: false
+CidRules:
+    RequiredPrefix: "5"
+    ValidLength: 20
+    TestCodeMap:
+        E603: E602
+    AccNumOffset: 2100
+    AccNumAdd: 2100
+    AccountRanges:
+        - From: 2000
+          To: 2100
+          Delta: 2100
+        - From: 2100
+          To: 2200
+          Delta: 2600
+Monitoring:
+    PpkTimeout: 15m
+UI:
+    StartMinimized: false
+    MinimizeToTray: true
+    CloseToTray: false
+    FontSize: 14
+History:
+    LogLimit: 100
+    GlobalLimit: 500
+    RetentionDays: 30
+    CleanupIntervalHours: 1
+    ArchiveEnabled: true
+    ArchiveDbPath: archive.db
+    MaintenanceBatch: 5000

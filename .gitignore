@@ -1,0 +1,6 @@
+*.db*
+*.exe*
+*.code-workspace
+*.log
+*log*
+cidgio.exe~
