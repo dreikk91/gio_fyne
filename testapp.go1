@@ -1,0 +1,86 @@
+package main
+
+import (
+	"fmt"
+	"image/color"
+
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/canvas"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
+	"fyne.io/fyne/v2/widget"
+)
+
+var (
+	cBg     = color.NRGBA{R: 243, G: 246, B: 251, A: 255}
+	cPanel  = color.NRGBA{R: 255, G: 255, B: 255, A: 255}
+	cPanel3 = color.NRGBA{R: 237, G: 242, B: 249, A: 255}
+	cBorder = color.NRGBA{R: 214, G: 221, B: 231, A: 255}
+	cText   = color.NRGBA{R: 31, G: 41, B: 55, A: 255}
+)
+
+type customTheme struct {
+	base fyne.Theme
+}
+
+func (t *customTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
+	switch name {
+	case theme.ColorNameBackground:
+		return cBg
+	case theme.ColorNameInputBackground:
+		return cPanel
+	case theme.ColorNameForeground, theme.ColorNameText:
+		return cText
+	}
+	return t.base.Color(name, variant)
+}
+
+func (t *customTheme) Font(style fyne.TextStyle) fyne.Resource            { return t.base.Font(style) }
+func (t *customTheme) Icon(name fyne.ThemeIconName) fyne.Resource         { return t.base.Icon(name) }
+func (t *customTheme) Size(name fyne.ThemeSizeName) float32               { return t.base.Size(name) }
+
+type cellStruct struct {
+	*fyne.Container
+	bg    *canvas.Rectangle
+	label *widget.Label
+}
+
+func main() {
+	a := app.New()
+	a.Settings().SetTheme(&customTheme{base: theme.DefaultTheme()})
+	w := a.NewWindow("Table Visibility Test")
+
+	table := widget.NewTable(
+		func() (int, int) { return 10, 3 },
+		func() fyne.CanvasObject {
+			bg := canvas.NewRectangle(cPanel)
+			lbl := widget.NewLabel("")
+			return &cellStruct{
+				Container: container.NewMax(bg, lbl),
+				bg:        bg,
+				label:     lbl,
+			}
+		},
+		func(id widget.TableCellID, obj fyne.CanvasObject) {
+			cell := obj.(*cellStruct)
+			cell.label.SetText(fmt.Sprintf("Row %d, Col %d", id.Row, id.Col))
+			
+			if id.Row%2 == 0 {
+				cell.bg.FillColor = cPanel3
+			} else {
+				cell.bg.FillColor = cPanel
+			}
+			cell.bg.Refresh()
+			cell.label.Refresh()
+		},
+	)
+
+	table.SetColumnWidth(0, 100)
+	table.SetColumnWidth(1, 100)
+	table.SetColumnWidth(2, 100)
+
+	w.SetContent(container.NewMax(table))
+	w.Resize(fyne.NewSize(400, 300))
+	w.ShowAndRun()
+}

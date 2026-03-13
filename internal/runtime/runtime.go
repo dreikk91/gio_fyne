@@ -236,6 +236,7 @@ func (r *Runtime) Bootstrap(ctx context.Context, limit int) (core.BootstrapDTO, 
 	if err != nil {
 		return core.BootstrapDTO{}, err
 	}
+	log.Debug().Int("devices", len(devices)).Int("events", len(events)).Int("limit", limit).Msg("bootstrap repository loaded")
 	return core.BootstrapDTO{Devices: devices, Events: events}, nil
 }
 
@@ -243,14 +244,22 @@ func (r *Runtime) FilterEvents(ctx context.Context, limit int, eventType string,
 	if r.repo == nil {
 		return nil, fmt.Errorf("runtime not started")
 	}
-	return r.repo.GetEventsFiltered(ctx, limit, eventType, hideTests, hideBlocked, query)
+	events, err := r.repo.GetEventsFiltered(ctx, limit, eventType, hideTests, hideBlocked, query)
+	if err == nil {
+		log.Debug().Int("events", len(events)).Int("limit", limit).Str("type", eventType).Bool("hide_tests", hideTests).Bool("hide_blocked", hideBlocked).Str("query", query).Msg("events filtered")
+	}
+	return events, err
 }
 
 func (r *Runtime) FilterDeviceHistory(ctx context.Context, deviceID, limit int, from, to time.Time, eventType string, hideTests bool, hideBlocked bool, query string) ([]core.EventDTO, error) {
 	if r.repo == nil {
 		return nil, fmt.Errorf("runtime not started")
 	}
-	return r.repo.GetDeviceEventsFiltered(ctx, deviceID, limit, from, to, eventType, hideTests, hideBlocked, query)
+	events, err := r.repo.GetDeviceEventsFiltered(ctx, deviceID, limit, from, to, eventType, hideTests, hideBlocked, query)
+	if err == nil {
+		log.Debug().Int("device_id", deviceID).Int("events", len(events)).Int("limit", limit).Str("type", eventType).Bool("hide_tests", hideTests).Bool("hide_blocked", hideBlocked).Str("query", query).Msg("device history filtered")
+	}
+	return events, err
 }
 
 func (r *Runtime) DeleteDeviceWithHistory(ctx context.Context, deviceID int) error {

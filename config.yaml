@@ -17,7 +17,7 @@ Logging:
     MaxBackups: 5
     MaxAge: 28
     Compress: true
-    Level: warn
+    Level: trace
     EnableConsole: true
     EnableFile: true
     PrettyConsole: true

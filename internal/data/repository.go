@@ -221,7 +221,11 @@ func (r *Repository) GetDevices(ctx context.Context) ([]core.DeviceDTO, error) {
 		}
 		out = append(out, core.DeviceDTO{ID: number, Name: name, ClientAddr: clientAddr, LastEvent: lastEvent, LastEventTime: parseDBTimestamp(ts)})
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		return out, err
+	}
+	log.Debug().Int("rows", len(out)).Msg("repo GetDevices loaded")
+	return out, nil
 }
 
 func (r *Repository) GetEvents(ctx context.Context, limit int) ([]core.EventDTO, error) {
@@ -349,7 +353,11 @@ LIMIT ?`
 		evt.RelayBlocked = relayBlocked != 0
 		out = append(out, evt)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		return out, err
+	}
+	log.Debug().Int("rows", len(out)).Msg("repo queryEvents loaded")
+	return out, nil
 }
 
 func (r *Repository) SaveDevice(ctx context.Context, device core.DeviceDTO) error {
