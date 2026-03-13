@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cid_gio_gio/internal/core"
+
 
 	"gioui.org/io/event"
 	"gioui.org/io/pointer"

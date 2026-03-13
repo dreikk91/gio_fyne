@@ -5,6 +5,7 @@ go 1.25.4
 require (
 	gioui.org v0.9.0
 	github.com/getlantern/systray v1.2.2
+	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4
 	github.com/mattn/go-sqlite3 v1.14.34
 	github.com/rs/zerolog v1.34.0
 	golang.org/x/sys v0.42.0
@@ -22,7 +23,6 @@ require (
 	github.com/getlantern/ops v0.0.0-20190325191751-d70cb0d6f85f // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/go-text/typesetting v0.3.0 // indirect
-	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
