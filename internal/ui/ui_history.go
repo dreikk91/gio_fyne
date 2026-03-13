@@ -86,6 +86,9 @@ func (m *model) buildHistoryUI() {
 				bg.Refresh()
 				return
 			}
+
+
+			lbl.TextStyle = fyne.TextStyle{}
 			dataRow := id.Row - 1
 			m.mu.RLock()
 			if dataRow >= len(m.hRows) {
@@ -107,7 +110,7 @@ func (m *model) buildHistoryUI() {
 				e.Zone,
 				relay,
 			}
-			lbl.TextStyle = fyne.TextStyle{}
+			
 			lbl.SetText(values[id.Col])
 			bg.FillColor = eventColor(e.Category, dataRow)
 			bg.Refresh()

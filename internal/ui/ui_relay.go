@@ -3,10 +3,12 @@ package ui
 import (
 	"context"
 	"fmt"
+	"image/color"
 	"sort"
 	"strings"
 
 	"cid_gio_gio/internal/core"
+
 	"github.com/rs/zerolog/log"
 
 	"fyne.io/fyne/v2"
@@ -96,61 +98,157 @@ func (m *model) buildRelayFilterUI() {
 		m.refreshRelayUI()
 	})
 
-	m.rfObjList = widget.NewList(
-		func() int { return len(m.rfFilteredObjs) },
-		func() fyne.CanvasObject {
-			return newRelayObjCell()
+	m.rfObjList = widget.NewTable(
+		func() (int, int) {
+			return len(m.rfFilteredObjs) + 1, 3
 		},
-		func(id widget.ListItemID, obj fyne.CanvasObject) {
-			if id >= len(m.rfFilteredObjs) {
+		func() fyne.CanvasObject {
+			bg := canvas.NewRectangle(color.NRGBA{R: 248, G: 250, B: 252, A: 255})
+			lbl := widget.NewLabel("")
+			lbl.Truncation = fyne.TextTruncateEllipsis
+			return container.NewMax(bg, lbl)
+		},
+		func(id widget.TableCellID, obj fyne.CanvasObject) {
+			bg, lbl := getTableCellParts(obj)
+			if id.Row == 0 {
+				headers := []string{"✓", "ID", "Object Info"}
+				lbl.SetText(headers[id.Col])
+				lbl.TextStyle = fyne.TextStyle{Bold: true}
+				bg.FillColor = color.NRGBA{R: 226, G: 232, B: 240, A: 255}
+				bg.Refresh()
 				return
 			}
-			row := m.rfFilteredObjs[id]
-			cell := obj.(*relayObjCell)
-			cell.label.SetText(row.Display)
-			cell.check.OnChanged = func(v bool) {
-				row.Selected = v
-				if m.rfCheckObjectSelectionChanges() {
-					m.rfSyncCodesPaneToSelectedObjects()
-				}
-				m.rebuildRfSummary()
-				m.refreshRelayUI()
-			}
-			cell.check.SetChecked(row.Selected)
-		},
-	)
 
-	m.rfCodeList = widget.NewList(
-		func() int { return len(m.rfFilteredCd) },
-		func() fyne.CanvasObject {
-			return newRelayCodeCell()
-		},
-		func(id widget.ListItemID, obj fyne.CanvasObject) {
-			if id >= len(m.rfFilteredCd) {
+			dataRow := id.Row - 1
+			if dataRow >= len(m.rfFilteredObjs) {
 				return
 			}
-			row := m.rfFilteredCd[id]
-			cell := obj.(*relayCodeCell)
-			cell.label.SetText(fmt.Sprintf("%s | %s", row.Code, row.Description))
-			cell.check.OnChanged = func(v bool) {
-				row.Selected = v
-				if m.rfCheckCodeSelectionChanges() {
-					m.rfApplyCodesToSelectedObjects()
+			row := m.rfFilteredObjs[dataRow]
+
+			bg.FillColor = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
+			if id.Row%2 == 0 {
+				bg.FillColor = color.NRGBA{R: 241, G: 245, B: 249, A: 255}
+			}
+
+			switch id.Col {
+			case 0:
+				if row.Selected {
+					lbl.SetText("☑")
+				} else {
+					lbl.SetText("☐")
 				}
-				m.rebuildRfSummary()
-				m.refreshRelayUI()
+			case 1:
+				lbl.SetText(fmt.Sprintf("%03d", row.ID))
+			case 2:
+				lbl.SetText(row.Display)
 			}
-			cell.check.SetChecked(row.Selected)
-			cell.config.OnTapped = func() {
-				m.openRfDetail(row.Code)
-			}
-			if row.Category != "alarm" {
-				cell.config.Hide()
-			} else {
-				cell.config.Show()
-			}
+			lbl.Truncation = fyne.TextTruncateEllipsis
+			lbl.TextStyle = fyne.TextStyle{}
+			bg.Refresh()
 		},
 	)
+	m.rfObjList.SetColumnWidth(0, 40)
+	m.rfObjList.SetColumnWidth(1, 60)
+	m.rfObjList.SetColumnWidth(2, 250)
+	m.rfObjList.OnSelected = func(id widget.TableCellID) {
+		if id.Row <= 0 {
+			return
+		}
+		dataRow := id.Row - 1
+		if dataRow >= len(m.rfFilteredObjs) {
+			return
+		}
+		m.rfFilteredObjs[dataRow].Selected = !m.rfFilteredObjs[dataRow].Selected
+		if m.rfCheckObjectSelectionChanges() {
+			m.rfSyncCodesPaneToSelectedObjects()
+		}
+		m.rebuildRfSummary()
+		m.rfObjList.Refresh()
+		m.refreshRelayUI()
+	}
+
+	m.rfCodeList = widget.NewTable(
+		func() (int, int) {
+			return len(m.rfFilteredCd) + 1, 5
+		},
+		func() fyne.CanvasObject {
+			bg := canvas.NewRectangle(color.NRGBA{R: 248, G: 250, B: 252, A: 255})
+			lbl := widget.NewLabel("")
+			lbl.Truncation = fyne.TextTruncateEllipsis
+			return container.NewMax(bg, lbl)
+		},
+		func(id widget.TableCellID, obj fyne.CanvasObject) {
+			bg, lbl := getTableCellParts(obj)
+			if id.Row == 0 {
+				headers := []string{"✓", "Code", "Type", "Description", ""}
+				lbl.SetText(headers[id.Col])
+				lbl.TextStyle = fyne.TextStyle{Bold: true}
+				bg.FillColor = color.NRGBA{R: 226, G: 232, B: 240, A: 255}
+				bg.Refresh()
+				return
+			}
+
+			dataRow := id.Row - 1
+			if dataRow >= len(m.rfFilteredCd) {
+				return
+			}
+			row := m.rfFilteredCd[dataRow]
+
+			bg.FillColor = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
+			if id.Row%2 == 0 {
+				bg.FillColor = color.NRGBA{R: 241, G: 245, B: 249, A: 255}
+			}
+
+			switch id.Col {
+			case 0:
+				if row.Selected {
+					lbl.SetText("☑")
+				} else {
+					lbl.SetText("☐")
+				}
+			case 1:
+				lbl.SetText(row.Code)
+			case 2:
+				lbl.SetText(row.Type)
+			case 3:
+				lbl.SetText(row.Description)
+			case 4:
+				if row.Category == "alarm" {
+					lbl.SetText("Config")
+				} else {
+					lbl.SetText("")
+				}
+			}
+			lbl.TextStyle = fyne.TextStyle{}
+			bg.Refresh()
+		},
+	)
+	m.rfCodeList.SetColumnWidth(0, 40)
+	m.rfCodeList.SetColumnWidth(1, 80)
+	m.rfCodeList.SetColumnWidth(2, 100)
+	m.rfCodeList.SetColumnWidth(3, 150)
+	m.rfCodeList.SetColumnWidth(4, 80)
+	m.rfCodeList.OnSelected = func(id widget.TableCellID) {
+		if id.Row <= 0 {
+			return
+		}
+		dataRow := id.Row - 1
+		if dataRow >= len(m.rfFilteredCd) {
+			return
+		}
+		row := m.rfFilteredCd[dataRow]
+		if id.Col == 4 && row.Category == "alarm" {
+			m.openRfDetail(row.Code)
+		} else if id.Col == 0 {
+			row.Selected = !row.Selected
+			if m.rfCheckCodeSelectionChanges() {
+				m.rfApplyCodesToSelectedObjects()
+			}
+			m.rebuildRfSummary()
+			m.rfCodeList.Refresh()
+			m.refreshRelayUI()
+		}
+	}
 
 	m.rfSumList = widget.NewList(
 		func() int { return len(m.rfSummary) },
@@ -219,12 +317,12 @@ func (m *model) buildRelayFilterUI() {
 		m.rfStatusLabel,
 	)
 
-	content := container.NewVBox(
+	content := container.NewBorder(
 		cardContainer(cPanel, header),
-		layout.NewSpacer(),
-		m.rfTabs,
-		layout.NewSpacer(),
 		footer,
+		nil,
+		nil,
+		m.rfTabs,
 	)
 
 	m.rfWin.SetContent(content)

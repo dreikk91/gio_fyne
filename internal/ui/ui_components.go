@@ -100,26 +100,19 @@ func newTableTextCell() fyne.CanvasObject {
 	return lbl
 }
 
-type eventCell struct {
-	*fyne.Container
-	bg   *canvas.Rectangle
-	text *widget.Label
-}
-
 func newEventCell() fyne.CanvasObject {
-	cell := &eventCell{
-		bg:   canvas.NewRectangle(cPanel),
-		text: widget.NewLabel(""),
-	}
-	cell.text.Truncation = fyne.TextTruncateEllipsis
-	cell.text.Wrapping = fyne.TextWrapOff
-	cell.Container = container.NewMax(cell.bg, container.NewPadded(cell.text))
-	return cell
+	bg := canvas.NewRectangle(cPanel)
+	lbl := widget.NewLabel("")
+	lbl.Truncation = fyne.TextTruncateEllipsis
+	lbl.Wrapping = fyne.TextWrapOff
+	return container.NewMax(bg, lbl)
 }
 
 func getEventCellParts(obj fyne.CanvasObject) (*canvas.Rectangle, *widget.Label) {
-	c := obj.(*eventCell)
-	return c.bg, c.text
+	cell := obj.(*fyne.Container)
+	bg := cell.Objects[0].(*canvas.Rectangle)
+	lbl := cell.Objects[1].(*widget.Label)
+	return bg, lbl
 }
 
 type tableActionCell struct {
@@ -155,71 +148,6 @@ func getActionCellParts(obj fyne.CanvasObject) (*canvas.Rectangle, *widget.Label
 	return bg, lbl, btns, btnBox, btnBox2
 }
 
-type objectRow struct {
-	*fyne.Container
-	bg        *canvas.Rectangle
-	state     *widget.Label
-	ppk       *widget.Label
-	client    *widget.Label
-	lastEvent *widget.Label
-	timeText  *widget.Label
-	history   *widget.Button
-	deleteBtn *widget.Button
-
-	onHistory func()
-	onDelete  func()
-}
-
-func newObjectRow() fyne.CanvasObject {
-	row := &objectRow{
-		bg:        canvas.NewRectangle(cPanel),
-		state:     widget.NewLabel("-"),
-		ppk:       widget.NewLabel("-"),
-		client:    widget.NewLabel("-"),
-		lastEvent: widget.NewLabel("-"),
-		timeText:  widget.NewLabel("-"),
-		history:   widget.NewButton("History", nil),
-		deleteBtn: widget.NewButton("Delete", nil),
-	}
-	row.state.Truncation = fyne.TextTruncateEllipsis
-	row.ppk.Truncation = fyne.TextTruncateEllipsis
-	row.client.Truncation = fyne.TextTruncateEllipsis
-	row.lastEvent.Truncation = fyne.TextTruncateEllipsis
-	row.timeText.Truncation = fyne.TextTruncateEllipsis
-	row.history.Importance = widget.LowImportance
-	row.deleteBtn.Importance = widget.DangerImportance
-	row.bg.StrokeColor = cBorder
-	row.bg.StrokeWidth = 1
-	row.bg.CornerRadius = 8
-	cols := container.NewGridWithColumns(6,
-		row.state, row.ppk, row.client, row.lastEvent, row.timeText,
-		container.NewHBox(row.history, row.deleteBtn),
-	)
-	wrap := container.NewMax(row.bg, container.NewPadded(cols))
-	row.Container = wrap
-	row.history.OnTapped = func() {
-		if row.onHistory != nil {
-			row.onHistory()
-		}
-	}
-	row.deleteBtn.OnTapped = func() {
-		if row.onDelete != nil {
-			row.onDelete()
-		}
-	}
-	return row
-}
-
-func (r *objectRow) setData(state, ppk, client, lastEvent, time string, bg color.NRGBA) {
-	r.state.SetText(state)
-	r.ppk.SetText(ppk)
-	r.client.SetText(client)
-	r.lastEvent.SetText(lastEvent)
-	r.timeText.SetText(time)
-	r.bg.FillColor = bg
-	r.bg.Refresh()
-}
-
 func (m *model) runOnUI(fn func()) {
 	fn()
 }
@@ -230,28 +158,18 @@ func vGap(h float32) fyne.CanvasObject {
 	return sp
 }
 
-type relayObjCell struct {
-	*fyne.Container
-	check *widget.Check
-	label *widget.Label
-}
-
 func newRelayObjCell() fyne.CanvasObject {
 	chk := widget.NewCheck("", nil)
 	lbl := widget.NewLabel("")
 	lbl.Alignment = fyne.TextAlignLeading
-	return &relayObjCell{
-		Container: container.NewHBox(chk, lbl),
-		check:     chk,
-		label:     lbl,
-	}
+	return container.NewHBox(chk, lbl)
 }
 
-type relayCodeCell struct {
-	*fyne.Container
-	check  *widget.Check
-	label  *widget.Label
-	config *widget.Button
+func getRelayObjCellParts(obj fyne.CanvasObject) (*widget.Check, *widget.Label) {
+	cell := obj.(*fyne.Container)
+	chk := cell.Objects[0].(*widget.Check)
+	lbl := cell.Objects[1].(*widget.Label)
+	return chk, lbl
 }
 
 func newRelayCodeCell() fyne.CanvasObject {
@@ -260,10 +178,20 @@ func newRelayCodeCell() fyne.CanvasObject {
 	lbl.Alignment = fyne.TextAlignLeading
 	cfg := widget.NewButton("Config", nil)
 	cfg.Importance = widget.LowImportance
-	return &relayCodeCell{
-		Container: container.NewBorder(nil, nil, chk, cfg, lbl),
-		check:     chk,
-		label:     lbl,
-		config:    cfg,
-	}
+	return container.NewHBox(chk, lbl, layout.NewSpacer(), cfg)
+}
+
+func getRelayCdCellParts(obj fyne.CanvasObject) (*widget.Check, *widget.Label, *widget.Button) {
+	cell := obj.(*fyne.Container)
+	chk := cell.Objects[0].(*widget.Check)
+	lbl := cell.Objects[1].(*widget.Label)
+	cfg := cell.Objects[3].(*widget.Button)
+	return chk, lbl, cfg
+}
+
+func getTableCellParts(obj fyne.CanvasObject) (*canvas.Rectangle, *widget.Label) {
+	cell := obj.(*fyne.Container)
+	bg := cell.Objects[0].(*canvas.Rectangle)
+	lbl := cell.Objects[1].(*widget.Label)
+	return bg, lbl
 }

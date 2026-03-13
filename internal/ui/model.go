@@ -31,6 +31,7 @@ const (
 
 var eventFilters = []string{"all", "alarm", "test", "fault", "guard", "disguard", "other"}
 var logLevels = []string{"trace", "debug", "info", "warn", "error", "fatal"}
+var eventColumns = []string{"Time", "PPK", "Code", "Type", "Description", "Zone", "Category"}
 
 var (
 	cBg         = color.NRGBA{R: 243, G: 246, B: 251, A: 255}
@@ -107,12 +108,12 @@ type model struct {
 	hResult  chan historyResult
 	rfResult chan rfResult
 
-	bootReqID     atomic.Uint64
-	eventsReqID   atomic.Uint64
-	historyReqID  atomic.Uint64
-	bootCancel    context.CancelFunc
-	eventsCancel  context.CancelFunc
-	historyCancel context.CancelFunc
+	bootReqID       atomic.Uint64
+	eventsReqID     atomic.Uint64
+	historyReqID    atomic.Uint64
+	bootCancel      context.CancelFunc
+	eventsCancel    context.CancelFunc
+	historyCancel   context.CancelFunc
 	historyDebounce *time.Timer
 
 	eventsBusy  atomic.Bool
@@ -120,9 +121,9 @@ type model struct {
 	delBusy     atomic.Bool
 	rfBusy      atomic.Bool
 
-	trayStarted atomic.Bool
-	trayReady   atomic.Bool
-	allowClose  atomic.Bool
+	trayStarted  atomic.Bool
+	trayReady    atomic.Bool
+	allowClose   atomic.Bool
 	trayNoticeAt atomic.Int64
 
 	// Main UI refs
@@ -141,8 +142,8 @@ type model struct {
 	hideBlockedCheck *widget.Check
 	eventFilterBtns  map[string]*widget.Button
 
-	objTable *widget.Table
-	evtTable *widget.Table
+	objTable  *widget.Table
+	evtTable  *widget.Table
 	selObjRow int
 	selEvtRow int
 
@@ -166,21 +167,21 @@ type model struct {
 	fontSizeLabel  *canvas.Text
 
 	// History window
-	hOpen            bool
-	hDevice          core.DeviceDTO
-	hRows            []core.EventDTO
-	hLimit           int
-	hSearchEntry     *widget.Entry
-	hHideTestsCheck  *widget.Check
+	hOpen             bool
+	hDevice           core.DeviceDTO
+	hRows             []core.EventDTO
+	hLimit            int
+	hSearchEntry      *widget.Entry
+	hHideTestsCheck   *widget.Check
 	hHideBlockedCheck *widget.Check
-	hEventType       string
-	hQueryCache      string
-	hFilterBtns      map[string]*widget.Button
-	hTable           *widget.Table
-	selHistRow       int
-	hWin             fyne.Window
-	hHeaderTitle     *canvas.Text
-	hHeaderSubtitle  *canvas.Text
+	hEventType        string
+	hQueryCache       string
+	hFilterBtns       map[string]*widget.Button
+	hTable            *widget.Table
+	selHistRow        int
+	hWin              fyne.Window
+	hHeaderTitle      *canvas.Text
+	hHeaderSubtitle   *canvas.Text
 
 	// Relay filter window
 	rfOpen        bool
@@ -200,8 +201,8 @@ type model struct {
 	rfSummary      []rfSummaryRow
 	rfFilteredObjs []*rfObjectRow
 	rfFilteredCd   []*rfCodeRow
-	rfObjList      *widget.List
-	rfCodeList     *widget.List
+	rfObjList      *widget.Table
+	rfCodeList     *widget.Table
 	rfSumList      *widget.List
 	rfTabs         *container.AppTabs
 

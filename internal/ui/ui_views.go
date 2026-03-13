@@ -113,7 +113,13 @@ func (m *model) buildObjectsTab() fyne.CanvasObject {
 			d := m.filteredDevices[dataRow]
 			m.mu.RUnlock()
 			stale := isStale(d.LastEventTime, m.activityTO)
+
 			rowBg := rowAltColor(dataRow)
+			eventCat := m.getEventCategoryForDevice(d.ID)
+			if !stale && eventCat != "" {
+				rowBg = eventColor(eventCat, dataRow)
+			}
+
 			if stale {
 				rowBg = cBadSoft
 			}
@@ -258,6 +264,7 @@ func (m *model) buildEventsTab() fyne.CanvasObject {
 				bg.Refresh()
 				return
 			}
+			lbl.TextStyle = fyne.TextStyle{}
 			dataRow := id.Row - 1
 			m.mu.RLock()
 			if dataRow >= len(m.filteredEvents) {
