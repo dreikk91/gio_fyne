@@ -42,6 +42,7 @@ type StatsDTO struct {
 	Rejected   int64
 	Reconnects int64
 	ReceivedPS int64
+	ReceivedPM int64
 	Clients    int
 	Uptime     string
 	Connected  bool

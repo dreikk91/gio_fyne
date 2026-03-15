@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cid_gio_gio/internal/config"
-	"cid_gio_gio/internal/core"
+	"cid_fyne/internal/config"
+	"cid_fyne/internal/core"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"

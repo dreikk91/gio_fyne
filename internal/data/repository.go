@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"cid_gio_gio/internal/core"
+	"cid_fyne/internal/core"
 
 	"github.com/rs/zerolog/log"
 

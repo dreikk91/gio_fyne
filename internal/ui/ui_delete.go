@@ -3,7 +3,7 @@ package ui
 import (
 	"fmt"
 
-	"cid_gio_gio/internal/core"
+	"cid_fyne/internal/core"
 
 	"fyne.io/fyne/v2/dialog"
 )

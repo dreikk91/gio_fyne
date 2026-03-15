@@ -2,7 +2,7 @@
 
 package main
 
-import "cid_gio_gio/internal/appmain"
+import "cid_fyne/internal/appmain"
 
 func main() {
 	appmain.Run()

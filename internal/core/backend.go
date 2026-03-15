@@ -3,7 +3,7 @@ package core
 import (
 	"context"
 	"time"
-	"cid_gio_gio/internal/config"
+	"cid_fyne/internal/config"
 )
 
 // Backend defines the interface for the application logic,

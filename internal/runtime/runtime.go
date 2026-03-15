@@ -10,11 +10,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cid_gio_gio/internal/config"
-	"cid_gio_gio/internal/core"
-	"cid_gio_gio/internal/data"
-	appLog "cid_gio_gio/internal/logger"
-	"cid_gio_gio/internal/netrelay"
+	"cid_fyne/internal/config"
+	"cid_fyne/internal/core"
+	"cid_fyne/internal/data"
+	appLog "cid_fyne/internal/logger"
+	"cid_fyne/internal/netrelay"
 
 	"github.com/rs/zerolog/log"
 )

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 
-	"cid_gio_gio/internal/config"
+	"cid_fyne/internal/config"
 )
 
 const (

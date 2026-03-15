@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	appLog "cid_gio_gio/internal/logger"
+	appLog "cid_fyne/internal/logger"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"

@@ -75,6 +75,7 @@ func (m *Metrics) Snapshot() StatsDTO {
 		Rejected:   m.rejected.Load(),
 		Reconnects: m.reconnects.Load(),
 		ReceivedPS: receivedPS,
+		ReceivedPM: receivedPS * 60,
 		Clients:    int(m.clients.Load()),
 		Uptime:     formatUptime(uptime),
 		Connected:  m.connected.Load() == 1,

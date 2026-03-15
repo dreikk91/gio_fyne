@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cid_gio_gio/internal/config"
+	"cid_fyne/internal/config"
 
 	"fyne.io/fyne/v2/widget"
 )

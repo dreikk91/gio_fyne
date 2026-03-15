@@ -1,6 +1,6 @@
 //go:build windows
 
-package appmain
+package main
 
 import (
 	"context"
@@ -8,17 +8,16 @@ import (
 	"net/http"
 	_ "net/http/pprof"
 	"os"
-	"time"
 
 	"cid_fyne/internal/config"
 	appLog "cid_fyne/internal/logger"
 	appRuntime "cid_fyne/internal/runtime"
-	"cid_fyne/internal/ui"
+	"cid_fyne/internal/ui/walk"
 	"github.com/rs/zerolog/log"
 )
 
-func Run() {
-	defer appLog.RecoverPanic("main")
+func main() {
+	defer appLog.RecoverPanic("main-walk")
 	configPath := appRuntime.ResolveConfigPath()
 	cfg, cfgErr := config.NewStore(configPath).Load()
 	if cfgErr != nil {
@@ -32,16 +31,14 @@ func Run() {
 	}
 	startPprof(cfg.Profiling)
 
-	startedAt := time.Now()
 	rt := appRuntime.NewRuntime(configPath)
-	err := ui.Run(context.Background(), rt)
-	uptime := time.Since(startedAt).Round(time.Second)
+	err := walk.Run(context.Background(), rt)
 	if err != nil {
-		log.Error().Err(err).Dur("uptime", uptime).Msg("application exited with error")
+		log.Error().Err(err).Msg("application exited with error")
 		appLog.Close()
 		os.Exit(1)
 	}
-	log.Info().Dur("uptime", uptime).Msg("application exited")
+	log.Info().Msg("application exited")
 	appLog.Close()
 	os.Exit(0)
 }

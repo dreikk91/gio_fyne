@@ -3,7 +3,7 @@ package core
 import (
 	"testing"
 
-	"cid_gio_gio/internal/config"
+	"cid_fyne/internal/config"
 )
 
 func TestChangeAccountNumberAppliesConfiguredRangeAndCodeMap(t *testing.T) {

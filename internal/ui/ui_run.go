@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"time"
 
-	"cid_gio_gio/internal/core"
-	appLog "cid_gio_gio/internal/logger"
+	"cid_fyne/internal/core"
+	appLog "cid_fyne/internal/logger"
 
 	"github.com/rs/zerolog/log"
 

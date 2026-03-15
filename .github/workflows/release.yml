@@ -1,0 +1,108 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+          cache: true
+
+      - name: Install Fyne CLI
+        run: go install fyne.io/fyne/v2/cmd/fyne@latest
+
+      - name: Build Walk (64-bit)
+        run: |
+          mkdir -p build
+          go build -ldflags="-s -w -H=windowsgui" -o build/cidwalk-windows-amd64.exe ./cmd/cidwalk
+
+      - name: Build Walk (32-bit)
+        run: |
+          $env:GOARCH = "386"
+          go build -ldflags="-s -w -H=windowsgui" -o build/cidwalk-windows-386.exe ./cmd/cidwalk
+
+      - name: Build Fyne (64-bit)
+        run: fyne package -os windows -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-windows-amd64
+
+      - name: Build Fyne (32-bit)
+        run: |
+          $env:GOARCH = "386"
+          fyne package -os windows -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-windows-386
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-binaries
+          path: |
+            build/cidwalk-windows-amd64.exe
+            build/cidwalk-windows-386.exe
+            *.exe
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-dev xorg-dev libwayland-dev libxkbcommon-dev
+
+      - name: Install Fyne CLI
+        run: go install fyne.io/fyne/v2/cmd/fyne@latest
+
+      - name: Build Fyne (64-bit)
+        run: fyne package -os linux -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-linux-amd64
+
+      - name: Build Fyne (32-bit)
+        run: |
+          export GOARCH=386
+          fyne package -os linux -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-linux-386
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-binaries
+          path: "*.tar.xz"
+
+  release:
+    needs: [build-windows, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Prepare Release Files
+        run: |
+          mkdir release
+          cp windows-binaries/*.exe release/
+          cp linux-binaries/*.tar.xz release/
+          cp events.json release/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

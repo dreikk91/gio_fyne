@@ -1,4 +1,4 @@
-module cid_gio_gio
+module cid_fyne
 
 go 1.25.4
 
@@ -36,6 +36,8 @@ require (
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/jeandeaual/go-locale v0.0.0-20240223122105-ce5225dcaa49 // indirect
 	github.com/jsummers/gobmp v0.0.0-20151104160322-e2ba15ffa76e // indirect
+	github.com/lxn/walk v0.0.0-20210112085537-c389da54e794 // indirect
+	github.com/lxn/win v0.0.0-20210218163916-a377121e959e // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
@@ -53,4 +55,5 @@ require (
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
+	gopkg.in/Knetic/govaluate.v3 v3.0.0 // indirect
 )
