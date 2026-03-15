@@ -22,6 +22,10 @@ Logging:
     EnableFile: true
     PrettyConsole: true
     SamplingEnabled: false
+Profiling:
+    Enabled: true
+    Host: 127.0.0.1
+    Port: "6060"
 CidRules:
     RequiredPrefix: "5"
     ValidLength: 20
@@ -42,9 +46,9 @@ UI:
     StartMinimized: false
     MinimizeToTray: true
     CloseToTray: false
-    FontSize: 14
+    FontSize: 11
 History:
-    LogLimit: 100
+    LogLimit: 1000
     GlobalLimit: 500
     RetentionDays: 30
     CleanupIntervalHours: 1

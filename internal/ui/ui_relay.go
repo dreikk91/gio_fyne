@@ -19,6 +19,11 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+const (
+	rfSummaryMaxCodes = 40
+	rfSummaryMaxChars = 400
+)
+
 func (m *model) openRelayFilter() {
 	m.rfBusy.Store(true)
 	go func() {
@@ -60,6 +65,21 @@ func (m *model) buildRelayFilterUI() {
 	m.rfCodeQuery = widget.NewEntry()
 	m.rfCodeQuery.SetPlaceHolder("Search Code/Type/Desc...")
 	m.rfCodeQuery.OnChanged = func(string) { m.updateRfFilters(); m.refreshRelayUI() }
+
+	rfCategoryFilterRow := container.NewHBox()
+	m.rfCategoryFilterBtns = map[string]*filterButtonRef{}
+	for _, f := range eventFilters {
+		ff := f
+		btn := newFilterButton(strings.ToUpper(f), func() {
+			m.rfCategoryFilter = ff
+			m.updateRfFilters()
+			m.refreshRfCategoryFilterButtons()
+			m.refreshRelayUI()
+		})
+		m.rfCategoryFilterBtns[f] = btn
+		rfCategoryFilterRow.Add(container.NewGridWrap(filterButtonSize(72), container.NewCenter(btn.box())))
+	}
+	m.rfCategoryFilter = "all"
 
 	m.rfSelectAllObjs = widget.NewButton("Select All", func() {
 		for i := range m.rfFilteredObjs {
@@ -149,7 +169,7 @@ func (m *model) buildRelayFilterUI() {
 	)
 	m.rfObjList.SetColumnWidth(0, 40)
 	m.rfObjList.SetColumnWidth(1, 60)
-	m.rfObjList.SetColumnWidth(2, 250)
+	m.rfObjList.SetColumnWidth(2, 350)
 	m.rfObjList.OnSelected = func(id widget.TableCellID) {
 		if id.Row <= 0 {
 			return
@@ -194,10 +214,7 @@ func (m *model) buildRelayFilterUI() {
 			}
 			row := m.rfFilteredCd[dataRow]
 
-			bg.FillColor = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
-			if id.Row%2 == 0 {
-				bg.FillColor = color.NRGBA{R: 241, G: 245, B: 249, A: 255}
-			}
+			bg.FillColor = eventColor(row.Category, dataRow)
 
 			switch id.Col {
 			case 0:
@@ -224,10 +241,10 @@ func (m *model) buildRelayFilterUI() {
 		},
 	)
 	m.rfCodeList.SetColumnWidth(0, 40)
-	m.rfCodeList.SetColumnWidth(1, 80)
-	m.rfCodeList.SetColumnWidth(2, 100)
-	m.rfCodeList.SetColumnWidth(3, 150)
-	m.rfCodeList.SetColumnWidth(4, 80)
+	m.rfCodeList.SetColumnWidth(1, 75)
+	m.rfCodeList.SetColumnWidth(2, 110)
+	m.rfCodeList.SetColumnWidth(3, 320)
+	m.rfCodeList.SetColumnWidth(4, 75)
 	m.rfCodeList.OnSelected = func(id widget.TableCellID) {
 		if id.Row <= 0 {
 			return
@@ -253,12 +270,13 @@ func (m *model) buildRelayFilterUI() {
 	m.rfSumList = widget.NewList(
 		func() int { return len(m.rfSummary) },
 		func() fyne.CanvasObject {
-			cols := []fyne.CanvasObject{
-				widget.NewLabel(""),
-				widget.NewLabel(""),
-				widget.NewLabel(""),
-				widget.NewLabel(""),
-			}
+			col0 := widget.NewLabel("")
+			col1 := widget.NewLabel("")
+			col2 := widget.NewLabel("")
+			col3 := widget.NewLabel("")
+			col3.Truncation = fyne.TextTruncateEllipsis
+			col3.Wrapping = fyne.TextWrapOff
+			cols := []fyne.CanvasObject{col0, col1, col2, col3}
 			return container.NewGridWithColumns(4, cols...)
 		},
 		func(id widget.ListItemID, obj fyne.CanvasObject) {
@@ -282,24 +300,25 @@ func (m *model) buildRelayFilterUI() {
 			vGap(6),
 		),
 		nil, nil, nil,
-		m.rfObjList,
+		container.NewScroll(m.rfObjList),
 	))
 	codePane := cardContainer(cPanel, container.NewBorder(
 		container.NewVBox(
 			canvas.NewText("Select Blocked Codes", cText),
 			m.rfCodeQuery,
+			rfCategoryFilterRow,
 			container.NewHBox(m.rfSelectAllCodes, m.rfClearCodes),
 			vGap(6),
 		),
 		nil, nil, nil,
-		m.rfCodeList,
+		container.NewScroll(m.rfCodeList),
 	))
 
 	rulesTab := container.NewGridWithColumns(2, objPane, codePane)
 	summaryTab := cardContainer(cPanel, container.NewBorder(
 		newTableHeader([]string{"ID", "Object", "Global", "Specific Blocked Codes"}),
 		nil, nil, nil,
-		m.rfSumList,
+		container.NewScroll(m.rfSumList),
 	))
 
 	m.rfTabs = container.NewAppTabs(
@@ -386,6 +405,7 @@ func (m *model) initRfRows() {
 	}
 
 	events := m.rt.GetEventList()
+	catMap := m.rt.GetEventCatalogCategories()
 	log.Debug().Int("events", len(events)).Msg("relay filter event catalog loaded")
 	sort.Slice(events, func(i, j int) bool {
 		return events[i].ContactIDCode < events[j].ContactIDCode
@@ -399,11 +419,18 @@ func (m *model) initRfRows() {
 			continue
 		}
 		seen[code] = true
+		cat := ""
+		if catMap != nil {
+			cat = strings.ToLower(strings.TrimSpace(catMap[code]))
+		}
+		if cat == "" {
+			cat = "other"
+		}
 		m.rfCodes = append(m.rfCodes, rfCodeRow{
 			Code:        code,
 			Type:        e.TypeCodeMesUK,
 			Description: e.CodeMesUK,
-			Category:    classifyEvent(code, e.TypeCodeMesUK, e.CodeMesUK),
+			Category:    cat,
 		})
 	}
 }
@@ -439,6 +466,7 @@ func (m *model) loadRfRule(rule core.RelayFilterRule) {
 	m.rfSelectedCodes = nil
 	m.rfSyncCodesPaneToSelectedObjects()
 	m.updateRfFilters()
+	m.refreshRfCategoryFilterButtons()
 	m.rebuildRfSummary()
 }
 
@@ -459,12 +487,22 @@ func (m *model) updateRfFilters() {
 	m.rfFilteredCd = m.rfFilteredCd[:0]
 	for i := range m.rfCodes {
 		it := &m.rfCodes[i]
-		if codeQ == "" ||
+		catMatch := m.rfCategoryFilter == "all" || strings.EqualFold(it.Category, m.rfCategoryFilter)
+		if catMatch && (codeQ == "" ||
 			strings.Contains(strings.ToLower(it.Code), codeQ) ||
 			strings.Contains(strings.ToLower(it.Type), codeQ) ||
-			strings.Contains(strings.ToLower(it.Description), codeQ) {
+			strings.Contains(strings.ToLower(it.Description), codeQ)) {
 			m.rfFilteredCd = append(m.rfFilteredCd, it)
 		}
+	}
+}
+
+func (m *model) refreshRfCategoryFilterButtons() {
+	if m.rfCategoryFilterBtns == nil {
+		return
+	}
+	for f, btn := range m.rfCategoryFilterBtns {
+		btn.set(f == m.rfCategoryFilter, f)
 	}
 }
 
@@ -687,8 +725,15 @@ func (m *model) rebuildRfSummary() {
 		specific := "-"
 		if codes, ok := rule.ObjectCodes[d.ID]; ok && len(codes) > 0 {
 			sort.Strings(codes)
-			items := make([]string, 0, len(codes))
-			for _, c := range codes {
+			capHint := len(codes)
+			if capHint > rfSummaryMaxCodes {
+				capHint = rfSummaryMaxCodes
+			}
+			items := make([]string, 0, capHint)
+			for i, c := range codes {
+				if i >= rfSummaryMaxCodes {
+					break
+				}
 				s := c
 				if det, has := rule.ObjCodeDetails[d.ID][c]; has {
 					z := ""
@@ -705,7 +750,13 @@ func (m *model) rebuildRfSummary() {
 				}
 				items = append(items, s)
 			}
+			if remaining := len(codes) - len(items); remaining > 0 {
+				items = append(items, fmt.Sprintf("... +%d", remaining))
+			}
 			specific = strings.Join(items, ", ")
+			if len(specific) > rfSummaryMaxChars {
+				specific = specific[:rfSummaryMaxChars-3] + "..."
+			}
 		}
 
 		if isGlobal || specific != "-" {

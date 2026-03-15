@@ -4,6 +4,9 @@ package appmain
 
 import (
 	"context"
+	"net"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"time"
 
@@ -27,6 +30,7 @@ func Run() {
 	if cfgErr != nil {
 		log.Warn().Err(cfgErr).Str("config_path", configPath).Msg("failed to load config before logger setup, defaults applied")
 	}
+	startPprof(cfg.Profiling)
 
 	startedAt := time.Now()
 	rt := appRuntime.NewRuntime(configPath)
@@ -40,4 +44,17 @@ func Run() {
 	log.Info().Dur("uptime", uptime).Msg("application exited")
 	appLog.Close()
 	os.Exit(0)
+}
+
+func startPprof(cfg config.ProfilingConfig) {
+	if !cfg.Enabled {
+		return
+	}
+	addr := net.JoinHostPort(cfg.Host, cfg.Port)
+	go func() {
+		log.Info().Str("addr", addr).Msg("pprof server started")
+		if err := http.ListenAndServe(addr, nil); err != nil {
+			log.Error().Err(err).Str("addr", addr).Msg("pprof server stopped")
+		}
+	}()
 }

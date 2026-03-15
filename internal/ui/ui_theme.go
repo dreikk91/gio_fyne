@@ -7,42 +7,42 @@ import (
 	"fyne.io/fyne/v2/theme"
 )
 
-type win10Theme struct {
+type modernTheme struct {
 	base     fyne.Theme
 	fontSize float32
 }
 
-func newWin10Theme(fontSize int) *win10Theme {
+func newModernTheme(fontSize int) *modernTheme {
 	if fontSize <= 0 {
 		fontSize = 12
 	}
-	return &win10Theme{
+	return &modernTheme{
 		base:     theme.DefaultTheme(),
 		fontSize: float32(fontSize),
 	}
 }
 
-func (t *win10Theme) SetFontSize(size int) {
+func (t *modernTheme) SetFontSize(size int) {
 	if size <= 0 {
 		size = 12
 	}
 	t.fontSize = float32(size)
 }
 
-func (t *win10Theme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
+func (t *modernTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
 	switch name {
 	case theme.ColorNameBackground:
 		return cBg
 	case theme.ColorNameInputBackground:
 		return cPanel
-	case theme.ColorNameForeground, "text": // "text" is technically theme.ColorNameText in newer Fyne versions
+	case theme.ColorNameForeground:
 		return cText
 	case theme.ColorNameDisabled:
-		return color.NRGBA{R: 200, G: 206, B: 214, A: 255}
+		return color.NRGBA{R: 148, G: 163, B: 184, A: 255} // Slate-400
 	case theme.ColorNamePlaceHolder:
 		return cSoft
 	case theme.ColorNameButton:
-		return cAccent2
+		return cBorder
 	case theme.ColorNamePrimary:
 		return cAccent
 	case theme.ColorNameHover:
@@ -50,22 +50,36 @@ func (t *win10Theme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) 
 	case theme.ColorNameFocus:
 		return cAccent
 	case theme.ColorNameShadow:
-		return cBorder
+		return color.NRGBA{A: 0} // Transparent shadows for a cleaner look
+	case theme.ColorNameSuccess:
+		return cGood
+	case theme.ColorNameWarning:
+		return cWarn
+	case theme.ColorNameError:
+		return cBad
 	}
 	return t.base.Color(name, variant)
 }
 
-func (t *win10Theme) Font(style fyne.TextStyle) fyne.Resource {
+func (t *modernTheme) Font(style fyne.TextStyle) fyne.Resource {
 	return t.base.Font(style)
 }
 
-func (t *win10Theme) Icon(name fyne.ThemeIconName) fyne.Resource {
+func (t *modernTheme) Icon(name fyne.ThemeIconName) fyne.Resource {
 	return t.base.Icon(name)
 }
 
-func (t *win10Theme) Size(name fyne.ThemeSizeName) float32 {
-	if name == theme.SizeNameText {
+func (t *modernTheme) Size(name fyne.ThemeSizeName) float32 {
+	switch name {
+	case theme.SizeNameText:
 		return t.fontSize
+	case theme.SizeNamePadding:
+		return 6 // Reduced padding for higher density
+	case theme.SizeNameInputRadius:
+		return 6
+	case theme.SizeNameSelectionRadius:
+		return 4
 	}
 	return t.base.Size(name)
 }
+

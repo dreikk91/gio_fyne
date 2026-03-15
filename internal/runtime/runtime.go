@@ -41,8 +41,10 @@ type Runtime struct {
 
 	onDeviceMu sync.RWMutex
 	onEventMu  sync.RWMutex
+	onDeviceDelMu sync.RWMutex
 	onDevice   []func(core.DeviceDTO)
 	onEvent    []func(core.EventDTO)
+	onDeviceDel []func(int)
 
 	droppedDevice atomic.Int64
 	droppedEvent  atomic.Int64
@@ -56,6 +58,9 @@ const (
 	dbMaintenanceTimeout   = 10 * time.Minute
 	maxBootstrapEvents     = 50000
 	catalogSyncDelay       = 30 * time.Second
+	minWorkerBuffer        = 5000
+	maxWorkerBuffer        = 50000
+	queueBacklogMultiplier = 10
 )
 
 func NewRuntime(configPath string) *Runtime {
@@ -78,6 +83,12 @@ func (r *Runtime) SubscribeEvent(fn func(core.EventDTO)) {
 	r.onEventMu.Lock()
 	defer r.onEventMu.Unlock()
 	r.onEvent = append(r.onEvent, fn)
+}
+
+func (r *Runtime) SubscribeDeviceDeleted(fn func(int)) {
+	r.onDeviceDelMu.Lock()
+	defer r.onDeviceDelMu.Unlock()
+	r.onDeviceDel = append(r.onDeviceDel, fn)
 }
 
 func (r *Runtime) Start(ctx context.Context) error {
@@ -135,7 +146,9 @@ func (r *Runtime) Start(ctx context.Context) error {
 			Version:  1,
 		})
 	}
-	r.queue = core.NewMessageQueue(max(50000, r.config.Queue.BufferSize))
+	queueSize := max(1000, r.config.Queue.BufferSize)
+	queueSize = min(queueSize, maxWorkerBuffer)
+	r.queue = core.NewMessageQueue(queueSize)
 	r.server = netrelay.NewTCPServer(r.config.Server, r.config.CidRules, r.queue, r.metrics)
 	rule, err := r.repo.GetRelayFilterRule(context.Background())
 	if err == nil {
@@ -145,7 +158,9 @@ func (r *Runtime) Start(ctx context.Context) error {
 	if err == nil {
 		r.relay.UpdateRelayFilter(rule)
 	}
-	workerBuffer := max(20000, r.config.Queue.BufferSize*50)
+	workerBuffer := r.config.Queue.BufferSize * queueBacklogMultiplier
+	workerBuffer = max(minWorkerBuffer, workerBuffer)
+	workerBuffer = min(maxWorkerBuffer, workerBuffer)
 	r.deviceQueue = make(chan netrelay.DeviceEvent, workerBuffer)
 	r.eventQueue = make(chan netrelay.DeviceEvent, workerBuffer)
 	r.server.SetCallbacks(r.onDeviceUpdated, r.onEventCreated)
@@ -271,8 +286,21 @@ func (r *Runtime) DeleteDeviceWithHistory(ctx context.Context, deviceID int) err
 		log.Error().Err(err).Int("device_id", deviceID).Msg("delete device with history failed")
 		return err
 	}
+	r.emitDeviceDeleted(deviceID)
 	log.Info().Int("device_id", deviceID).Msg("device with history deleted")
 	return nil
+}
+
+func (r *Runtime) emitDeviceDeleted(deviceID int) {
+	r.onDeviceDelMu.RLock()
+	subs := append([]func(int){}, r.onDeviceDel...)
+	r.onDeviceDelMu.RUnlock()
+	for _, fn := range subs {
+		func(cb func(int)) {
+			defer appLog.RecoverPanic("runtime-emit-device-deleted")
+			cb(deviceID)
+		}(fn)
+	}
 }
 
 func (r *Runtime) GetConfig() config.AppConfig {
@@ -329,6 +357,19 @@ func (r *Runtime) GetEventList() []core.CIDEvent {
 	r.lifecycle.Lock()
 	defer r.lifecycle.Unlock()
 	return r.eventMap.List()
+}
+
+func (r *Runtime) GetEventCatalogCategories() map[string]string {
+	r.lifecycle.Lock()
+	defer r.lifecycle.Unlock()
+	if r.repo == nil {
+		return nil
+	}
+	cats, err := r.repo.GetEventCatalogCategories(context.Background())
+	if err != nil {
+		return nil
+	}
+	return cats
 }
 
 func (r *Runtime) GetDevices() []core.DeviceDTO {
@@ -406,19 +447,23 @@ func (r *Runtime) processEvents(ctx context.Context) {
 					if len(e.Data) >= 20 && r.repo != nil {
 						code := e.Data[11:15]
 						hit, ok := r.eventMap.TryGet(code)
+						evtType := "Unknown"
+						evtDesc := "Unknown code"
 						if ok {
-							batch = append(batch, core.EventDTO{
-								Time:         e.Time,
-								DeviceID:     fmt.Sprintf("%d", e.DeviceID),
-								Code:         code,
-								Type:         hit.TypeCodeMesUK,
-								Desc:         hit.CodeMesUK,
-								Zone:         fmt.Sprintf("Zone %s|Group %s", e.Data[17:20], e.Data[15:17]),
-								Priority:     core.DeterminePriority(code),
-								Category:     core.Classify(code, hit.TypeCodeMesUK, hit.CodeMesUK),
-								RelayBlocked: e.RelayBlocked,
-							})
+							evtType = hit.TypeCodeMesUK
+							evtDesc = hit.CodeMesUK
 						}
+						batch = append(batch, core.EventDTO{
+							Time:         e.Time,
+							DeviceID:     fmt.Sprintf("%d", e.DeviceID),
+							Code:         code,
+							Type:         evtType,
+							Desc:         evtDesc,
+							Zone:         fmt.Sprintf("Zone %s|Group %s", e.Data[17:20], e.Data[15:17]),
+							Priority:     core.DeterminePriority(code),
+							Category:     core.Classify(code, evtType, evtDesc),
+							RelayBlocked: e.RelayBlocked,
+						})
 					}
 				default:
 					break DrainShutdown
@@ -439,16 +484,19 @@ func (r *Runtime) processEvents(ctx context.Context) {
 			group := e.Data[15:17]
 			zone := e.Data[17:20]
 			hit, ok := r.eventMap.TryGet(code)
-			if !ok {
-				continue
+			evtType := "Unknown"
+			evtDesc := "Unknown code"
+			if ok {
+				evtType = hit.TypeCodeMesUK
+				evtDesc = hit.CodeMesUK
 			}
-			category := core.Classify(code, hit.TypeCodeMesUK, hit.CodeMesUK)
+			category := core.Classify(code, evtType, evtDesc)
 			dto := core.EventDTO{
 				Time:         e.Time,
 				DeviceID:     fmt.Sprintf("%d", e.DeviceID),
 				Code:         code,
-				Type:         hit.TypeCodeMesUK,
-				Desc:         hit.CodeMesUK,
+				Type:         evtType,
+				Desc:         evtDesc,
 				Zone:         fmt.Sprintf("Zone %s|Group %s", zone, group),
 				Priority:     core.DeterminePriority(code),
 				Category:     category,

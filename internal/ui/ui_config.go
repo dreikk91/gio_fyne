@@ -33,6 +33,8 @@ func (m *model) loadCfgEditors(cfg config.AppConfig) {
 	setText("Queue.BufferSize", strconv.Itoa(cfg.Queue.BufferSize))
 	setText("Monitoring.PpkTimeout", cfg.Monitoring.PpkTimeout)
 	setText("Logging.Level", cfg.Logging.Level)
+	setText("Profiling.Host", cfg.Profiling.Host)
+	setText("Profiling.Port", cfg.Profiling.Port)
 	setText("History.GlobalLimit", strconv.Itoa(cfg.History.GlobalLimit))
 	setText("History.LogLimit", strconv.Itoa(cfg.History.LogLimit))
 	setText("UI.FontSize", strconv.Itoa(cfg.UI.FontSize))
@@ -48,6 +50,7 @@ func (m *model) loadCfgEditors(cfg config.AppConfig) {
 	setFlag("UI.CloseToTray", cfg.UI.CloseToTray)
 	setFlag("Logging.EnableConsole", cfg.Logging.EnableConsole)
 	setFlag("Logging.EnableFile", cfg.Logging.EnableFile)
+	setFlag("Profiling.Enabled", cfg.Profiling.Enabled)
 
 	if m.logLevelSelect != nil {
 		m.logLevelSelect.SetSelected(cfg.Logging.Level)
@@ -67,6 +70,8 @@ func (m *model) collectCfg() (config.AppConfig, error) {
 	cfg.Queue.BufferSize = atoiOr(cfg.Queue.BufferSize, m.cfgEntries["Queue.BufferSize"].Text)
 	cfg.Monitoring.PpkTimeout = m.cfgEntries["Monitoring.PpkTimeout"].Text
 	cfg.Logging.Level = strings.TrimSpace(m.cfgEntries["Logging.Level"].Text)
+	cfg.Profiling.Host = strings.TrimSpace(m.cfgEntries["Profiling.Host"].Text)
+	cfg.Profiling.Port = strings.TrimSpace(m.cfgEntries["Profiling.Port"].Text)
 	cfg.History.GlobalLimit = atoiOr(cfg.History.GlobalLimit, m.cfgEntries["History.GlobalLimit"].Text)
 	cfg.History.LogLimit = atoiOr(cfg.History.LogLimit, m.cfgEntries["History.LogLimit"].Text)
 	cfg.CidRules.RequiredPrefix = strings.TrimSpace(m.cfgEntries["CidRules.RequiredPrefix"].Text)
@@ -85,6 +90,7 @@ func (m *model) collectCfg() (config.AppConfig, error) {
 	cfg.UI.CloseToTray = m.cfgChecks["UI.CloseToTray"].Checked
 	cfg.Logging.EnableConsole = m.cfgChecks["Logging.EnableConsole"].Checked
 	cfg.Logging.EnableFile = m.cfgChecks["Logging.EnableFile"].Checked
+	cfg.Profiling.Enabled = m.cfgChecks["Profiling.Enabled"].Checked
 	config.Normalize(&cfg)
 	return cfg, nil
 }

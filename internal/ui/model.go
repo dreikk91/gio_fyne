@@ -9,7 +9,6 @@ import (
 
 	"cid_gio_gio/internal/config"
 	"cid_gio_gio/internal/core"
-	appRuntime "cid_gio_gio/internal/runtime"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -18,15 +17,20 @@ import (
 )
 
 const (
-	maxPendingUiDevices = 20000
-	maxPendingUiEvents  = 120000
-	uiDrainBatchSize    = 5000
-	uiRefreshTick       = 1 * time.Second
-	liveEventsPerSecond = 100
-	eventsLoadChunk     = 500
-	historyLoadChunk    = 250
-	maxAutoLoadEvents   = 50000
-	maxAutoLoadHistory  = 20000
+	maxPendingUiDevices  = 5000
+	maxPendingUiEvents   = 20000
+	uiDrainBatchSize     = 5000
+	uiRefreshTick        = 1 * time.Second
+	liveEventsPerSecond  = 100
+	eventsLoadChunk      = 500
+	historyLoadChunk     = 250
+	maxAutoLoadEvents    = 50000
+	maxAutoLoadHistory   = 20000
+	scrollPageSize       = 100
+	scrollBufferSize     = 100
+	objRowHeightDefault  = 30
+	evtRowHeightDefault  = 26
+	histRowHeightDefault = 26
 )
 
 var eventFilters = []string{"all", "alarm", "test", "fault", "guard", "disguard", "other"}
@@ -34,36 +38,36 @@ var logLevels = []string{"trace", "debug", "info", "warn", "error", "fatal"}
 var eventColumns = []string{"Time", "PPK", "Code", "Type", "Description", "Zone", "Category"}
 
 var (
-	cBg         = color.NRGBA{R: 243, G: 246, B: 251, A: 255}
+	cBg         = color.NRGBA{R: 240, G: 242, B: 245, A: 255} // Light grey-blue background
 	cPanel      = color.NRGBA{R: 255, G: 255, B: 255, A: 255}
-	cPanel2     = color.NRGBA{R: 247, G: 249, B: 252, A: 255}
-	cPanel3     = color.NRGBA{R: 237, G: 242, B: 249, A: 255}
-	cBorder     = color.NRGBA{R: 214, G: 221, B: 231, A: 255}
-	cOverlay    = color.NRGBA{R: 17, G: 24, B: 39, A: 130}
+	cPanel2     = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
+	cPanel3     = color.NRGBA{R: 241, G: 245, B: 249, A: 255}
+	cBorder     = color.NRGBA{R: 226, G: 232, B: 240, A: 255} // Sleeker border
+	cOverlay    = color.NRGBA{R: 15, G: 23, B: 42, A: 160}  // Darker overlay
 	cModal      = color.NRGBA{R: 255, G: 255, B: 255, A: 255}
-	cModalH     = color.NRGBA{R: 244, G: 247, B: 252, A: 255}
-	cModalB     = color.NRGBA{R: 189, G: 198, B: 212, A: 255}
-	cText       = color.NRGBA{R: 31, G: 41, B: 55, A: 255}
-	cSoft       = color.NRGBA{R: 82, G: 96, B: 114, A: 255}
-	cAccent     = color.NRGBA{R: 0, G: 120, B: 212, A: 255}
-	cAccent2    = color.NRGBA{R: 228, G: 237, B: 249, A: 255}
-	cAccentSoft = color.NRGBA{R: 232, G: 242, B: 252, A: 255}
-	cGood       = color.NRGBA{R: 17, G: 124, B: 65, A: 255}
-	cGoodSoft   = color.NRGBA{R: 230, G: 246, B: 237, A: 255}
-	cWarn       = color.NRGBA{R: 168, G: 95, B: 0, A: 255}
-	cWarnSoft   = color.NRGBA{R: 252, G: 243, B: 221, A: 255}
-	cBad        = color.NRGBA{R: 196, G: 43, B: 28, A: 255}
-	cBadSoft    = color.NRGBA{R: 251, G: 231, B: 229, A: 255}
+	cModalH     = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
+	cModalB     = color.NRGBA{R: 203, G: 213, B: 225, A: 255}
+	cText       = color.NRGBA{R: 15, G: 23, B: 42, A: 255}   // Slate-900 for text
+	cSoft       = color.NRGBA{R: 100, G: 116, B: 139, A: 255} // Slate-500 for secondary text
+	cAccent     = color.NRGBA{R: 37, G: 99, B: 235, A: 255}  // Vibrant Blue
+	cAccent2    = color.NRGBA{R: 219, G: 234, B: 254, A: 255} // Light Blue
+	cAccentSoft = color.NRGBA{R: 239, G: 246, B: 255, A: 255} // Extra Light Blue
+	cGood       = color.NRGBA{R: 22, G: 163, B: 74, A: 255}  // Green-600
+	cGoodSoft   = color.NRGBA{R: 220, G: 252, B: 231, A: 255} // Green-100
+	cWarn       = color.NRGBA{R: 217, G: 119, B: 6, A: 255}  // Amber-600
+	cWarnSoft   = color.NRGBA{R: 254, G: 243, B: 199, A: 255} // Amber-100
+	cBad        = color.NRGBA{R: 220, G: 38, B: 38, A: 255}  // Red-600
+	cBadSoft    = color.NRGBA{R: 254, G: 226, B: 226, A: 255} // Red-100
 )
 
 type model struct {
 	ctx    context.Context
 	cancel context.CancelFunc
-	rt     *appRuntime.Runtime
+	rt     core.Backend
 
 	app   fyne.App
 	win   fyne.Window
-	theme *win10Theme
+	theme *modernTheme
 
 	mu      sync.RWMutex
 	devices map[int]core.DeviceDTO
@@ -93,12 +97,16 @@ type model struct {
 	dropDevices atomic.Int64
 	dropEvents  atomic.Int64
 
-	liveWindowStart time.Time
-	liveWindowCount int
-	lastUiRefresh   time.Time
+	liveWindowStart  time.Time
+	liveWindowCount  int
+	lastUiRefresh    time.Time
+	lastEventsReload time.Time
+	eventsDirty      bool
 
 	pendingDevices chan core.DeviceDTO
 	pendingEvents  chan core.EventDTO
+
+	deviceCategoryCache map[int]string // New cache for optimized O(1) category lookup
 
 	bootCh   chan bootResult
 	eventsCh chan eventsResult
@@ -107,6 +115,7 @@ type model struct {
 	deleteCh chan deleteResult
 	hResult  chan historyResult
 	rfResult chan rfResult
+	deletedDevices chan int
 
 	bootReqID       atomic.Uint64
 	eventsReqID     atomic.Uint64
@@ -135,17 +144,24 @@ type model struct {
 	chipClients    *chipRef
 	chipAccepted   *chipRef
 	chipRejected   *chipRef
+	chipRate       *chipRef
 
 	objSearchEntry   *widget.Entry
 	evtSearchEntry   *widget.Entry
 	hideTestsCheck   *widget.Check
 	hideBlockedCheck *widget.Check
-	eventFilterBtns  map[string]*widget.Button
+	eventFilterBtns  map[string]*filterButtonRef
 
 	objTable  *widget.Table
-	evtTable  *widget.Table
+	evtList   *widget.List
+	objScroll *container.Scroll
+	evtScroll *container.Scroll
 	selObjRow int
 	selEvtRow int
+	objStart  int
+	objCount  int
+	evtStart  int
+	evtCount  int
 
 	objMetricTotal    *metricCardRef
 	objMetricVisible  *metricCardRef
@@ -176,9 +192,12 @@ type model struct {
 	hHideBlockedCheck *widget.Check
 	hEventType        string
 	hQueryCache       string
-	hFilterBtns       map[string]*widget.Button
-	hTable            *widget.Table
+	hFilterBtns       map[string]*filterButtonRef
+	hList             *widget.List
+	hScroll           *container.Scroll
 	selHistRow        int
+	hStart            int
+	hCount            int
 	hWin              fyne.Window
 	hHeaderTitle      *canvas.Text
 	hHeaderSubtitle   *canvas.Text
@@ -211,8 +230,10 @@ type model struct {
 	rfSelectAllCodes *widget.Button
 	rfClearCodes     *widget.Button
 
-	rfSelectedObjs  map[int]bool
-	rfSelectedCodes map[string]bool
+	rfSelectedObjs       map[int]bool
+	rfSelectedCodes      map[string]bool
+	rfCategoryFilter     string
+	rfCategoryFilterBtns map[string]*filterButtonRef
 
 	rfDetailObj   int
 	rfDetailCode  string

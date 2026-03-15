@@ -216,26 +216,6 @@ func parseAccountRanges(text string) ([]config.AccountRange, error) {
 	return out, nil
 }
 
-func classifyEvent(code, typeNm, desc string) string {
-	text := strings.ToLower(fmt.Sprintf("%s %s %s", code, typeNm, desc))
-	if strings.Contains(text, "тест") || strings.Contains(text, "test") {
-		return "test"
-	}
-	if strings.Contains(text, "трив") || strings.Contains(text, "alarm") {
-		return "alarm"
-	}
-	if strings.Contains(text, "помил") || strings.Contains(text, "несправ") || strings.Contains(text, "fault") {
-		return "fault"
-	}
-	if strings.Contains(text, "постан") || strings.Contains(text, "guard") {
-		return "guard"
-	}
-	if strings.Contains(text, "знят") || strings.Contains(text, "disarm") {
-		return "disarm"
-	}
-	return "other"
-}
-
 func intsToStrings(ints []int) []string {
 	out := make([]string, len(ints))
 	for i, v := range ints {
@@ -255,4 +235,70 @@ func parseGroupsLine(text string) []int {
 		}
 	}
 	return out
+}
+
+func formatEventLine(e core.EventDTO) string {
+	relay := "OK"
+	if e.RelayBlocked {
+		relay = "Blocked"
+	}
+	var b strings.Builder
+	b.Grow(128)
+	if !e.Time.IsZero() {
+		b.WriteString(e.Time.Format("2006-01-02 15:04:05"))
+	}
+	if e.DeviceID != "" {
+		if b.Len() > 0 {
+			b.WriteString(" | ")
+		}
+		b.WriteString(e.DeviceID)
+	}
+	if e.Code != "" {
+		if b.Len() > 0 {
+			b.WriteString(" | ")
+		}
+		b.WriteString(e.Code)
+	}
+	if e.Type != "" {
+		if b.Len() > 0 {
+			b.WriteString(" | ")
+		}
+		b.WriteString(e.Type)
+	}
+	if strings.TrimSpace(e.Desc) != "" {
+		if b.Len() > 0 {
+			b.WriteString(" | ")
+		}
+		b.WriteString(strings.TrimSpace(e.Desc))
+	}
+	if strings.TrimSpace(e.Zone) != "" {
+		if b.Len() > 0 {
+			b.WriteString(" | ")
+		}
+		b.WriteString(strings.TrimSpace(e.Zone))
+	}
+	if b.Len() > 0 {
+		b.WriteString(" | ")
+	}
+	b.WriteString(relay)
+	return b.String()
+}
+
+func filterTone(filter string) (color.NRGBA, color.NRGBA) {
+	switch strings.ToLower(strings.TrimSpace(filter)) {
+	case "alarm":
+		return cBadSoft, cBad
+	case "test":
+		return cWarnSoft, cWarn
+	case "fault":
+		return color.NRGBA{R: 255, G: 238, B: 214, A: 255}, color.NRGBA{R: 168, G: 95, B: 0, A: 255}
+	case "guard":
+		return cGoodSoft, cGood
+	case "disguard":
+		return cAccentSoft, cAccent
+	case "other":
+		return cPanel3, cSoft
+	default:
+		return cAccent2, cAccent
+	}
 }

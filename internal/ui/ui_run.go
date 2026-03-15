@@ -2,11 +2,11 @@ package ui
 
 import (
 	"context"
+	"strconv"
 	"time"
 
 	"cid_gio_gio/internal/core"
 	appLog "cid_gio_gio/internal/logger"
-	appRuntime "cid_gio_gio/internal/runtime"
 
 	"github.com/rs/zerolog/log"
 
@@ -15,7 +15,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-func Run(ctx context.Context, rt *appRuntime.Runtime) error {
+func Run(ctx context.Context, rt core.Backend) error {
 	defer appLog.RecoverPanic("ui-run")
 	uiCtx, cancel := context.WithCancel(ctx)
 
@@ -63,21 +63,21 @@ func Run(ctx context.Context, rt *appRuntime.Runtime) error {
 	return nil
 }
 
-func newModel(ctx context.Context, cancel context.CancelFunc, rt *appRuntime.Runtime, appInst fyne.App, win fyne.Window) *model {
+func newModel(ctx context.Context, cancel context.CancelFunc, rt core.Backend, appInst fyne.App, win fyne.Window) *model {
 	m := &model{
 		ctx:             ctx,
 		cancel:          cancel,
 		rt:              rt,
 		app:             appInst,
 		win:             win,
-		theme:           newWin10Theme(12),
+		theme:           newModernTheme(12),
 		devices:         map[int]core.DeviceDTO{},
 		events:          make([]core.EventDTO, 0, 4096),
 		eventFilter:     "all",
-		eventFilterBtns: map[string]*widget.Button{},
+		eventFilterBtns: map[string]*filterButtonRef{},
 		cfgEntries:      map[string]*widget.Entry{},
 		cfgChecks:       map[string]*widget.Check{},
-		hFilterBtns:     map[string]*widget.Button{},
+		hFilterBtns:     map[string]*filterButtonRef{},
 		hResult:         make(chan historyResult, 1),
 		bootCh:          make(chan bootResult, 1),
 		eventsCh:        make(chan eventsResult, 1),
@@ -91,8 +91,16 @@ func newModel(ctx context.Context, cancel context.CancelFunc, rt *appRuntime.Run
 		selObjRow:       -1,
 		selEvtRow:       -1,
 		selHistRow:      -1,
+		deviceCategoryCache: map[int]string{},
+		deletedDevices:  make(chan int, 100),
 	}
 	appInst.Settings().SetTheme(m.theme)
+	rt.SubscribeDeviceDeleted(func(id int) {
+		select {
+		case m.deletedDevices <- id:
+		default:
+		}
+	})
 	return m
 }
 
@@ -104,7 +112,8 @@ func (m *model) start() error {
 	m.historyLimit = m.initialGlobalLimit()
 	m.eventsLimit = m.historyLimit
 	m.activityTO = core.ParseDuration(m.cfg.Monitoring.PpkTimeout, 15*time.Minute)
-	m.applyFontSize(m.cfg.UI.FontSize)
+	m.theme = newModernTheme(m.cfg.UI.FontSize)
+	m.app.Settings().SetTheme(m.theme)
 	m.loadCfgEditors(m.cfg)
 
 	boot, err := m.rt.Bootstrap(m.ctx, m.eventsLimit)
@@ -115,6 +124,14 @@ func (m *model) start() error {
 		m.devices[d.ID] = d
 	}
 	m.events = append(m.events, boot.Events...)
+	// Populate category cache from initial events
+	for _, e := range m.events {
+		if id, err := strconv.Atoi(e.DeviceID); err == nil {
+			if _, ok := m.deviceCategoryCache[id]; !ok {
+				m.deviceCategoryCache[id] = e.Category
+			}
+		}
+	}
 	m.applyFiltersLocked()
 	m.stats = m.rt.GetStats()
 	m.statusMsg = "Running"

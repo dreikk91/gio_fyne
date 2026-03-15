@@ -7,6 +7,7 @@ type AppConfig struct {
 	Client     ClientConfig     `yaml:"Client"`
 	Queue      QueueConfig      `yaml:"Queue"`
 	Logging    LoggingConfig    `yaml:"Logging"`
+	Profiling  ProfilingConfig  `yaml:"Profiling"`
 	CidRules   CidRulesConfig   `yaml:"CidRules"`
 	Monitoring MonitoringConfig `yaml:"Monitoring"`
 	UI         UIConfig         `yaml:"UI"`
@@ -43,6 +44,12 @@ type LoggingConfig struct {
 	EnableFile      bool   `yaml:"EnableFile"`
 	PrettyConsole   bool   `yaml:"PrettyConsole"`
 	SamplingEnabled bool   `yaml:"SamplingEnabled"`
+}
+
+type ProfilingConfig struct {
+	Enabled bool   `yaml:"Enabled"`
+	Host    string `yaml:"Host"`
+	Port    string `yaml:"Port"`
 }
 
 type CidRulesConfig struct {
@@ -99,6 +106,7 @@ func DefaultConfig() AppConfig {
 			PrettyConsole:   true,
 			SamplingEnabled: false,
 		},
+		Profiling: ProfilingConfig{Enabled: false, Host: "127.0.0.1", Port: "6060"},
 		CidRules: CidRulesConfig{
 			RequiredPrefix: "5",
 			ValidLength:    20,
@@ -129,6 +137,12 @@ func Normalize(cfg *AppConfig) {
 		cfg.Logging.Level = "info"
 	}
 	cfg.Logging.Level = normalizeLogLevel(cfg.Logging.Level)
+	if strings.TrimSpace(cfg.Profiling.Host) == "" {
+		cfg.Profiling.Host = "127.0.0.1"
+	}
+	if strings.TrimSpace(cfg.Profiling.Port) == "" {
+		cfg.Profiling.Port = "6060"
+	}
 	if cfg.History.RetentionDays <= 0 {
 		cfg.History.RetentionDays = 30
 	}

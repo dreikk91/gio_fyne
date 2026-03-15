@@ -121,6 +121,7 @@ func (m *model) pullHistoryResult() {
 			m.mu.Lock()
 			m.hRows = append([]core.EventDTO{}, r.events...)
 			m.hLimit = r.limit
+			m.resetHistWindowLocked()
 			m.mu.Unlock()
 			m.statusErr = ""
 			m.refreshHistoryUI()

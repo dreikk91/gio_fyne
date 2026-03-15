@@ -228,6 +228,32 @@ func (r *Repository) GetDevices(ctx context.Context) ([]core.DeviceDTO, error) {
 	return out, nil
 }
 
+func (r *Repository) GetEventCatalogCategories(ctx context.Context) (map[string]string, error) {
+	rows, err := r.db.QueryContext(ctx, "SELECT code, COALESCE(category,'') FROM event_catalog")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := make(map[string]string)
+	for rows.Next() {
+		var code string
+		var cat string
+		if err := rows.Scan(&code, &cat); err != nil {
+			return out, err
+		}
+		code = strings.ToUpper(strings.TrimSpace(code))
+		cat = strings.ToLower(strings.TrimSpace(cat))
+		if code == "" {
+			continue
+		}
+		out[code] = cat
+	}
+	if err := rows.Err(); err != nil {
+		return out, err
+	}
+	return out, nil
+}
+
 func (r *Repository) GetEvents(ctx context.Context, limit int) ([]core.EventDTO, error) {
 	if limit < 1 {
 		limit = 1

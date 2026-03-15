@@ -2,7 +2,8 @@ package ui
 
 import (
 	"fmt"
-	"image/color"
+	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -29,6 +30,7 @@ func (m *model) buildMainUI() {
 	m.chipClients = newChip("Clients", "0", cText, cPanel2)
 	m.chipAccepted = newChip("Accepted", "0", cText, cPanel2)
 	m.chipRejected = newChip("Rejected", "0", cText, cPanel2)
+	m.chipRate = newChip("Msg/min", "0", cAccent, cAccentSoft)
 	headerRight := container.NewHBox(
 		m.chipStatus.box(),
 		layout.NewSpacer(),
@@ -36,6 +38,7 @@ func (m *model) buildMainUI() {
 		m.chipClients.box(),
 		m.chipAccepted.box(),
 		m.chipRejected.box(),
+		m.chipRate.box(),
 	)
 
 	headerRow := container.NewBorder(nil, nil, headerLeft, headerRight, layout.NewSpacer())
@@ -55,7 +58,7 @@ func (m *model) buildMainUI() {
 	)
 	root := container.NewBorder(top, nil, nil, nil, tabs)
 	m.win.SetContent(root)
-	m.win.Resize(fyne.NewSize(980, 700))
+	m.win.Resize(fyne.NewSize(1024, 720))
 	m.refreshMainUI()
 }
 
@@ -70,108 +73,33 @@ func (m *model) buildObjectsTab() fyne.CanvasObject {
 		m.objMetricActive.box(),
 		m.objMetricInactive.box(),
 	)
+	metricsRow = container.NewPadded(metricsRow)
 
 	m.objSearchEntry = widget.NewEntry()
 	m.objSearchEntry.SetPlaceHolder("Search objects by ID, client or last event...")
 	m.objSearchEntry.OnChanged = func(s string) {
 		m.deviceFilter = strings.TrimSpace(s)
-		m.applyFilters()
+		m.applyDeviceFilters()
 	}
 
 	m.objShowingChip = newChip("Showing", "0 / 0", cText, cPanel2)
 	toolbar := container.NewBorder(nil, nil, nil, m.objShowingChip.box(),
-		cardContainer(cPanel2, m.objSearchEntry),
+		m.objSearchEntry,
 	)
 
 	headers := []string{"State", "PPK", "Client", "Last Event", "Date/Time", "Actions"}
-	m.objTable = widget.NewTable(
-		func() (int, int) {
-			m.mu.RLock()
-			defer m.mu.RUnlock()
-			return len(m.filteredDevices) + 1, len(headers)
-		},
-		func() fyne.CanvasObject {
-			return newTableActionCell()
-		},
-		func(id widget.TableCellID, obj fyne.CanvasObject) {
-			bg, lbl, btns, btnHist, btnDel := getActionCellParts(obj)
-			if id.Row == 0 {
-				lbl.SetText(headers[id.Col])
-				lbl.TextStyle = fyne.TextStyle{Bold: true}
-				lbl.Show()
-				btns.Hide()
-				bg.FillColor = cPanel3
-				bg.Refresh()
-				return
-			}
-			dataRow := id.Row - 1
-			m.mu.RLock()
-			if dataRow >= len(m.filteredDevices) {
-				m.mu.RUnlock()
-				return
-			}
-			d := m.filteredDevices[dataRow]
-			m.mu.RUnlock()
-			stale := isStale(d.LastEventTime, m.activityTO)
-
-			rowBg := rowAltColor(dataRow)
-			eventCat := m.getEventCategoryForDevice(d.ID)
-			if !stale && eventCat != "" {
-				rowBg = eventColor(eventCat, dataRow)
-			}
-
-			if stale {
-				rowBg = cBadSoft
-			}
-			if m.selObjRow == id.Row {
-				rowBg = cAccentSoft
-			}
-			ts := "-"
-			if !d.LastEventTime.IsZero() {
-				ts = d.LastEventTime.Format("2006-01-02 15:04:05")
-			}
-			values := []string{
-				boolText(stale, "Inactive", "Active"),
-				fmt.Sprintf("%03d", d.ID),
-				firstNonEmpty(d.ClientAddr, "-"),
-				d.LastEvent,
-				ts,
-				"",
-			}
-			if id.Col == 5 {
-				lbl.Hide()
-				btns.Show()
-				btnHist.OnTapped = func() { m.openHistory(d) }
-				btnDel.OnTapped = func() { m.openDeleteDialog(d) }
-				bg.FillColor = rowBg
-				bg.Refresh()
-				btns.Refresh()
-				return
-			}
-			btns.Hide()
-			lbl.Show()
-			lbl.TextStyle = fyne.TextStyle{}
-			lbl.SetText(values[id.Col])
-			bg.FillColor = rowBg
-			bg.Refresh()
-		},
-	)
-	m.objTable.SetColumnWidth(0, 90)
-	m.objTable.SetColumnWidth(1, 70)
-	m.objTable.SetColumnWidth(2, 180)
-	m.objTable.SetColumnWidth(3, 220)
-	m.objTable.SetColumnWidth(4, 160)
-	m.objTable.SetColumnWidth(5, 160)
+	m.objTable = m.newObjectsTable(headers)
 	m.objTable.OnSelected = func(id widget.TableCellID) {
 		if id.Row <= 0 {
 			return
 		}
-		m.selObjRow = id.Row
 		dataRow := id.Row - 1
 		m.mu.RLock()
-		if dataRow < len(m.filteredDevices) {
-			d := m.filteredDevices[dataRow]
+		idx := m.objStart + dataRow
+		if idx >= 0 && idx < len(m.filteredDevices) {
+			d := m.filteredDevices[idx]
 			m.mu.RUnlock()
+			m.selObjRow = idx
 			m.openHistory(d)
 		} else {
 			m.mu.RUnlock()
@@ -179,13 +107,18 @@ func (m *model) buildObjectsTab() fyne.CanvasObject {
 		m.objTable.Refresh()
 	}
 	m.objTable.OnUnselected = func(id widget.TableCellID) {
-		if m.selObjRow == id.Row {
+		idx := m.objStart + (id.Row - 1)
+		if m.selObjRow == idx {
 			m.selObjRow = -1
 		}
 		m.objTable.Refresh()
 	}
 
-	listWrap := cardContainer(cPanel, m.objTable)
+	m.objScroll = container.NewScroll(m.objTable)
+	m.objScroll.OnScrolled = func(pos fyne.Position) {
+		m.onObjScrolled(pos.Y)
+	}
+	listWrap := cardContainer(cPanel, container.New(&objectTableLayout{table: m.objTable}, m.objScroll))
 
 	top := container.NewVBox(
 		metricsRow,
@@ -196,135 +129,129 @@ func (m *model) buildObjectsTab() fyne.CanvasObject {
 	return container.NewBorder(top, nil, nil, nil, listWrap)
 }
 
-func (m *model) buildEventsTab() fyne.CanvasObject {
-	m.evtMetricVisible = newMetricCard("Visible", "0", cPanel2, cText)
-	m.evtMetricLoaded = newMetricCard("Loaded", "0", cAccent2, cAccent)
-	m.evtMetricFilter = newMetricCard("Filter", "ALL", cAccent2, cAccent)
-	m.evtMetricRate = newMetricCard("Msg/min", "0", cPanel2, cAccent)
+type objectTableLayout struct {
+	table           *widget.Table
+	lastClientWidth float32
+	lastEventWidth  float32
+}
 
+func (l *objectTableLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) {
+	if l.table != nil {
+		fixed := float32(85 + 65 + 160 + 150)
+		available := size.Width - fixed - 10
+		if available < 320 {
+			available = 320
+		}
+		clientWidth := available * 0.35
+		eventWidth := available * 0.65
+		if clientWidth < 140 {
+			clientWidth = 140
+			eventWidth = available - clientWidth
+			if eventWidth < 180 {
+				eventWidth = 180
+			}
+		}
+		if eventWidth < 200 {
+			eventWidth = 200
+			clientWidth = available - eventWidth
+			if clientWidth < 140 {
+				clientWidth = 140
+			}
+		}
+		if l.lastClientWidth != clientWidth {
+			l.table.SetColumnWidth(2, clientWidth)
+			l.lastClientWidth = clientWidth
+		}
+		if l.lastEventWidth != eventWidth {
+			l.table.SetColumnWidth(3, eventWidth)
+			l.lastEventWidth = eventWidth
+		}
+	}
+	for _, o := range objects {
+		o.Resize(size)
+		o.Move(fyne.NewPos(0, 0))
+	}
+}
+
+func (l *objectTableLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
+	return fyne.NewSize(600, 300)
+}
+
+func (m *model) buildEventsTab() fyne.CanvasObject {
 	metricsRow := container.NewGridWithColumns(4,
-		m.evtMetricVisible.box(),
-		m.evtMetricLoaded.box(),
-		m.evtMetricFilter.box(),
-		m.evtMetricRate.box(),
+		m.objMetricTotal.box(),
+		m.objMetricVisible.box(),
+		m.objMetricActive.box(),
+		m.objMetricInactive.box(),
 	)
+	metricsRow = container.NewPadded(metricsRow)
 
 	filterRow := container.NewHBox()
-	m.eventFilterBtns = map[string]*widget.Button{}
-	for _, f := range eventFilters {
+	m.eventFilterBtns = map[string]*filterButtonRef{}
+	for i, f := range eventFilters {
 		ff := f
-		btn := widget.NewButton(strings.ToUpper(f), func() {
+		btn := newFilterButton(strings.ToUpper(f), func() {
 			m.eventFilter = ff
-			m.applyFilters()
+			m.reloadEventsWithReset()
 			m.refreshEventFilterButtons()
 		})
-		btn.Importance = widget.LowImportance
 		m.eventFilterBtns[f] = btn
-		filterRow.Add(container.NewGridWrap(fyne.NewSize(78, 28), btn))
+		if i > 0 {
+			filterRow.Add(hGap(4))
+		}
+		filterRow.Add(container.NewGridWrap(filterButtonSize(60), container.NewCenter(btn.box())))
 	}
 
 	m.evtSearchEntry = widget.NewEntry()
 	m.evtSearchEntry.SetPlaceHolder("Search events by code, description, zone...")
 	m.evtSearchEntry.OnChanged = func(s string) {
 		m.eventQuery = strings.TrimSpace(s)
-		m.applyFilters()
+		m.reloadEventsWithReset()
 	}
 
 	m.hideTestsCheck = widget.NewCheck("Hide tests", func(v bool) {
 		m.hideTests = v
-		m.applyFilters()
+		m.reloadEventsWithReset()
 	})
 	m.hideBlockedCheck = widget.NewCheck("Only non-blocked", func(v bool) {
 		m.hideBlocked = v
-		m.applyFilters()
+		m.reloadEventsWithReset()
 	})
 
-	toolbar := container.NewBorder(nil, nil,
-		filterRow,
-		container.NewHBox(m.hideTestsCheck, m.hideBlockedCheck),
-		cardContainer(cPanel2, m.evtSearchEntry),
+	rowHeight := filterButtonSize(60).Height
+	filterWidth := filterRow.MinSize().Width
+	if filterWidth < 320 {
+		filterWidth = 320
+	}
+	filterWrap := container.NewGridWrap(fyne.NewSize(filterWidth, rowHeight), container.NewCenter(filterRow))
+	
+	m.evtSearchEntry.SetPlaceHolder("Search events...")
+
+	toolbar := container.NewBorder(nil, nil, filterWrap, container.NewHBox(m.hideTestsCheck, m.hideBlockedCheck),
+		m.evtSearchEntry,
 	)
 
 	headers := []string{"Time", "PPK", "Code", "Type", "Description", "Zone", "Relay"}
-	m.evtTable = widget.NewTable(
-		func() (int, int) {
-			m.mu.RLock()
-			defer m.mu.RUnlock()
-			return len(m.filteredEvents) + 1, len(headers)
-		},
-		func() fyne.CanvasObject {
-			return newEventCell()
-		},
-		func(id widget.TableCellID, obj fyne.CanvasObject) {
-			bg, lbl := getEventCellParts(obj)
-			if id.Row == 0 {
-				lbl.SetText(headers[id.Col])
-				lbl.TextStyle = fyne.TextStyle{Bold: true}
-				bg.FillColor = cPanel3
-				bg.Refresh()
-				return
-			}
-			lbl.TextStyle = fyne.TextStyle{}
-			dataRow := id.Row - 1
-			m.mu.RLock()
-			if dataRow >= len(m.filteredEvents) {
-				m.mu.RUnlock()
-				return
-			}
-			e := m.filteredEvents[dataRow]
-			m.mu.RUnlock()
-			relay := "OK"
-			if e.RelayBlocked {
-				relay = "Blocked"
-			}
-			values := []string{
-				e.Time.Format("2006-01-02 15:04:05"),
-				e.DeviceID,
-				e.Code,
-				e.Type,
-				e.Desc,
-				e.Zone,
-				relay,
-			}
-			lbl.TextStyle = fyne.TextStyle{}
-			lbl.SetText(values[id.Col])
-			bg.FillColor = eventColor(e.Category, dataRow)
-			bg.Refresh()
-		},
-	)
-	m.evtTable.SetColumnWidth(0, 150)
-	m.evtTable.SetColumnWidth(1, 70)
-	m.evtTable.SetColumnWidth(2, 70)
-	m.evtTable.SetColumnWidth(3, 120)
-	m.evtTable.SetColumnWidth(4, 280)
-	m.evtTable.SetColumnWidth(5, 60)
-	m.evtTable.SetColumnWidth(6, 80)
-	m.evtTable.OnSelected = func(id widget.TableCellID) {
-		if id.Row <= 0 {
-			return
+	m.evtList = m.newEventsList()
+	m.evtList.OnSelected = func(id widget.ListItemID) {
+		m.selEvtRow = m.evtStart + int(id)
+		if m.evtList != nil {
+			m.evtList.Unselect(id)
 		}
-		m.selEvtRow = id.Row
-		m.evtTable.Refresh()
 	}
-	m.evtTable.OnUnselected = func(id widget.TableCellID) {
-		if m.selEvtRow == id.Row {
-			m.selEvtRow = -1
-		}
-		m.evtTable.Refresh()
-	}
-
-	loadMoreBtn := widget.NewButton("Load more", func() { m.loadMoreEvents() })
-	loadMoreBtn.Importance = widget.LowImportance
 
 	top := container.NewVBox(
-		metricsRow,
-		vGap(6),
+		vGap(2),
 		toolbar,
-		vGap(6),
+		vGap(2),
 	)
-	center := cardContainer(cPanel, m.evtTable)
+	m.evtScroll = container.NewScroll(m.evtList)
+	m.evtScroll.OnScrolled = func(pos fyne.Position) {
+		m.onEvtScrolled(pos.Y)
+	}
+	center := cardContainer(cPanel, container.NewBorder(newTableHeader(headers), nil, nil, nil, m.evtScroll))
 	m.refreshEventFilterButtons()
-	return container.NewBorder(top, loadMoreBtn, nil, nil, center)
+	return container.NewBorder(top, nil, nil, nil, center)
 }
 
 func (m *model) buildSettingsTab() fyne.CanvasObject {
@@ -388,12 +315,61 @@ func (m *model) buildSettingsTab() fyne.CanvasObject {
 		),
 	))
 
-	left := container.NewVBox(network, history)
+	pprofOpenBtn := widget.NewButton("Open pprof", func() {
+		url := m.pprofURL()
+		if url == "" {
+			m.statusErr = "pprof URL is empty"
+			m.refreshMainUI()
+			return
+		}
+		if err := openURL(url); err != nil {
+			m.statusErr = "Failed to open pprof: " + err.Error()
+		} else {
+			m.statusErr = ""
+			m.statusMsg = "Opened pprof in browser"
+		}
+		m.refreshMainUI()
+	})
+	pprofCopyBtn := widget.NewButton("Copy URL", func() {
+		url := m.pprofURL()
+		if url == "" {
+			m.statusErr = "pprof URL is empty"
+			m.refreshMainUI()
+			return
+		}
+		if m.win != nil {
+			m.win.Clipboard().SetContent(url)
+		}
+		m.statusErr = ""
+		m.statusMsg = "pprof URL copied"
+		m.refreshMainUI()
+	})
+
+	profiling := newSettingsSection("Profiling (pprof)", container.NewVBox(
+		m.flagRow("Profiling.Enabled", "Enable pprof server"),
+		m.fieldRow("pprof host", "Profiling.Host"),
+		m.fieldRow("pprof port", "Profiling.Port"),
+		container.NewHBox(pprofOpenBtn, pprofCopyBtn),
+	))
+
+	pprofHeapBtn := widget.NewButton("Heap graph", func() { m.openPprofWeb("heap") })
+	pprofCPUBtn := widget.NewButton("CPU graph (30s)", func() { m.openPprofWeb("profile?seconds=30") })
+	pprofGorBtn := widget.NewButton("Goroutines", func() { m.openPprofWeb("goroutine") })
+	pprofAllocsBtn := widget.NewButton("Allocs", func() { m.openPprofWeb("allocs") })
+	profilingTools := newSettingsSection("Profiling Views", container.NewVBox(
+		widget.NewLabel("Opens pprof web UI in your browser (requires Go installed)."),
+		container.NewHBox(pprofHeapBtn, pprofCPUBtn),
+		container.NewHBox(pprofGorBtn, pprofAllocsBtn),
+	))
+
+	left := container.NewVBox(network, history, profiling, profilingTools)
 	right := container.NewVBox(rules, m.rfOpenBtn, logging)
 
 	grid := container.NewGridWithColumns(2, left, right)
 	m.loadCfgEditors(m.cfg)
-	return grid
+	scroll := container.NewScroll(grid)
+	scroll.SetMinSize(fyne.NewSize(900, 600))
+	return scroll
 }
 
 func (m *model) onSaveConfig() {
@@ -419,8 +395,8 @@ func (m *model) refreshMainUI() {
 		if m.objTable != nil {
 			m.objTable.Refresh()
 		}
-		if m.evtTable != nil {
-			m.evtTable.Refresh()
+		if m.evtList != nil {
+			m.evtList.Refresh()
 		}
 		m.refreshMetrics()
 	})
@@ -439,8 +415,8 @@ func (m *model) refreshHistoryUI() {
 			m.hHeaderSubtitle.Text = fmt.Sprintf("Records: %d", count)
 			m.hHeaderSubtitle.Refresh()
 		}
-		if m.hTable != nil {
-			m.hTable.Refresh()
+		if m.hList != nil {
+			m.hList.Refresh()
 		}
 	})
 }
@@ -495,6 +471,9 @@ func (m *model) updateHeaderStats() {
 	if m.chipRejected != nil {
 		m.chipRejected.set(strconv.FormatInt(stats.Rejected, 10), cText, cPanel2)
 	}
+	if m.chipRate != nil {
+		m.chipRate.set(strconv.FormatInt(stats.ReceivedPS*60, 10), cAccent, cAccentSoft)
+	}
 }
 
 func (m *model) refreshMetrics() {
@@ -503,42 +482,13 @@ func (m *model) refreshMetrics() {
 	if m.objMetricTotal != nil {
 		m.objMetricTotal.set(strconv.Itoa(len(m.devices)), cPanel2, cText)
 	}
-	if m.objMetricVisible != nil {
-		m.objMetricVisible.set(strconv.Itoa(len(m.filteredDevices)), cAccent2, cAccent)
-	}
-	if m.objMetricActive != nil {
-		m.objMetricActive.set(strconv.Itoa(m.activeDevices), cGoodSoft, cGood)
-	}
-	if m.objMetricInactive != nil {
-		m.objMetricInactive.set(strconv.Itoa(m.inactiveDevices), cBadSoft, cBad)
-	}
 	if m.objShowingChip != nil {
 		m.objShowingChip.set(fmt.Sprintf("%d / %d", len(m.filteredDevices), len(m.devices)), cText, cPanel2)
 	}
-
-	if m.evtMetricVisible != nil {
-		m.evtMetricVisible.set(strconv.Itoa(len(m.filteredEvents)), cPanel2, cText)
-	}
-	if m.evtMetricLoaded != nil {
-		m.evtMetricLoaded.set(strconv.Itoa(len(m.events)), cAccent2, cAccent)
-	}
-	if m.evtMetricFilter != nil {
-		bg, fg := filterTone(m.eventFilter)
-		m.evtMetricFilter.set(strings.ToUpper(m.eventFilter), bg, fg)
-	}
-	if m.evtMetricRate != nil {
-		m.evtMetricRate.set(strconv.FormatInt(m.stats.ReceivedPS*60, 10), cPanel2, cAccent)
-	}
 }
-
 func (m *model) refreshEventFilterButtons() {
 	for f, btn := range m.eventFilterBtns {
-		if f == m.eventFilter {
-			btn.Importance = widget.MediumImportance
-		} else {
-			btn.Importance = widget.LowImportance
-		}
-		btn.Refresh()
+		btn.set(f == m.eventFilter, f)
 	}
 }
 
@@ -605,21 +555,48 @@ func (m *model) applyFontSize(size int) {
 	}
 }
 
-func filterTone(filter string) (color.NRGBA, color.NRGBA) {
-	switch strings.ToLower(strings.TrimSpace(filter)) {
-	case "alarm":
-		return cBadSoft, cBad
-	case "test":
-		return cWarnSoft, cWarn
-	case "fault":
-		return color.NRGBA{R: 255, G: 238, B: 214, A: 255}, color.NRGBA{R: 168, G: 95, B: 0, A: 255}
-	case "guard":
-		return cGoodSoft, cGood
-	case "disguard":
-		return cAccentSoft, cAccent
-	case "other":
-		return cPanel3, cSoft
-	default:
-		return cAccent2, cAccent
+
+func (m *model) pprofURL() string {
+	host := strings.TrimSpace(m.cfgEntries["Profiling.Host"].Text)
+	if host == "" {
+		host = "127.0.0.1"
 	}
+	port := strings.TrimSpace(m.cfgEntries["Profiling.Port"].Text)
+	if port == "" {
+		port = "6060"
+	}
+	return "http://" + host + ":" + port + "/debug/pprof/"
+}
+
+func openURL(url string) error {
+	switch runtime.GOOS {
+	case "windows":
+		return exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+	case "darwin":
+		return exec.Command("open", url).Start()
+	default:
+		return exec.Command("xdg-open", url).Start()
+	}
+}
+
+func (m *model) openPprofWeb(path string) {
+	base := m.pprofURL()
+	if base == "" {
+		m.statusErr = "pprof URL is empty"
+		m.refreshMainUI()
+		return
+	}
+	target := base + strings.TrimPrefix(path, "/")
+	viewAddr := "127.0.0.1:6061"
+	viewURL := "http://" + viewAddr + "/"
+	cmd := exec.Command("go", "tool", "pprof", "-http="+viewAddr, target)
+	if err := cmd.Start(); err != nil {
+		m.statusErr = "Failed to start pprof web UI: " + err.Error()
+		m.refreshMainUI()
+		return
+	}
+	m.statusErr = ""
+	m.statusMsg = "pprof web UI started at " + viewURL
+	_ = openURL(viewURL)
+	m.refreshMainUI()
 }
