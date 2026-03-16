@@ -3,6 +3,6 @@
 *.code-workspace
 *.log
 *log*
-cidgio.exe~
+*.exe~
 cmd/cidfyne/fyne_metadata_init.go
 resources – копія.rc

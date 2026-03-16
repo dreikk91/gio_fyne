@@ -349,6 +349,20 @@ func (r *Runtime) SaveRelayFilterRule(ctx context.Context, rule core.RelayFilter
 	return nil
 }
 
+func (r *Runtime) GetEventTypes(ctx context.Context) ([]core.EventTypeDTO, error) {
+	if r.repo == nil {
+		return nil, fmt.Errorf("runtime not started")
+	}
+	return r.repo.GetEventTypes(ctx)
+}
+
+func (r *Runtime) SaveEventTypeColors(ctx context.Context, key, color, fontColor string) error {
+	if r.repo == nil {
+		return fmt.Errorf("runtime not started")
+	}
+	return r.repo.SaveEventTypeColors(ctx, key, color, fontColor)
+}
+
 func (r *Runtime) GetStats() core.StatsDTO {
 	return r.metrics.Snapshot()
 }

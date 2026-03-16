@@ -67,7 +67,7 @@ func (a *walkApp) styleEventCell(style *walk.CellStyle) {
 	if !ok {
 		return
 	}
-	style.BackgroundColor, style.TextColor = priorityColors(e.Category, style.Row())
+	style.BackgroundColor, style.TextColor = priorityColors(a, e.Category, style.Row())
 }
 
 func (a *walkApp) isDeviceInactive(d core.DeviceDTO) bool {

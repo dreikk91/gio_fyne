@@ -233,6 +233,16 @@ func (a *walkApp) settingsPage() TabPage {
 						},
 					},
 					GroupBox{
+						Title: "Додатково",
+						Background: SolidColorBrush{Color: colorSurface},
+						Layout: HBox{Margins: Margins{Left: 8, Top: 8, Right: 8, Bottom: 8}, Spacing: 8},
+						Children: []Widget{
+							PushButton{Text: "Налаштування фільтрації", OnClicked: a.openRelayFilter},
+							PushButton{Text: "Кольори подій", OnClicked: a.openColorSettings},
+							HSpacer{},
+						},
+					},
+					GroupBox{
 						Title:       "CID правила",
 						ToolTipText: "Правила валідації та трансформації account number.",
 						Background:  SolidColorBrush{Color: colorSurface},
@@ -249,7 +259,6 @@ func (a *walkApp) settingsPage() TabPage {
 					Composite{
 						Layout: HBox{Spacing: 8},
 						Children: []Widget{
-							PushButton{Text: "Налаштування фільтрації", OnClicked: a.openRelayFilter},
 							HSpacer{},
 							PushButton{Text: "Скинути", OnClicked: a.loadConfigEditors},
 							PushButton{Text: "Зберегти", OnClicked: a.saveConfig},

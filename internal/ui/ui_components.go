@@ -305,7 +305,7 @@ func getActionCellParts(obj fyne.CanvasObject) (*canvas.Rectangle, *widget.Label
 }
 
 func (m *model) runOnUI(fn func()) {
-	fn()
+	fyne.Do(fn)
 }
 
 func vGap(h float32) fyne.CanvasObject {

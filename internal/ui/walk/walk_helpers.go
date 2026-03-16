@@ -149,8 +149,20 @@ func filterEvents(all []core.EventDTO, filter string, hideTests bool, hideBlocke
 	return res
 }
 
-func priorityColors(category string, row int) (walk.Color, walk.Color) {
-	switch strings.ToLower(strings.TrimSpace(category)) {
+func priorityColors(app *walkApp, category string, row int) (walk.Color, walk.Color) {
+	cat := strings.ToLower(strings.TrimSpace(category))
+	if app != nil {
+		bg, bgOk := app.categoryColors[cat]
+		fg, fgOk := app.categoryFontColors[cat]
+		if bgOk {
+			if !fgOk {
+				fg = colorText
+			}
+			return bg, fg
+		}
+	}
+
+	switch cat {
 	case "alarm":
 		return colorBadBg, colorBadText
 	case "test":

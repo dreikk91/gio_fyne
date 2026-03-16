@@ -9,7 +9,7 @@ Client:
     ReconnectInitial: 1s
     ReconnectMax: 1m
 Queue:
-    BufferSize: 500
+    BufferSize: 100
 Logging:
     LogDir: log
     Filename: app.log
@@ -17,13 +17,13 @@ Logging:
     MaxBackups: 5
     MaxAge: 28
     Compress: true
-    Level: trace
+    Level: info
     EnableConsole: true
     EnableFile: true
     PrettyConsole: true
     SamplingEnabled: false
 Profiling:
-    Enabled: true
+    Enabled: false
     Host: 127.0.0.1
     Port: "6060"
 CidRules:
@@ -35,20 +35,17 @@ CidRules:
     AccNumAdd: 2100
     AccountRanges:
         - From: 2000
-          To: 2100
-          Delta: 2100
-        - From: 2100
           To: 2200
-          Delta: 2600
+          Delta: 2100
 Monitoring:
     PpkTimeout: 15m
 UI:
     StartMinimized: false
-    MinimizeToTray: true
+    MinimizeToTray: false
     CloseToTray: false
-    FontSize: 12
+    FontSize: 9
 History:
-    LogLimit: 1000
+    LogLimit: 100
     GlobalLimit: 500
     RetentionDays: 30
     CleanupIntervalHours: 1

@@ -113,7 +113,7 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 					if !ok {
 						return
 					}
-					style.BackgroundColor, style.TextColor = priorityColors(e.Category, style.Row())
+					style.BackgroundColor, style.TextColor = priorityColors(a, e.Category, style.Row())
 				},
 				Columns: []TableViewColumn{
 					{Title: "Час", Width: 140},

@@ -1,0 +1,4871 @@
+[
+	{
+		"contactId_code" : "E584",
+		"TypeCodeMes_UK" : "Вимкнення зв'язку з ПЦС",
+		"CodeMes_UK" : "Вимкнення функції контролю зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E570",
+		"TypeCodeMes_UK" : "Вимкнення контролю 220В",
+		"CodeMes_UK" : "Вимкнення контролю 220В",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E580",
+		"TypeCodeMes_UK" : "Вимкнення контролю 220В",
+		"CodeMes_UK" : "Вимкнення контролю 220В",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E580",
+		"TypeCodeMes_UK" : "Вимкнення контролю 220В",
+		"CodeMes_UK" : "Вимкнення контролю основного живлення ППК (220)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E582",
+		"TypeCodeMes_UK" : "Вимкнення контролю АКБ",
+		"CodeMes_UK" : "Вимкнення контролю АКБ",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E582",
+		"TypeCodeMes_UK" : "Вимкнення контролю АКБ",
+		"CodeMes_UK" : "Вимкнення контролю АКБ",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E581",
+		"TypeCodeMes_UK" : "Вимкнення контролю сирени",
+		"CodeMes_UK" : "Вимкнення контролю сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E581",
+		"TypeCodeMes_UK" : "Вимкнення контролю сирени",
+		"CodeMes_UK" : "Вимкнення контролю сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E570",
+		"TypeCodeMes_UK" : "Вимкнення шлейфу",
+		"CodeMes_UK" : "Вимкнення шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E570",
+		"TypeCodeMes_UK" : "Вимкнення шлейфу",
+		"CodeMes_UK" : "Встановлення обходу шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E528",
+		"TypeCodeMes_UK" : "Віддалене керування",
+		"CodeMes_UK" : "Вимкнення AUX",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E585",
+		"TypeCodeMes_UK" : "Відключення живлення датчиків",
+		"CodeMes_UK" : "Відімкнення живлення датчиків",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E585",
+		"TypeCodeMes_UK" : "Відключення живлення датчиків",
+		"CodeMes_UK" : "Відімкнення живлення датчиків",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E319",
+		"TypeCodeMes_UK" : "Втрата зв'язку з пристроєм",
+		"CodeMes_UK" : "Втрата зв'язку телефонного комунікатора з ППК Лунь",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E333",
+		"TypeCodeMes_UK" : "Втрата зв'язку з пристроєм",
+		"CodeMes_UK" : "Втрата зв'язку з ППК",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E359",
+		"TypeCodeMes_UK" : "Втрата зв'язку з пристроєм",
+		"CodeMes_UK" : "Втрата зв'язку з ППК",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E350",
+		"TypeCodeMes_UK" : "Втрата зв'язку з ПЦС",
+		"CodeMes_UK" : "Втрата зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E350",
+		"TypeCodeMes_UK" : "Втрата зв'язку з ПЦС",
+		"CodeMes_UK" : "Втрата зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E350",
+		"TypeCodeMes_UK" : "Втрата зв'язку з ПЦС",
+		"CodeMes_UK" : "Немає зв'язку зі станцією моніторингу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E301",
+		"TypeCodeMes_UK" : "Втрата основного живлення",
+		"CodeMes_UK" : "Відсутність основного електроживлення ППКОП",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E301",
+		"TypeCodeMes_UK" : "Втрата основного живлення",
+		"CodeMes_UK" : "Втрата основного живлення 220В",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E431",
+		"TypeCodeMes_UK" : "Вхід на рівень доступу",
+		"CodeMes_UK" : "Вхід на рівень доступу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E431",
+		"TypeCodeMes_UK" : "Вхід на рівень доступу",
+		"CodeMes_UK" : "Зміна рівня загрози доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R407",
+		"TypeCodeMes_UK" : "Дистанційна постановка",
+		"CodeMes_UK" : "Дистанційна постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R407",
+		"TypeCodeMes_UK" : "Дистанційна постановка",
+		"CodeMes_UK" : "Дистанційна постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E407",
+		"TypeCodeMes_UK" : "Дистанційне зняття",
+		"CodeMes_UK" : "Дистанційне зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E207",
+		"TypeCodeMes_UK" : "Заборона постановки",
+		"CodeMes_UK" : "Виконано заборону постановки в охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E207",
+		"TypeCodeMes_UK" : "Заборона постановки",
+		"CodeMes_UK" : "Виконано заборону постановки в охорону.",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E417",
+		"TypeCodeMes_UK" : "Заборона постановки",
+		"CodeMes_UK" : "Виконано заборону постановки в охорону.",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E450",
+		"TypeCodeMes_UK" : "Заборона постановки",
+		"CodeMes_UK" : "Виконано заборону постановки під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E610",
+		"TypeCodeMes_UK" : "Звіт",
+		"CodeMes_UK" : "Звіт: зв'язок із приладом є.",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E208",
+		"TypeCodeMes_UK" : "Зміна SIM карти",
+		"CodeMes_UK" : "Зміна активної SIM-карти",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R315",
+		"TypeCodeMes_UK" : "Зміна SIM карти",
+		"CodeMes_UK" : "Зміна активної SIM карти",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E220",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Відкриття ящика \"keybox\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E400",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : null,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E400",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E401",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E401",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони користувачем 1",
+		"Zoneno" : 1,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E403",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Автоматичне зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : null,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E403",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Автоматичне зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E405",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Відстрочка зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E409",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E441",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E442",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони перемикачем",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E451",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Початок зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E452",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Зняття з охорони з запізненням",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E456",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Вимкнення часткової охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E463",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Перепостановка після тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R220",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Скасування Відкриття ящика \"keybox\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R459",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Останнє зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R466",
+		"TypeCodeMes_UK" : "Зняття",
+		"CodeMes_UK" : "Вимкнення охорони сервісною службою",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R450",
+		"TypeCodeMes_UK" : "Зняття заборони",
+		"CodeMes_UK" : "Скасування заборони постановки під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E118",
+		"TypeCodeMes_UK" : "Ймовірна пожежа",
+		"CodeMes_UK" : "Однократне спрацьовування пожежного шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E332",
+		"TypeCodeMes_UK" : "КЗ лінії",
+		"CodeMes_UK" : "КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E332",
+		"TypeCodeMes_UK" : "КЗ лінії",
+		"CodeMes_UK" : "Код КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R826",
+		"TypeCodeMes_UK" : "КЗ лінії",
+		"CodeMes_UK" : "Код КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E100",
+		"TypeCodeMes_UK" : "Медична тривога",
+		"CodeMes_UK" : "Медична тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E375",
+		"TypeCodeMes_UK" : "Напад",
+		"CodeMes_UK" : "Несправність зони Паніка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E423",
+		"TypeCodeMes_UK" : "Напад",
+		"CodeMes_UK" : "Доступ під примусом",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E423",
+		"TypeCodeMes_UK" : "Напад",
+		"CodeMes_UK" : "Зняття під примусом користувачем 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R375",
+		"TypeCodeMes_UK" : "Напад",
+		"CodeMes_UK" : "Норма зони Паніка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R423",
+		"TypeCodeMes_UK" : "Напад",
+		"CodeMes_UK" : "Скасування доступу під примусом",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E118",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Ймовірна пожежна тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E143",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність модуля розширення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E156",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність денної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E310",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність заземлення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E320",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність сирени\/реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E322",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність сирени 2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E323",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність сигнального реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E324",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E325",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність реверсивного реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E326",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність оповіщувача3",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E327",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність оповіщувача4",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E330",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність системної периферії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E334",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність повторювача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E336",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність принтера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E351",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність телефонної лінії 1",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E352",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність телефонної лінії 2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E353",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність передавача дальньої дії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E358",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "КЗ адресного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E376",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність зони вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E377",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність датчика нахилу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E378",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність пов'язаних зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E380",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E427",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність контролю стану дверей",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E428",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Несправність пристрою \"запит на вихід\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E571",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Обхід пожежної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R118",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Скасування ймовірної пожежної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R156",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма денної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R310",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма заземлення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R320",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма Сирени\/Реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R322",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма сирени 2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R323",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма сигнального реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R324",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R325",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма реверсивного реле",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R326",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма оповіщувача №3",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R327",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма оповіщувача №4",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R376",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма зони вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R427",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма контролю стану дверей",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R428",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Норма пристрою \"запит на вихід\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R571",
+		"TypeCodeMes_UK" : "Несправність",
+		"CodeMes_UK" : "Скасування обходу пожежної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E373",
+		"TypeCodeMes_UK" : "Несправність шлейфу",
+		"CodeMes_UK" : "Несправність пожежного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E373",
+		"TypeCodeMes_UK" : "Несправність шлейфу",
+		"CodeMes_UK" : "Несправність шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R100",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення медичної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R101",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення персональної небезпеки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R110",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення пожежної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R116",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тривоги трубопроводу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R120",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тривожної кнопки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R121",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Скасування примусу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R122",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тихої тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R123",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення чутної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R130",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R130",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R130",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R131",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення, зона периметр",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R132",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення, внутрішня зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R133",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення, 24год зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R134",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення в зоні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R135",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення, зона день \/ ніч",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R136",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення вторгнення, зовнішня зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R137",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма тампера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R138",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Скасування ймовірної тривоги злому",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R139",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення, верифікатор проникнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R140",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення загальної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R140",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма загальної тривоги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R141",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення обриву шлейфу датчиків",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R142",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення короткого замикання шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R145",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тампера модуля розширення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R146",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тихої тривоги вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R150",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тривоги 24 годинної не охоронної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R151",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тривоги детектора газу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R158",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тривоги високої температури",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R330",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма системної периферії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R338",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма напруги акумулятора модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R342",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення живлення модуля (змінного струму)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R343",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма самотестування модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R353",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма передавача дальньої дії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R355",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма контролю радіокерування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R357",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма радіопередавача дальньої дії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R371",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма захисного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R372",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма захисного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R373",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма пожежного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R377",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма датчика нахилу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R378",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма пов'язаних зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R380",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R381",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма контролю радіодатчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R382",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма зв'язку RPM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R385",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма чутливості детектора диму",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R386",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма чутливості детектора диму",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R389",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма самодіагностики датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R391",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма контролю датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R392",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма компенсації відходу частоти",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R611",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма контрольної точки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R613",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Відновлення тестового режиму обходу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R615",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Зону Паніка протестовано в режимі Тест-Прохід",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R641",
+		"TypeCodeMes_UK" : "Норма",
+		"CodeMes_UK" : "Норма детектора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R302",
+		"TypeCodeMes_UK" : "Норма АКБ",
+		"CodeMes_UK" : "Резервне електроживлення 12 В у нормі (акумулятор заряджений)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R302",
+		"TypeCodeMes_UK" : "Норма АКБ",
+		"CodeMes_UK" : "Резервне електроживлення в нормі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R384",
+		"TypeCodeMes_UK" : "Норма АКБ",
+		"CodeMes_UK" : "Норма акумулятора радіодатчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R319",
+		"TypeCodeMes_UK" : "Норма зв'язку",
+		"CodeMes_UK" : "Відновлення зв'язку телефонного комунікатора з Лунь-9",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R333",
+		"TypeCodeMes_UK" : "Норма зв'язку з Лінд",
+		"CodeMes_UK" : "Відновлення зв'язку з ППК!",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R319",
+		"TypeCodeMes_UK" : "Норма зв'язку з пристроєм",
+		"CodeMes_UK" : "Відновлення зв'язку телефонного комунікатора з ППК Лунь",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R333",
+		"TypeCodeMes_UK" : "Норма зв'язку з пристроєм",
+		"CodeMes_UK" : "Відновлення зв'язку з ППК",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R359",
+		"TypeCodeMes_UK" : "Норма зв'язку з пристроєм",
+		"CodeMes_UK" : "Відновлення зв'язку з ППК",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R350",
+		"TypeCodeMes_UK" : "Норма зв'язку з ПЦС",
+		"CodeMes_UK" : "Відновлення зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R350",
+		"TypeCodeMes_UK" : "Норма зв'язку з ПЦС",
+		"CodeMes_UK" : "Відновлення зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R350",
+		"TypeCodeMes_UK" : "Норма зв'язку з ПЦС",
+		"CodeMes_UK" : "Відновлення зв'язку зі станцією моніторингу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R332",
+		"TypeCodeMes_UK" : "Норма лінії",
+		"CodeMes_UK" : "Відновлення КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R332",
+		"TypeCodeMes_UK" : "Норма лінії",
+		"CodeMes_UK" : "Код відновлення КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R825",
+		"TypeCodeMes_UK" : "Норма лінії",
+		"CodeMes_UK" : "Код відновлення КЗ лінії ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R358",
+		"TypeCodeMes_UK" : "Норма несправності",
+		"CodeMes_UK" : "Відновлення КЗ адресного шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R301",
+		"TypeCodeMes_UK" : "Норма основного живлення",
+		"CodeMes_UK" : "Основне електроживлення ППК в нормі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R301",
+		"TypeCodeMes_UK" : "Норма основного живлення",
+		"CodeMes_UK" : "Основне електроживлення ППКОП у нормі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R321",
+		"TypeCodeMes_UK" : "Норма сирени",
+		"CodeMes_UK" : "Відновлення проблеми сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R321",
+		"TypeCodeMes_UK" : "Норма сирени",
+		"CodeMes_UK" : "Норма сирени 1",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R304",
+		"TypeCodeMes_UK" : "Норма системної помилки",
+		"CodeMes_UK" : "Відновлення цілісності ПО",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R304",
+		"TypeCodeMes_UK" : "Норма системної помилки",
+		"CodeMes_UK" : "Норма контрольної суми ROM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R144",
+		"TypeCodeMes_UK" : "Норма тампера",
+		"CodeMes_UK" : "Норма тампера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R383",
+		"TypeCodeMes_UK" : "Норма тампера",
+		"CodeMes_UK" : "Норма тампера датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E624",
+		"TypeCodeMes_UK" : "Переповнення буфера подій",
+		"CodeMes_UK" : "Переповнення буфера подій",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E624",
+		"TypeCodeMes_UK" : "Переповнення буфера подій",
+		"CodeMes_UK" : "Переповнення буфера подій телефонного комунікатора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E624",
+		"TypeCodeMes_UK" : "Переповнення буфера подій",
+		"CodeMes_UK" : "Переповнення пам'яті подій пристрою",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E110",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Пожежна тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : null,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E110",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Пожежна тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E110",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Пожежна тривога за шлейфом 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E115",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Пожежа з клавіатури",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E614",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Порушення тестового обходу пожежної зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R200",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Скасування скидання пожежі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R614",
+		"TypeCodeMes_UK" : "Пожежа",
+		"CodeMes_UK" : "Пожежну зону протестовано в режимі Тест-Прохід",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E800",
+		"TypeCodeMes_UK" : "Помилка",
+		"CodeMes_UK" : "Код події не впізнано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E459",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Останнє ввімкнення охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E466",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Увімкнення охорони сервісною службою",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R400",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : null,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R400",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R401",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R401",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановлення під охорону користувачем 1",
+		"Zoneno" : 1,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R402",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону групою",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R403",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Автоматична постановка (перевзяття)",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : null,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R403",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Автоматична постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R405",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Відстрочка постановки під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R408",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Швидка постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R409",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R431",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону брелоком",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R441",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону з присутністю людей",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R442",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону перемикачем із присутністю людей",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R451",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Передчасна постановка під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R452",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Постановка під охорону з запізненням",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R453",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Скасування невдачі зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R456",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Увімкнення часткової охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R463",
+		"TypeCodeMes_UK" : "Постановка",
+		"CodeMes_UK" : "Перепостановка після тривоги (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E404",
+		"TypeCodeMes_UK" : "Початок зняття",
+		"CodeMes_UK" : "Зняття з охорони об'єкта з запізненням",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E404",
+		"TypeCodeMes_UK" : "Початок зняття",
+		"CodeMes_UK" : "Початок зняття з охорони об'єкта",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E458",
+		"TypeCodeMes_UK" : "Початок зняття",
+		"CodeMes_UK" : "Користувач у приміщенні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E302",
+		"TypeCodeMes_UK" : "Проблема АКБ",
+		"CodeMes_UK" : "Резервне електроживлення 12 В нижче норми (акумулятор розряджений)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E302",
+		"TypeCodeMes_UK" : "Проблема АКБ",
+		"CodeMes_UK" : "Резервне електроживлення нижче норми акумулятор розряджений",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E311",
+		"TypeCodeMes_UK" : "Проблема АКБ",
+		"CodeMes_UK" : "Відсутність\/розряд акумулятора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E338",
+		"TypeCodeMes_UK" : "Проблема АКБ",
+		"CodeMes_UK" : "Низьке напруги акумулятора модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E384",
+		"TypeCodeMes_UK" : "Проблема АКБ",
+		"CodeMes_UK" : "Розряджений акумулятор радіодатчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E321",
+		"TypeCodeMes_UK" : "Проблема з сиреною",
+		"CodeMes_UK" : "Несправність сирени 1",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E321",
+		"TypeCodeMes_UK" : "Проблема з сиреною",
+		"CodeMes_UK" : "Проблема сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E207",
+		"TypeCodeMes_UK" : "Реле ввімкнено",
+		"CodeMes_UK" : "Реле 1 увімкнено",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R520",
+		"TypeCodeMes_UK" : "Реле ввімкнено",
+		"CodeMes_UK" : "Реле 1 увімкнено",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R520",
+		"TypeCodeMes_UK" : "Реле ввімкнено",
+		"CodeMes_UK" : "Реле увімкнено (номер реле - див. Номер шлейфу)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E207",
+		"TypeCodeMes_UK" : "Реле вимкнено",
+		"CodeMes_UK" : "Реле 1 вимкнено",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E520",
+		"TypeCodeMes_UK" : "Реле вимкнено",
+		"CodeMes_UK" : "Реле 1 вимкнено",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E520",
+		"TypeCodeMes_UK" : "Реле вимкнено",
+		"CodeMes_UK" : "Реле вимкнено (номер реле - див. Номер шлейфу)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R521",
+		"TypeCodeMes_UK" : "Сирену ввімкнено",
+		"CodeMes_UK" : "Сирену 1 увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R521",
+		"TypeCodeMes_UK" : "Сирену ввімкнено",
+		"CodeMes_UK" : "Увімкнення звуку сирени кнопкою \"Звук\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E521",
+		"TypeCodeMes_UK" : "Сирену вимкнено",
+		"CodeMes_UK" : "Відімкнення сирени кнопкою \"Звук\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E521",
+		"TypeCodeMes_UK" : "Сирену вимкнено",
+		"CodeMes_UK" : "Сирену 1 відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E000",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Від централі (ППК) отримано код, який не підтримується в голосовому режимі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E102",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Неможливість передачі при тривозі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E111",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Дим",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E112",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Займання",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E113",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Протікання води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E114",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Нагрів",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E117",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Полум'я",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E126",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відсутність охоронця",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E147",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Немає зв'язку зі сповіщувачем",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E151",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Тривога детектора газу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E152",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Охолодження",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E153",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата тепла",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E154",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Витік води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E155",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обрив фольги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E157",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низький рівень газу в балоні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E158",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Висока температура",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E159",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низька температура",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E161",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата повітряного потоку",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E162",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Тривога, чадний газ",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E163",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Неправильний рівень у резервуарі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E201",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низький тиск води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E202",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низька концентрація СО2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E203",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Датчик вентиля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E204",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низький рівень води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E205",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Насос увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E206",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Несправність насоса",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E209",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання живлення GSM модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E209",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання живлення GSM-модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E300",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Несправність системи",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E303",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка контрольної суми RAM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E305",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Перезапуск системи",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E306",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Зміна програми (налаштування)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E307",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача самотестування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E308",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Припинення роботи системи",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E309",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача тесту акумулятора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E312",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Перевантаження джерела живлення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E313",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Програмне скидання інженером",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E314",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка перетворення кодів телефонного комунікатора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E319",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата зв'язку телефонного комунікатора з Лунь-9",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E331",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Шлейф датчиків обірвано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E335",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Немає паперу в принтері",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E337",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відсутність живлення модуля (постійного струму)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E339",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Перезавантаження модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E341",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відкриття модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E342",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відсутність живлення модуля (змінного струму)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E343",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача самотестування модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E344",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Виявлено ​​радіозаваду",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E354",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка передачі події",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E355",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата контролю радіокерування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E357",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Аварія радіопередавача дальньої дії",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E370",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Захисний шлейф несправний",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E371",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Захисний шлейф обірвано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E372",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Захисний шлейф замкнений",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E374",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка при виході",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E381",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата контролю радіодатчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E382",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Втрата зв'язку RPM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E385",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Висока чутливість детектора диму",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E386",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низька чутливість детектора диму",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E387",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Висока чутливість детектора вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E388",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Низька чутливість детектора вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E389",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка самодіагностики датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E391",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка контролю датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E392",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка компенсації відходу частоти",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E393",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Сигнал про технічне обслуговування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E410",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "DOWNLOAD - початок",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E411",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Запит на зворотний дзвінок",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E412",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Завершення функції завантаження",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E413",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдала спроба дистанційного доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E414",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Отримано команду системної зупинки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E415",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Отримано команду зупинки діалера (набирача)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E416",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Завершення дистанційного програмування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E421",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відмова доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E422",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Повідомлення про доступ користувача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E424",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вихід Заборонено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E425",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вихід дозволено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E426",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Двері залишено відчиненими",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E429",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Програмування доступу розпочато",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E430",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Програмування доступу закінчено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E432",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Реле доступу не спрацювало",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E433",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Запит на Вихід RTE",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E434",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Запит на Вихід DSM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E453",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E454",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача постановки під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E455",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдача автоматичного зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E457",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Помилка користувача при виході",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E461",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Введено неправильний пароль",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E462",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Введено правильний пароль",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E464",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Автоматичну постановку продовжено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E465",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання тривоги Паніка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E501",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Зчитувач контролю доступу заблоковано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E522",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Сирену 2 відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E523",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Тривожне реле відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E524",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Аварійне реле вимкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E525",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Реверсивне реле відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E526",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Оповіщувач №3 вимкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E527",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Оповіщувач №4 вимкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E530",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вимкнення функції ППК (централі, панелі)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E531",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Модуль додано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E532",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Модуль видалено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E551",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Телефонний комунікатор відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E552",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Радіопередавач відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E553",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Віддалене завантаження\/вивантаження відімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E572",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід 24год зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E573",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід зони вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E574",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід групового відключення зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E575",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід перемикання зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E576",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід зони доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E577",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Обхід точки доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E586",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вимкнення ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E586",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вимкнення ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E609",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відеопередачу активовано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E611",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Порушення контрольної точки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E612",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Контрольну точку не протестовано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E613",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Порушення тестового режиму обходу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E615",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Порушення тестового обходу зони Паніка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E616",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Виклик сервісної служби",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E621",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання пам'яті подій",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E622",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Пам'ять заповнена на 50%",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E623",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Пам'ять заповнена на 90%",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E625",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання Час\/Дата",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E626",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Системний час\/дата не коректні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E627",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вхід до режиму програмування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E628",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вихід із режиму програмування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E629",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Маркер у журналі подій на 32 години",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E630",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад змінено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E631",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад винятків змінено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E632",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад контролю Доступу змінено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E641",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Проблема детектора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E642",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Контроль універсального ключа",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E654",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Система не активна",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R102",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Неможливість передачі при скиданні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R112",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування займання",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R113",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування протікання води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R114",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма нагріву",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R117",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування полум'я",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R126",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування Відсутність охоронця",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R143",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення модуля розширення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R147",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення зв'язку зі сповіщувачем",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R152",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма охолодження",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R153",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма тепла",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R154",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма витоку води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R155",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма фольги",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R157",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма рівня газу в балоні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R159",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення тривоги низької температури",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R161",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма повітряного потоку",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R162",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення тривоги чадного газу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R163",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма рівня в резервуарі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R201",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма тиску води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R202",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма концентрації СО2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R203",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення датчика вентиля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R204",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма рівня води",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R205",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Насос вимкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R206",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма насоса",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R300",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення несправності системи",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R303",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма контрольної суми RAM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R306",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Налаштування програми в нормі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R307",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма самотестування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R308",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення роботи системи",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R309",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма тесту акумулятора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R311",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма акумулятора",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R312",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма джерела живлення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R313",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування програмного скидання інженером",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R331",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма шлейфу датчиків",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R334",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма повторювача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R335",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Є папір у принтері",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R336",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення принтера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R337",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення живлення модуля (постійного струму)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R339",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування перезавантаження модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R341",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R344",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відсутність радіозавад",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R351",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення телефонної лінії 1",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R352",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення телефонної лінії 2",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R354",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відновлення передачі події",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R370",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Захисний шлейф справний",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R374",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування помилки при виході",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R387",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма чутливості детектора вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R388",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма чутливості детектора вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R393",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування сигналу про технічне обслуговування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R410",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "DOWNLOAD - кінець",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R411",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування запиту на зворотний дзвінок",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R412",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Завершення функції завантаження (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R413",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Невдала спроба дистанційного доступу (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R414",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування команди системної зупинки",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R415",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування команди зупинки діалера (набирача)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R416",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування завершення дистанційного программування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R421",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування відмови доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R422",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування повідомлення про доступ користувача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R424",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування заборони на вихід",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R425",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування дозволу на вихід",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R426",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування Двері залишено відчиненими",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R429",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування Програмування доступу розпочато",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R430",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування Програмування доступу закінчено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R432",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Норма реле доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R433",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування запиту на Вихід RTE",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R434",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування запиту на Вихід DSM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R454",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування невдачі постановки під охорону",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R455",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування невдачі автоматичного зняття з охорони",
+		"Zoneno" : 0,
+		"AccessCode" : 1,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R457",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування помилки при виході користувача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R458",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Вихід користувача з приміщення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R461",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Введено неправильний пароль (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R462",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Введено правильний пароль (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R464",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Автоматичну постановку продовжено (викл)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R465",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування скидання тривоги Паніка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R501",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Зчитувач контролю доступу розблоковано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R522",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Сирену 2 ввімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R523",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Тривожне реле ввімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R524",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Аварійне реле увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R525",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Реверсивне реле ввімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R526",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Оповіщувач №3 увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R527",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Оповіщувач №4 увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R530",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Увімкнення функції ППК (централі, панелі)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R531",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Модуль додано (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R532",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Модуль видалено (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R551",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Телефонний комунікатор увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R552",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Радіопередавач увімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R553",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Віддалене завантаження\/вивантаження ввімкнено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R572",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу 24год зони",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R573",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу зони вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R574",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу групового відключення зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R575",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу перемикання зон",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R576",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу зони доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R577",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування обходу точки доступу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R586",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Увімкнення ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R586",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Увімкнення ТАН",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R609",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Відеопередачу деактивовано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R612",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Контрольну точку протестовано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R616",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування виклику сервісної служби",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R621",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скидання пам'яті подій",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R622",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Пам'ять заповнена на 50% (вимк)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R623",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Пам'ять заповнена на 90% (вимк)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R625",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування скидання Час\/Дата",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R626",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Системний час\/дата коректні",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R627",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування входу до режиму програмування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R628",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування виходу з режиму програмування",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R629",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Маркер у журналі подій на 32 години збережено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R630",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад змінено (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R631",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад винятків змінено (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R632",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Розклад контролю Доступу змінено (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R642",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Скасування контролю універсального ключа",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R654",
+		"TypeCodeMes_UK" : "Система",
+		"CodeMes_UK" : "Система знову активна",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E304",
+		"TypeCodeMes_UK" : "Системна помилка",
+		"CodeMes_UK" : "Помилка контрольної суми ROM",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E304",
+		"TypeCodeMes_UK" : "Системна помилка",
+		"CodeMes_UK" : "Порушення цілісності ПЗ Лунь-9",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E406",
+		"TypeCodeMes_UK" : "Скасування тривоги",
+		"CodeMes_UK" : "Скасування користувачем",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R111",
+		"TypeCodeMes_UK" : "Скасування тривоги",
+		"CodeMes_UK" : "Скасування тривоги \"Дим\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R124",
+		"TypeCodeMes_UK" : "Скасування тривоги",
+		"CodeMes_UK" : "Скасування тривоги примус, вхід дозволено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R125",
+		"TypeCodeMes_UK" : "Скасування тривоги",
+		"CodeMes_UK" : "Скасування тривоги примус, вихід дозволено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E200",
+		"TypeCodeMes_UK" : "Скидання",
+		"CodeMes_UK" : "\"Скидання\"",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E200",
+		"TypeCodeMes_UK" : "Скидання",
+		"CodeMes_UK" : "Скидання пожежі",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E600",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодичний тест",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E601",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Ручний тест",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E602",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодичний тест",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E603",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодична радіопередача",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E604",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Пожежний тест",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E605",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Звіт стану",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E606",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Голосовий зв'язок",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E607",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Тестовий режим обходу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E608",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодичний тест - Системна несправність присутня",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R601",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Ручний тест (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R602",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодичний тест (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R603",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодична радіопередача (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R604",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Пожежний тест (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R605",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Звіт стану (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R606",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Голосовий зв'язок (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R607",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Тестовий режим обходу (вимк.)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R608",
+		"TypeCodeMes_UK" : "Тест",
+		"CodeMes_UK" : "Періодичний тест - Системна несправність відсутня",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E101",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Персональна небезпека",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E116",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога трубопроводу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E120",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривожна кнопка",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E121",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Примус",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E122",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тиха тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E123",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Чутна тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E124",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога примус, вхід дозволено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E125",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога примус, вихід дозволено",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E130",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E131",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення, зона периметр",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E132",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення, внутрішня зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E133",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення, 24год зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E134",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога за охоронним шлейфом  1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E134",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога по шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E135",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення, зона день \/ ніч",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E136",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Вторгнення, зовнішня зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E137",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога тампера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E138",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Ймовірна тривога злому",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E139",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога, верифікатор проникнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E140",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Загальна тривога",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E140",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Загальна тривога (сповіщення по GSM каналу)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E141",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Шлейф датчиків обірвано",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E142",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Шлейф датчиків коротко замкнений",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E145",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога тампера модуля розширення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E146",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тиха тривога вторгнення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E150",
+		"TypeCodeMes_UK" : "Тривога",
+		"CodeMes_UK" : "Тривога 24 -годинна не охоронна зона",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E144",
+		"TypeCodeMes_UK" : "Тривога тампера",
+		"CodeMes_UK" : "Тривога тампера",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E383",
+		"TypeCodeMes_UK" : "Тривога тампера",
+		"CodeMes_UK" : "Порушення тампера датчика",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 1,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R585",
+		"TypeCodeMes_UK" : "Увімкнення живлення датчиків",
+		"CodeMes_UK" : "Увімкнення живлення датчиків",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R584",
+		"TypeCodeMes_UK" : "Увімкнення зв'язку з ПЦС",
+		"CodeMes_UK" : "Увімкнення функції контролю зв'язку з ПЦС",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R570",
+		"TypeCodeMes_UK" : "Увімкнення контролю 220В",
+		"CodeMes_UK" : "Увімкнення контролю 220В",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R580",
+		"TypeCodeMes_UK" : "Увімкнення контролю 220В",
+		"CodeMes_UK" : "Увімкнення контролю 220В",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R580",
+		"TypeCodeMes_UK" : "Увімкнення контролю 220В",
+		"CodeMes_UK" : "Увімкнення контролю основного живлення ППК (220)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R582",
+		"TypeCodeMes_UK" : "Увімкнення контролю АКБ",
+		"CodeMes_UK" : "Увімкнення контролю АКБ",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R582",
+		"TypeCodeMes_UK" : "Увімкнення контролю АКБ",
+		"CodeMes_UK" : "Увімкнення контролю АКБ",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R581",
+		"TypeCodeMes_UK" : "Увімкнення контролю сирени",
+		"CodeMes_UK" : "Увімкнення контролю сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R581",
+		"TypeCodeMes_UK" : "Увімкнення контролю сирени",
+		"CodeMes_UK" : "Увімкнення контролю сирени",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R305",
+		"TypeCodeMes_UK" : "Увімкнення ППК",
+		"CodeMes_UK" : "Увімкнення живлення плати ППК",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R314",
+		"TypeCodeMes_UK" : "Увімкнення ППК",
+		"CodeMes_UK" : "Перезапуск GSM модуля",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R314",
+		"TypeCodeMes_UK" : "Увімкнення ППК",
+		"CodeMes_UK" : "Увімкнення живлення",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R570",
+		"TypeCodeMes_UK" : "Увімкнення шлейфу",
+		"CodeMes_UK" : "Скасування обходу шлейфу",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R570",
+		"TypeCodeMes_UK" : "Увімкнення шлейфу",
+		"CodeMes_UK" : "Увімкнення шлейфу 1",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "R583",
+		"TypeCodeMes_UK" : "Функцію реле ввімкнено",
+		"CodeMes_UK" : "Увімкнення реле (увімкнення функції)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "R583",
+		"TypeCodeMes_UK" : "Функцію реле ввімкнено",
+		"CodeMes_UK" : "Увімкнення реле 1 (увімкнення функції)",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	},
+	{
+		"contactId_code" : "E583",
+		"TypeCodeMes_UK" : "Функцію реле вимкнено",
+		"CodeMes_UK" : "Вимкнення реле (вимкнення функції) (номер реле - див. Номер шлейфу)",
+		"Zoneno" : 0,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 1
+	},
+	{
+		"contactId_code" : "E583",
+		"TypeCodeMes_UK" : "Функцію реле вимкнено",
+		"CodeMes_UK" : "Вимкнення реле 1 (вимкнення функції)",
+		"Zoneno" : 1,
+		"AccessCode" : 0,
+		"GroupSent" : 0,
+		"AutoReset" : 0
+	}
+]

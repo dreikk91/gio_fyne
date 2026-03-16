@@ -206,6 +206,7 @@ type model struct {
 	rfOpen        bool
 	rfTab         int
 	rfRule        core.RelayFilterRule
+	eventTypes    []core.EventTypeDTO
 	rfEnabled     *widget.Check
 	rfGroups      *widget.Entry
 	rfObjQuery    *widget.Entry
@@ -213,6 +214,7 @@ type model struct {
 	rfSaveBtn     *widget.Button
 	rfCancelBtn   *widget.Button
 	rfOpenBtn     *widget.Button
+	colorsOpenBtn *widget.Button
 	rfStatusLabel *widget.Label
 
 	rfObjects      []rfObjectRow

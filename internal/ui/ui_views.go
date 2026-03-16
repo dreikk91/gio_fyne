@@ -303,6 +303,7 @@ func (m *model) buildSettingsTab() fyne.CanvasObject {
 		m.multiLineRow("Account ranges (From-To:Delta)", "CidRules.AccountRanges", 120),
 	))
 	m.rfOpenBtn = widget.NewButton("Configure Relay Filter", func() { m.openRelayFilter() })
+	m.colorsOpenBtn = widget.NewButton("Event Colors Customization", func() { m.openColorSettings() })
 
 	logging := newSettingsSection("Logging & Actions", container.NewVBox(
 		m.logLevelRow(),
@@ -363,7 +364,7 @@ func (m *model) buildSettingsTab() fyne.CanvasObject {
 	))
 
 	left := container.NewVBox(network, history, profiling, profilingTools)
-	right := container.NewVBox(rules, m.rfOpenBtn, logging)
+	right := container.NewVBox(rules, container.NewHBox(m.rfOpenBtn, m.colorsOpenBtn), logging)
 
 	grid := container.NewGridWithColumns(2, left, right)
 	m.loadCfgEditors(m.cfg)

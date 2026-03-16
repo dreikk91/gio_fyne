@@ -53,6 +53,14 @@ type BootstrapDTO struct {
 	Events  []EventDTO
 }
 
+type EventTypeDTO struct {
+	ID        int
+	Key       string
+	Title     string
+	Color     string
+	FontColor string
+}
+
 type EventCatalogEntry struct {
 	Code     string
 	Type     string

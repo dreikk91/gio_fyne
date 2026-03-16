@@ -5,6 +5,7 @@ package walk
 import (
 	"context"
 	"fmt"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"syscall"
@@ -133,6 +134,10 @@ type walkApp struct {
 
 	bootReqID atomic.Uint64
 	saveReqID atomic.Uint64
+
+	categoryColors     map[string]walk.Color
+	categoryFontColors map[string]walk.Color
+	eventTypes         []core.EventTypeDTO
 }
 
 type historyDialog struct {
@@ -191,8 +196,10 @@ func newWalkApp(ctx context.Context, cancel context.CancelFunc, rt core.Backend)
 		deviceModel:    &deviceTableModel{},
 		eventModel:     &eventTableModel{},
 		pendingDevices: make(chan core.DeviceDTO, maxPendingUiDevices),
-		pendingEvents:  make(chan core.EventDTO, maxPendingUiEvents),
-		pendingDeleted: make(chan int, 100),
+		pendingEvents:      make(chan core.EventDTO, maxPendingUiEvents),
+		pendingDeleted:     make(chan int, 100),
+		categoryColors:     make(map[string]walk.Color),
+		categoryFontColors: make(map[string]walk.Color),
 	}
 	a.deviceModel.app = a
 	return a
@@ -214,6 +221,7 @@ func (a *walkApp) start() error {
 	for _, d := range boot.Devices {
 		a.devices[d.ID] = d
 	}
+	a.loadCategoryColors()
 	a.events = append(a.events, boot.Events...)
 	a.stats = a.rt.GetStats()
 	a.status = "Працює"
@@ -366,6 +374,33 @@ func (a *walkApp) applyWindows11WindowChrome() error {
 		unsafe.Pointer(&preference),
 		unsafe.Sizeof(preference),
 	)
+}
+
+func (a *walkApp) loadCategoryColors() {
+	types, err := a.rt.GetEventTypes(a.ctx)
+	if err != nil {
+		log.Error().Err(err).Msg("failed to load event types for colors")
+		return
+	}
+	a.eventTypes = types
+	for _, et := range types {
+		if et.Color != "" {
+			a.categoryColors[strings.ToLower(et.Key)] = hexToColor(et.Color)
+		}
+		if et.FontColor != "" {
+			a.categoryFontColors[strings.ToLower(et.Key)] = hexToColor(et.FontColor)
+		}
+	}
+}
+
+func hexToColor(hex string) walk.Color {
+	hex = strings.TrimPrefix(hex, "#")
+	if len(hex) != 6 {
+		return walk.Color(0)
+	}
+	var r, g, b uint8
+	fmt.Sscanf(hex, "%02x%02x%02x", &r, &g, &b)
+	return walk.RGB(r, g, b)
 }
 
 func setDwmWindowAttribute(hwnd uintptr, attribute uint32, value unsafe.Pointer, valueSize uintptr) error {

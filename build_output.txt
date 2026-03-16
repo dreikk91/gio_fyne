@@ -1,0 +1,3 @@
+# cid_fyne/internal/ui/walk
+internal\ui\walk\walk_ui_colors.go:107:24: undefined: walk.ColorDialog
+internal\ui\walk\walk_ui_colors.go:119:24: undefined: walk.ColorDialog

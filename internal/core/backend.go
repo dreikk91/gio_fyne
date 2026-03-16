@@ -26,4 +26,6 @@ type Backend interface {
 	GetEventList() []CIDEvent
 	GetEventCatalogCategories() map[string]string
 	GetDevices() []DeviceDTO
+	GetEventTypes(ctx context.Context) ([]EventTypeDTO, error)
+	SaveEventTypeColors(ctx context.Context, key, color, fontColor string) error
 }

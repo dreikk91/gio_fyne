@@ -145,25 +145,30 @@ func (m *eventTableModel) Row(row int) (core.EventDTO, bool) {
 func (m *deviceTableModel) publishDeviceDiff(oldRows, newRows []core.DeviceDTO) {
 	oldLen := len(oldRows)
 	newLen := len(newRows)
-	if oldLen == 0 || newLen == 0 {
+	if oldLen == 0 || newLen == 0 || oldLen != newLen {
 		m.PublishRowsReset()
 		return
 	}
-	if oldLen != newLen {
-		m.PublishRowsReset()
-		return
-	}
+	
+	// Check for reordering or major changes
+	diffCount := 0
 	start := -1
 	end := -1
 	for i := 0; i < newLen; i++ {
-		if sameDeviceRow(oldRows[i], newRows[i]) {
-			continue
+		if !sameDeviceRow(oldRows[i], newRows[i]) {
+			diffCount++
+			if start == -1 {
+				start = i
+			}
+			end = i
 		}
-		if start == -1 {
-			start = i
-		}
-		end = i
 	}
+	
+	if diffCount > newLen/2 || diffCount > 10 { // Significant change or reorder
+		m.PublishRowsReset()
+		return
+	}
+	
 	if start == -1 {
 		return
 	}

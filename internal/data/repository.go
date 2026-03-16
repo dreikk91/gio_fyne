@@ -71,7 +71,9 @@ CREATE TABLE IF NOT EXISTS devices (
 CREATE TABLE IF NOT EXISTS event_types (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     key TEXT NOT NULL UNIQUE,
-    title TEXT NOT NULL
+    title TEXT NOT NULL,
+    color TEXT NOT NULL DEFAULT '',
+    font_color TEXT NOT NULL DEFAULT ''
 );
 CREATE TABLE IF NOT EXISTS event_catalog (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -146,22 +148,29 @@ INSERT INTO relay_filter_meta(id, enabled) VALUES (1, 0) ON CONFLICT(id) DO NOTH
 	if _, err := r.db.ExecContext(ctx, schema); err != nil {
 		return err
 	}
-	// Migrate relay_blocked column if it doesn't exist
+	// Migrate: add columns if they don't exist
+	_, _ = r.db.ExecContext(ctx, "ALTER TABLE event_types ADD COLUMN color TEXT NOT NULL DEFAULT ''")
+	_, _ = r.db.ExecContext(ctx, "ALTER TABLE event_types ADD COLUMN font_color TEXT NOT NULL DEFAULT ''")
 	_, _ = r.db.ExecContext(ctx, "ALTER TABLE events ADD COLUMN relay_blocked INTEGER NOT NULL DEFAULT 0")
 	return nil
 }
 
 func (r *Repository) ensureEventTypes(ctx context.Context) error {
-	types := map[string]string{
-		"alarm":    "Alarm",
-		"test":     "Test",
-		"fault":    "Fault",
-		"guard":    "Guard",
-		"disguard": "Disarm",
-		"other":    "Other",
+	type colorDef struct {
+		title     string
+		color     string
+		fontColor string
 	}
-	for key, title := range types {
-		if err := r.execWrite(ctx, "INSERT INTO event_types(key,title) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET title=excluded.title", key, title); err != nil {
+	types := map[string]colorDef{
+		"alarm":    {"Alarm", "#FCEBEA", "#AD332B"},
+		"test":     {"Test", "#FFF5DF", "#85580E"},
+		"fault":    {"Fault", "#FFF0DB", "#8D5A22"},
+		"guard":    {"Guard", "#E8F5EC", "#1A7944"},
+		"disguard": {"Disarm", "#E9F2FF", "#1858A5"},
+		"other":    {"Other", "#F6F9FC", "#1E2128"},
+	}
+	for key, def := range types {
+		if err := r.execWrite(ctx, "INSERT INTO event_types(key,title,color,font_color) VALUES (?,?,?,?) ON CONFLICT(key) DO UPDATE SET title=excluded.title, color=CASE WHEN color='' THEN excluded.color ELSE color END, font_color=CASE WHEN font_color='' THEN excluded.font_color ELSE font_color END", key, def.title, def.color, def.fontColor); err != nil {
 			return err
 		}
 	}
@@ -226,6 +235,27 @@ func (r *Repository) GetDevices(ctx context.Context) ([]core.DeviceDTO, error) {
 	}
 	log.Debug().Int("rows", len(out)).Msg("repo GetDevices loaded")
 	return out, nil
+}
+
+func (r *Repository) GetEventTypes(ctx context.Context) ([]core.EventTypeDTO, error) {
+	rows, err := r.db.QueryContext(ctx, "SELECT id, key, title, color, font_color FROM event_types ORDER BY id ASC")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []core.EventTypeDTO{}
+	for rows.Next() {
+		var et core.EventTypeDTO
+		if err := rows.Scan(&et.ID, &et.Key, &et.Title, &et.Color, &et.FontColor); err != nil {
+			return nil, err
+		}
+		out = append(out, et)
+	}
+	return out, rows.Err()
+}
+
+func (r *Repository) SaveEventTypeColors(ctx context.Context, key, color, fontColor string) error {
+	return r.execWrite(ctx, "UPDATE event_types SET color = ?, font_color = ? WHERE key = ?", color, fontColor, key)
 }
 
 func (r *Repository) GetEventCatalogCategories(ctx context.Context) (map[string]string, error) {

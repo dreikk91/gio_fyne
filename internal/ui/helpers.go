@@ -165,6 +165,16 @@ func eventBelongsToDevice(deviceID string, id int) bool {
 	return trimmed == strconv.Itoa(id) || trimmed == fmt.Sprintf("%03d", id)
 }
 
+func hexToColor(hex string) color.NRGBA {
+	hex = strings.TrimPrefix(hex, "#")
+	if len(hex) != 6 {
+		return color.NRGBA{R: 0, G: 0, B: 0, A: 255}
+	}
+	var r, g, b uint8
+	fmt.Sscanf(hex, "%02x%02x%02x", &r, &g, &b)
+	return color.NRGBA{R: r, G: g, B: b, A: 255}
+}
+
 func formatAccountRanges(ranges []config.AccountRange) string {
 	if len(ranges) == 0 {
 		return "2000-2200:+2100"

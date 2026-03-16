@@ -390,7 +390,7 @@ func (d *relayFilterDialog) run() error {
 												return
 											}
 											it := d.filteredCodes[row]
-											bg, fg := priorityColors(it.Category, row)
+											bg, fg := priorityColors(d.app, it.Category, row)
 											style.BackgroundColor = bg
 											style.TextColor = fg
 										},
