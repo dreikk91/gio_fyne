@@ -4,6 +4,7 @@ package walk
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -127,6 +128,11 @@ func filterDevices(all map[int]core.DeviceDTO, query string, isInactive func(cor
 		}
 		res = append(res, d)
 	}
+
+	sort.Slice(res, func(i, j int) bool {
+		return res[i].ID < res[j].ID
+	})
+
 	return res, active, inactive
 }
 

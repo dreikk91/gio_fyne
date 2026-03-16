@@ -134,6 +134,10 @@ func (d *relayFilterDialog) initData() {
 			d.selectedObjs[row.ID] = true
 		}
 	}
+
+	sort.Slice(d.objects, func(i, j int) bool {
+		return d.objects[i].ID < d.objects[j].ID
+	})
 	
 	// Codes
 	events := d.app.rt.GetEventList()
