@@ -43,7 +43,7 @@ UI:
     StartMinimized: false
     MinimizeToTray: false
     CloseToTray: false
-    FontSize: 9
+    FontSize: 8
 History:
     LogLimit: 100
     GlobalLimit: 500

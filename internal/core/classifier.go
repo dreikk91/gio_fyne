@@ -19,18 +19,61 @@ func DeterminePriority(code string) int {
 }
 
 func Classify(code, typ, desc string) string {
-	text := strings.ToLower(code + " " + typ + " " + desc)
+	// We prioritize 'typ' (category from the catalog) as requested.
+	// 'code' and 'desc' are kept for fallback or specific logic if needed.
+	category := strings.ToLower(typ)
+	description := strings.ToLower(desc)
+	fullText := strings.ToLower(code + " " + typ + " " + desc)
+
 	switch {
-	case strings.Contains(text, "test") || strings.Contains(text, "тест"):
+	// 1. Test - high priority
+	case strings.Contains(category, "тест") || strings.Contains(category, "test"):
 		return "test"
-	case strings.Contains(text, "alarm") || strings.Contains(text, "трив"):
+
+	// 2. Alarm/Fire/Intrusion
+	case strings.Contains(category, "тривога") ||
+		strings.Contains(category, "пожежа") ||
+		strings.Contains(category, "напад") ||
+		strings.Contains(category, "вторгнення") ||
+		strings.Contains(category, "паніка"):
 		return "alarm"
-	case strings.Contains(text, "fault") || strings.Contains(text, "несправ") || strings.Contains(text, "помил"):
+
+	// 3. Fault/Problem/Failure
+	case strings.Contains(category, "несправність") ||
+		strings.Contains(category, "проблема") ||
+		strings.Contains(category, "помилка") ||
+		strings.Contains(category, "втрата") ||
+		strings.Contains(category, "кз") ||
+		strings.Contains(category, "відсутність") ||
+		strings.Contains(category, "невдача"):
 		return "fault"
-	case strings.Contains(text, "disguard") || strings.Contains(text, "disarm") || strings.Contains(text, "знят"):
-		return "disguard"
-	case strings.Contains(text, "guard") || strings.Contains(text, "постанов"):
+
+	// 4. Guard/Arming
+	case strings.Contains(category, "постановка") ||
+		strings.Contains(category, "взяття") ||
+		strings.Contains(category, "guard") ||
+		strings.Contains(description, "постанов"):
 		return "guard"
+
+	// 5. Disguard/Disarming/Restore
+	case strings.Contains(category, "зняття") ||
+		strings.Contains(category, "скасування") ||
+		strings.Contains(category, "скидання") ||
+		strings.Contains(category, "відновлення") ||
+		strings.Contains(category, "норма") ||
+		strings.Contains(category, "disguard") ||
+		strings.Contains(category, "disarm") ||
+		strings.Contains(description, "знят"):
+		return "disguard"
+
+	// Fallback to full text search if category is too vague (e.g. "Система" or "Різне")
+	case strings.Contains(fullText, "трив") || strings.Contains(fullText, "alarm"):
+		return "alarm"
+	case strings.Contains(fullText, "тест") || strings.Contains(fullText, "test"):
+		return "test"
+	case strings.Contains(fullText, "помил") || strings.Contains(fullText, "несправ"):
+		return "fault"
+
 	default:
 		return "other"
 	}

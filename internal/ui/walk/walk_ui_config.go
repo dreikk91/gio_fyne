@@ -238,8 +238,7 @@ func (a *walkApp) applyHistoryTableScale(state *historyDialog) {
 		return
 	}
 	base := clampInt(a.cfg.UI.FontSize, 7, 30)
-	soft := 7 + ((base - 7) * 3 / 4)
-	font, err := walk.NewFont("Segoe UI", soft, 0)
+	font, err := walk.NewFont("Segoe UI", base, 0)
 	if err == nil {
 		state.table.SetFont(font)
 	}
