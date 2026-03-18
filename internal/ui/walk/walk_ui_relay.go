@@ -12,6 +12,7 @@ import (
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
+	"github.com/lxn/win"
 	"github.com/rs/zerolog/log"
 )
 
@@ -53,7 +54,7 @@ type relayFilterDialog struct {
 	codeModel    *rfCodeTableModel
 	categoryBtns map[string]*walk.PushButton
 
-	tabs        *walk.TabWidget
+	tabs         *walk.TabWidget
 	summaryTable *walk.TableView
 	summaryModel *rfSummaryTableModel
 
@@ -68,7 +69,7 @@ type relayFilterDialog struct {
 
 	selectedObjs  map[int]bool
 	selectedCodes map[string]bool
-	
+
 	busy    atomic.Bool
 	closed  atomic.Bool
 	lastCat string
@@ -79,7 +80,7 @@ func (a *walkApp) openRelayFilter() {
 		log.Warn().Msg("Cannot open Relay Filter: main window is nil")
 		return
 	}
-	
+
 	log.Info().Msg("Fetching relay filter rules from backend...")
 	go func() {
 		rule, err := a.rt.GetRelayFilterRule(a.ctx)
@@ -90,15 +91,15 @@ func (a *walkApp) openRelayFilter() {
 			})
 			return
 		}
-		
+
 		log.Info().Msg("Opening Relay Filter dialog...")
 		a.mw.Synchronize(func() {
 			d := &relayFilterDialog{
-				app:      a,
-				rule:     rule,
-				busy:     atomic.Bool{},
-				closed:   atomic.Bool{},
-				lastCat:  "all",
+				app:           a,
+				rule:          rule,
+				busy:          atomic.Bool{},
+				closed:        atomic.Bool{},
+				lastCat:       "all",
 				selectedObjs:  make(map[int]bool),
 				selectedCodes: make(map[string]bool),
 			}
@@ -107,6 +108,21 @@ func (a *walkApp) openRelayFilter() {
 				log.Error().Err(err).Msg("Failed to run Relay Filter dialog")
 				walk.MsgBox(a.mw, "Фільтр реле", "Помилка створення вікна: "+err.Error(), walk.MsgBoxIconError)
 				return
+			}
+			if d.objTable != nil {
+				d.objTable.SetGridlines(true)
+				applyTableGridlineColor(d.objTable, win.RGB(214, 224, 236))
+				d.updateObjectTableColumns()
+			}
+			if d.codeTable != nil {
+				d.codeTable.SetGridlines(true)
+				applyTableGridlineColor(d.codeTable, win.RGB(214, 224, 236))
+				d.updateCodeTableColumns()
+			}
+			if d.summaryTable != nil {
+				d.summaryTable.SetGridlines(true)
+				applyTableGridlineColor(d.summaryTable, win.RGB(214, 224, 236))
+				d.updateSummaryTableColumns()
 			}
 			log.Info().Msg("Running Relay Filter dialog...")
 			d.dlg.Run()
@@ -122,7 +138,7 @@ func (d *relayFilterDialog) initData() {
 	for _, id := range d.rule.ObjectIDs {
 		globalIDs[id] = true
 	}
-	
+
 	for _, dev := range devices {
 		row := &rfObjectRow{
 			ID:       dev.ID,
@@ -138,13 +154,13 @@ func (d *relayFilterDialog) initData() {
 	sort.Slice(d.objects, func(i, j int) bool {
 		return d.objects[i].ID < d.objects[j].ID
 	})
-	
+
 	// Codes
 	events := d.app.rt.GetEventList()
 	sort.Slice(events, func(i, j int) bool {
 		return events[i].ContactIDCode < events[j].ContactIDCode
 	})
-	
+
 	d.codes = make([]*rfCodeRow, 0, len(events))
 	seen := make(map[string]bool)
 	for _, e := range events {
@@ -161,7 +177,7 @@ func (d *relayFilterDialog) initData() {
 			Category:    cat,
 		})
 	}
-	
+
 	d.syncCodesToSelection()
 	d.updateFiltered()
 	d.rebuildSummary()
@@ -169,7 +185,7 @@ func (d *relayFilterDialog) initData() {
 
 func (d *relayFilterDialog) syncCodesToSelection() {
 	selIDs := d.getSelectedObjIDs()
-	
+
 	if len(selIDs) == 0 {
 		blocked := make(map[string]bool)
 		for _, c := range d.rule.Codes {
@@ -211,7 +227,7 @@ func (d *relayFilterDialog) syncCodesToSelection() {
 			d.codes[i].Selected = allHave
 		}
 	}
-	
+
 	d.selectedCodes = make(map[string]bool)
 	for _, c := range d.codes {
 		if c.Selected {
@@ -242,7 +258,7 @@ func (d *relayFilterDialog) updateFiltered() {
 			d.filteredObjs = append(d.filteredObjs, it)
 		}
 	}
-	
+
 	codeQ := ""
 	if d.codeSearch != nil {
 		codeQ = strings.ToLower(d.codeSearch.Text())
@@ -251,7 +267,7 @@ func (d *relayFilterDialog) updateFiltered() {
 	d.filteredCodes = d.filteredCodes[:0]
 	for _, it := range d.codes {
 		catMatch := cat == "all" || strings.EqualFold(it.Category, cat)
-		if catMatch && (codeQ == "" || 
+		if catMatch && (codeQ == "" ||
 			strings.Contains(strings.ToLower(it.Code), codeQ) ||
 			strings.Contains(strings.ToLower(it.Type), codeQ) ||
 			strings.Contains(strings.ToLower(it.Description), codeQ)) {
@@ -277,7 +293,7 @@ func (d *relayFilterDialog) rebuildSummary() {
 				specific += fmt.Sprintf("... +%d", len(codes)-limit)
 			}
 		}
-		
+
 		if isGlobal || specific != "-" {
 			d.summary = append(d.summary, rfSummaryRow{
 				ID:            it.ID,
@@ -293,7 +309,7 @@ func (d *relayFilterDialog) run() error {
 	d.objModel = &rfObjectTableModel{d: d}
 	d.codeModel = &rfCodeTableModel{d: d}
 	d.summaryModel = &rfSummaryTableModel{d: d}
-	
+
 	return Dialog{
 		AssignTo: &d.dlg,
 		Title:    "Налаштування фільтрації реле",
@@ -313,12 +329,13 @@ func (d *relayFilterDialog) run() error {
 				AssignTo: &d.tabs,
 				Pages: []TabPage{
 					{
-						Title: "Правила фільтрації",
+						Title:  "Правила фільтрації",
 						Layout: HBox{Margins: Margins{Top: 8}, Spacing: 10},
 						Children: []Widget{
 							// Objects Pane
 							Composite{
-								Layout: VBox{MarginsZero: true, Spacing: 6},
+								StretchFactor: 1,
+								Layout:        VBox{MarginsZero: true, Spacing: 6},
 								Children: []Widget{
 									Label{Text: "1. Виберіть об'єкти", Font: Font{Bold: true}},
 									LineEdit{
@@ -330,12 +347,17 @@ func (d *relayFilterDialog) run() error {
 										},
 									},
 									TableView{
-										AssignTo:         &d.objTable,
-										AlternatingRowBG: true,
-										CheckBoxes:       true,
-										ColumnsOrderable: true,
-										MultiSelection:   true,
-										Model:            d.objModel,
+										AssignTo:            &d.objTable,
+										StretchFactor:       1,
+										AlternatingRowBG:    true,
+										CheckBoxes:          true,
+										ColumnsOrderable:    true,
+										LastColumnStretched: false,
+										MultiSelection:      true,
+										Model:               d.objModel,
+										OnSizeChanged: func() {
+											d.updateObjectTableColumns()
+										},
 										Columns: []TableViewColumn{
 											{Title: "ID", Width: 60},
 											{Title: "Інформація про об'єкт", Width: 250},
@@ -355,7 +377,8 @@ func (d *relayFilterDialog) run() error {
 							},
 							// Codes Pane
 							Composite{
-								Layout: VBox{MarginsZero: true, Spacing: 6},
+								StretchFactor: 1,
+								Layout:        VBox{MarginsZero: true, Spacing: 6},
 								Children: []Widget{
 									Label{Text: "2. Виберіть коди для блокування", Font: Font{Bold: true}},
 									LineEdit{
@@ -370,21 +393,29 @@ func (d *relayFilterDialog) run() error {
 										},
 									},
 									Composite{
-										Layout: HBox{MarginsZero: true, Spacing: 4},
+										Layout:   HBox{MarginsZero: true, Spacing: 4},
 										Children: d.createCategoryButtons(),
 									},
 									TableView{
-										AssignTo:         &d.codeTable,
-										AlternatingRowBG: true,
-										CheckBoxes:       true,
-										ColumnsOrderable: true,
-										Model:            d.codeModel,
+										AssignTo:            &d.codeTable,
+										StretchFactor:       1,
+										AlternatingRowBG:    true,
+										CheckBoxes:          true,
+										ColumnsOrderable:    true,
+										LastColumnStretched: false,
+										Model:               d.codeModel,
+										OnSizeChanged: func() {
+											d.updateCodeTableColumns()
+										},
 										Columns: []TableViewColumn{
 											{Title: "Код", Width: 60},
 											{Title: "Тип", Width: 100},
 											{Title: "Опис події", Width: 300},
 										},
 										StyleCell: func(style *walk.CellStyle) {
+											if d.codeTable != nil && style.Row() == d.codeTable.CurrentIndex() {
+												return
+											}
 											row := style.Row()
 											if row < 0 || row >= len(d.filteredCodes) {
 												return
@@ -410,13 +441,18 @@ func (d *relayFilterDialog) run() error {
 						},
 					},
 					{
-						Title: "Зведення (Summary)",
+						Title:  "Зведення (Summary)",
 						Layout: VBox{Margins: Margins{Top: 8}, Spacing: 6},
 						Children: []Widget{
 							TableView{
-								AssignTo:         &d.summaryTable,
-								AlternatingRowBG: true,
-								Model:            d.summaryModel,
+								AssignTo:            &d.summaryTable,
+								StretchFactor:       1,
+								AlternatingRowBG:    true,
+								LastColumnStretched: false,
+								Model:               d.summaryModel,
+								OnSizeChanged: func() {
+									d.updateSummaryTableColumns()
+								},
 								Columns: []TableViewColumn{
 									{Title: "ID", Width: 50},
 									{Title: "Об'єкт", Width: 150},
@@ -458,6 +494,60 @@ func (d *relayFilterDialog) createCategoryButtons() []Widget {
 		})
 	}
 	return btns
+}
+
+func (d *relayFilterDialog) updateObjectTableColumns() {
+	if d.objTable == nil {
+		return
+	}
+	cols := d.objTable.Columns()
+	if cols == nil || cols.Len() < 2 {
+		return
+	}
+	clientWidth := d.objTable.ClientBoundsPixels().Width
+	if clientWidth <= 0 {
+		return
+	}
+	widths := fitColumnsToWidth(clientWidth, 18, []int{64, 250}, []int{52, 110}, 1)
+	for i, w := range widths {
+		_ = cols.At(i).SetWidth(w)
+	}
+}
+
+func (d *relayFilterDialog) updateCodeTableColumns() {
+	if d.codeTable == nil {
+		return
+	}
+	cols := d.codeTable.Columns()
+	if cols == nil || cols.Len() < 3 {
+		return
+	}
+	clientWidth := d.codeTable.ClientBoundsPixels().Width
+	if clientWidth <= 0 {
+		return
+	}
+	widths := fitColumnsToWidth(clientWidth, 20, []int{60, 100, 300}, []int{52, 72, 120}, 2)
+	for i, w := range widths {
+		_ = cols.At(i).SetWidth(w)
+	}
+}
+
+func (d *relayFilterDialog) updateSummaryTableColumns() {
+	if d.summaryTable == nil {
+		return
+	}
+	cols := d.summaryTable.Columns()
+	if cols == nil || cols.Len() < 4 {
+		return
+	}
+	clientWidth := d.summaryTable.ClientBoundsPixels().Width
+	if clientWidth <= 0 {
+		return
+	}
+	widths := fitColumnsToWidth(clientWidth, 20, []int{54, 180, 86, 550}, []int{48, 110, 68, 150}, 3)
+	for i, w := range widths {
+		_ = cols.At(i).SetWidth(w)
+	}
 }
 
 func (d *relayFilterDialog) statusDesc() string {
@@ -552,7 +642,7 @@ func (d *relayFilterDialog) applyCodesToRule() {
 		}
 	}
 	sort.Strings(selCodes)
-	
+
 	selIDs := d.getSelectedObjIDs()
 	if len(selIDs) == 0 {
 		d.rule.Codes = selCodes
@@ -570,11 +660,11 @@ func (d *relayFilterDialog) save() {
 	if d.busy.Swap(true) {
 		return
 	}
-	
+
 	d.rule.Enabled = d.enabled.Checked()
 	d.rule.GroupNumbers = parseGroupsLine(d.groups.Text())
 	d.rule.ObjectIDs = d.getSelectedObjIDs()
-	
+
 	go func() {
 		err := d.app.rt.SaveRelayFilterRule(d.app.ctx, d.rule)
 		d.app.mw.Synchronize(func() {

@@ -90,6 +90,12 @@ type walkApp struct {
 	eventFilterBox *walk.ComboBox
 	hideTestsBox   *walk.CheckBox
 	footerBar      *walk.Composite
+	headerBar      *walk.Composite
+	headerTitle    *walk.Label
+	headerSubtitle *walk.Label
+	headerStatus   *walk.Label
+	headerClients  *walk.Label
+	headerEvents   *walk.Label
 	statusLabel    *walk.Label
 	transportLabel *walk.Label
 	statsLabel     *walk.Label
@@ -187,15 +193,15 @@ func Run(ctx context.Context, rt core.Backend) error {
 
 func newWalkApp(ctx context.Context, cancel context.CancelFunc, rt core.Backend) *walkApp {
 	a := &walkApp{
-		ctx:            ctx,
-		cancel:         cancel,
-		rt:             rt,
-		devices:        make(map[int]core.DeviceDTO),
-		eventFilter:    "all",
-		status:         "Запуск runtime...",
-		deviceModel:    &deviceTableModel{},
-		eventModel:     &eventTableModel{},
-		pendingDevices: make(chan core.DeviceDTO, maxPendingUiDevices),
+		ctx:                ctx,
+		cancel:             cancel,
+		rt:                 rt,
+		devices:            make(map[int]core.DeviceDTO),
+		eventFilter:        "all",
+		status:             "Запуск runtime...",
+		deviceModel:        &deviceTableModel{},
+		eventModel:         &eventTableModel{},
+		pendingDevices:     make(chan core.DeviceDTO, maxPendingUiDevices),
 		pendingEvents:      make(chan core.EventDTO, maxPendingUiEvents),
 		pendingDeleted:     make(chan int, 100),
 		categoryColors:     make(map[string]walk.Color),
@@ -265,17 +271,51 @@ func (a *walkApp) createMainWindow() error {
 
 	err := MainWindow{
 		AssignTo: &mw,
-		Title:    "CID Ретранслятор - Система моніторингу",
-		MinSize:  Size{Width: 640, Height: 480},
-		Size:     Size{Width: 800, Height: 600},
-		Font:     Font{Family: "Arial", PointSize: 10},
+		Title:    "CID Windigo - Центр моніторингу",
+		MinSize:  Size{Width: 960, Height: 640},
+		Size:     Size{Width: 1320, Height: 860},
+		Font:     Font{Family: "Segoe UI", PointSize: 10},
 		Background: SolidColorBrush{
 			Color: colorWindow,
 		},
 		Layout: VBox{Margins: Margins{Left: 8, Top: 8, Right: 8, Bottom: 6}, Spacing: 8},
 		Children: []Widget{
+			Composite{
+				AssignTo:   &a.headerBar,
+				Background: SolidColorBrush{Color: colorHeroStart},
+				Layout:     HBox{Margins: Margins{Left: 12, Top: 10, Right: 12, Bottom: 10}, Spacing: 12},
+				Children: []Widget{
+					Composite{
+						Layout: VBox{MarginsZero: true, Spacing: 2},
+						Children: []Widget{
+							Label{AssignTo: &a.headerTitle, Text: "CID Windigo", TextColor: colorHeroTitle, Font: Font{Family: "Segoe UI Semibold", PointSize: 13}},
+							Label{AssignTo: &a.headerSubtitle, Text: "Realtime relay control", TextColor: colorHeroSubtitle},
+						},
+					},
+					HSpacer{},
+					Label{
+						AssignTo:   &a.headerStatus,
+						Text:       "OFFLINE",
+						TextColor:  colorHeroChipText,
+						Background: SolidColorBrush{Color: colorHeroChipOffline},
+					},
+					Label{
+						AssignTo:   &a.headerClients,
+						Text:       "Clients: 0",
+						TextColor:  colorHeroChipText,
+						Background: SolidColorBrush{Color: colorHeroChipMetric},
+					},
+					Label{
+						AssignTo:   &a.headerEvents,
+						Text:       "Events: 0",
+						TextColor:  colorHeroChipText,
+						Background: SolidColorBrush{Color: colorHeroChipMetric},
+					},
+				},
+			},
 			TabWidget{
-				Background: SolidColorBrush{Color: colorWindow},
+				Background:    SolidColorBrush{Color: colorWindow},
+				StretchFactor: 1,
 				Pages: []TabPage{
 					a.objectsPage(),
 					a.eventsPage(),
@@ -309,12 +349,14 @@ func (a *walkApp) createMainWindow() error {
 	a.mw = mw
 	if a.objTable != nil {
 		a.deviceModel.SetTableView(a.objTable)
-		a.objTable.SetGridlines(false)
+		a.objTable.SetGridlines(true)
+		applyTableGridlineColor(a.objTable, win.RGB(214, 224, 236))
 		a.updateObjectTableColumns()
 	}
 	if a.eventTable != nil {
 		a.eventModel.SetTableView(a.eventTable)
-		a.eventTable.SetGridlines(false)
+		a.eventTable.SetGridlines(true)
+		applyTableGridlineColor(a.eventTable, win.RGB(214, 224, 236))
 		a.updateEventTableColumns()
 	}
 	a.deviceModel.SetRows(a.filteredDevices)

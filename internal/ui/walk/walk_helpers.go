@@ -16,25 +16,34 @@ import (
 )
 
 var (
-	colorWindow      = walk.RGB(243, 243, 243)
-	colorSurface     = walk.RGB(255, 255, 255)
-	colorSurfaceAlt  = walk.RGB(249, 250, 252)
+	colorWindow      = walk.RGB(238, 243, 247)
+	colorSurface     = walk.RGB(252, 254, 255)
+	colorSurfaceAlt  = walk.RGB(246, 250, 253)
 	colorWhite       = colorSurface
-	colorRowAlt      = walk.RGB(246, 249, 252)
-	colorText        = walk.RGB(30, 33, 40)
-	colorSoft        = walk.RGB(93, 101, 114)
-	colorGoodBg      = walk.RGB(232, 245, 236)
-	colorGoodText    = walk.RGB(26, 121, 68)
-	colorWarnBg      = walk.RGB(255, 245, 223)
-	colorWarnText    = walk.RGB(133, 88, 14)
-	colorBadBg       = walk.RGB(252, 235, 234)
-	colorBadText     = walk.RGB(173, 51, 43)
-	colorFaultBg     = walk.RGB(255, 240, 219)
-	colorFaultText   = walk.RGB(141, 90, 34)
-	colorAccentBg    = walk.RGB(233, 242, 255)
-	colorAccentText  = walk.RGB(24, 88, 165)
-	colorSelectedBg  = walk.RGB(221, 237, 255)
-	colorSelectedTxt = walk.RGB(18, 72, 140)
+	colorRowAlt      = walk.RGB(242, 247, 252)
+	colorText        = walk.RGB(18, 26, 36)
+	colorSoft        = walk.RGB(78, 92, 108)
+	colorGoodBg      = walk.RGB(226, 248, 237)
+	colorGoodText    = walk.RGB(15, 119, 73)
+	colorWarnBg      = walk.RGB(255, 246, 222)
+	colorWarnText    = walk.RGB(128, 82, 0)
+	colorBadBg       = walk.RGB(254, 233, 232)
+	colorBadText     = walk.RGB(176, 45, 36)
+	colorFaultBg     = walk.RGB(255, 236, 214)
+	colorFaultText   = walk.RGB(142, 82, 24)
+	colorAccentBg    = walk.RGB(226, 241, 255)
+	colorAccentText  = walk.RGB(14, 88, 173)
+	colorSelectedBg  = walk.RGB(214, 235, 255)
+	colorSelectedTxt = walk.RGB(14, 73, 142)
+
+	colorHeroStart       = walk.RGB(18, 51, 86)
+	colorHeroEnd         = walk.RGB(24, 72, 118)
+	colorHeroTitle       = walk.RGB(243, 249, 255)
+	colorHeroSubtitle    = walk.RGB(194, 214, 233)
+	colorHeroChipText    = walk.RGB(250, 252, 255)
+	colorHeroChipMetric  = walk.RGB(46, 109, 166)
+	colorHeroChipOnline  = walk.RGB(20, 140, 92)
+	colorHeroChipOffline = walk.RGB(173, 56, 49)
 )
 
 var eventFilters = []string{"all", "alarm", "test", "fault", "guard", "disguard", "other"}
@@ -98,7 +107,7 @@ func matchesEventFilter(evt core.EventDTO, filter string, hideTests bool, hideBl
 	if hideTests && strings.EqualFold(evt.Category, "test") {
 		return false
 	}
-	// Note: hideBlocked is not directly in core.EventDTO, 
+	// Note: hideBlocked is not directly in core.EventDTO,
 	// but the backend should have filtered it already if requested.
 	// Here we just match the interface needs.
 	query = strings.ToLower(strings.TrimSpace(query))
@@ -158,27 +167,44 @@ func priorityColors(app *walkApp, category string, row int) (walk.Color, walk.Co
 			if !fgOk {
 				fg = colorText
 			}
-			return bg, fg
+			return tintByRow(bg, row), fg
 		}
 	}
 
 	switch cat {
 	case "alarm":
-		return colorBadBg, colorBadText
+		return tintByRow(colorBadBg, row), colorBadText
 	case "test":
-		return colorWarnBg, colorWarnText
+		return tintByRow(colorWarnBg, row), colorWarnText
 	case "fault":
-		return colorFaultBg, colorFaultText
+		return tintByRow(colorFaultBg, row), colorFaultText
 	case "guard":
-		return colorGoodBg, colorGoodText
+		return tintByRow(colorGoodBg, row), colorGoodText
 	case "disguard":
-		return colorAccentBg, colorAccentText
+		return tintByRow(colorAccentBg, row), colorAccentText
 	default:
 		if row%2 == 0 {
 			return colorRowAlt, colorText
 		}
 		return colorWhite, colorText
 	}
+}
+
+func tintByRow(c walk.Color, row int) walk.Color {
+	if row%2 == 0 {
+		return c
+	}
+	return shiftColor(c, -9)
+}
+
+func shiftColor(c walk.Color, delta int) walk.Color {
+	r := clampInt(int(uint8(c)), 0, 255)
+	g := clampInt(int(uint8(c>>8)), 0, 255)
+	b := clampInt(int(uint8(c>>16)), 0, 255)
+	r = clampInt(r+delta, 0, 255)
+	g = clampInt(g+delta, 0, 255)
+	b = clampInt(b+delta, 0, 255)
+	return walk.RGB(uint8(r), uint8(g), uint8(b))
 }
 
 func prependEvents(dst, batch []core.EventDTO, maxN int) []core.EventDTO {

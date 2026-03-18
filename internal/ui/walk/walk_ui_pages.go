@@ -24,21 +24,22 @@ func (a *walkApp) objectsPage() TabPage {
 					LineEdit{
 						AssignTo:      &a.objSearch,
 						StretchFactor: 1,
-						CueBanner:     "Пошук об'єкта",
+						CueBanner:     "Пошук: ID, клієнт або остання подія",
 						ToolTipText:   "Пошук по номеру ППК, адресі клієнта або тексту останньої події.",
 						OnTextChanged: func() {
 							a.deviceFilter = a.objSearch.Text()
 							a.refreshUI()
 						},
 					},
-					PushButton{Text: "Відкрити історію", OnClicked: a.openSelectedHistory},
+					PushButton{Text: "Журнал", OnClicked: a.openSelectedHistory},
 					PushButton{Text: "Видалити об'єкт", OnClicked: a.deleteSelectedDevice},
-					PushButton{Text: "Оновити", OnClicked: a.reloadAll},
+					PushButton{Text: "Синхронізувати", OnClicked: a.reloadAll},
 				},
 			},
 			TableView{
 				Background:          SolidColorBrush{Color: colorSurface},
 				AssignTo:            &a.objTable,
+				StretchFactor:       1,
 				AlternatingRowBG:    true,
 				ColumnsOrderable:    true,
 				LastColumnStretched: false,
@@ -96,20 +97,21 @@ func (a *walkApp) eventsPage() TabPage {
 					LineEdit{
 						AssignTo:      &a.eventSearch,
 						StretchFactor: 1,
-						CueBanner:     "Пошук подій",
+						CueBanner:     "Пошук: ППК, код, тип, опис, зона",
 						ToolTipText:   "Пошук по ППК, коду, типу, опису або зоні.",
 						OnTextChanged: func() {
 							a.eventQuery = a.eventSearch.Text()
 							a.refreshUI()
 						},
 					},
-					PushButton{Text: "Більше", OnClicked: a.loadMoreEvents},
-					PushButton{Text: "Повне оновлення", OnClicked: a.reloadAll},
+					PushButton{Text: "Завантажити ще", OnClicked: a.loadMoreEvents},
+					PushButton{Text: "Синхронізувати", OnClicked: a.reloadAll},
 				},
 			},
 			TableView{
 				Background:          SolidColorBrush{Color: colorSurface},
 				AssignTo:            &a.eventTable,
+				StretchFactor:       1,
 				AlternatingRowBG:    true,
 				ColumnsOrderable:    true,
 				LastColumnStretched: false,
@@ -141,8 +143,9 @@ func (a *walkApp) settingsPage() TabPage {
 		Layout: VBox{Margins: Margins{Left: 12, Top: 12, Right: 12, Bottom: 12}},
 		Children: []Widget{
 			ScrollView{
-				Background: SolidColorBrush{Color: colorWindow},
-				Layout:     VBox{Spacing: 10},
+				Background:    SolidColorBrush{Color: colorWindow},
+				StretchFactor: 1,
+				Layout:        VBox{Spacing: 10},
 				Children: []Widget{
 					GroupBox{
 						Title:       "Мережа",
@@ -215,27 +218,27 @@ func (a *walkApp) settingsPage() TabPage {
 							CheckBox{AssignTo: &a.uiMinTray, Text: "Minimize to tray", ToolTipText: "Ховати вікно в трей при мінімізації."},
 							CheckBox{AssignTo: &a.uiCloseTray, Text: "Close to tray", ToolTipText: "Ховати вікно в трей при закритті замість завершення."},
 							Label{Text: "Font size"},
-									ComboBox{
-										AssignTo: &a.uiFontCombo,
-										Model:    []string{"8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "30"},
-										OnCurrentIndexChanged: func() {
-											if a.uiFontValue != nil && a.uiFontCombo != nil {
-												valStr := a.uiFontCombo.Text()
-												val, _ := strconv.Atoi(valStr)
-												if val > 0 {
-													a.uiFontValue.SetText(valStr)
-													a.applyUIFont(val)
-												}
-											}
-										},
-									},
-									Label{AssignTo: &a.uiFontValue, Text: "14"},
+							ComboBox{
+								AssignTo: &a.uiFontCombo,
+								Model:    []string{"8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "30"},
+								OnCurrentIndexChanged: func() {
+									if a.uiFontValue != nil && a.uiFontCombo != nil {
+										valStr := a.uiFontCombo.Text()
+										val, _ := strconv.Atoi(valStr)
+										if val > 0 {
+											a.uiFontValue.SetText(valStr)
+											a.applyUIFont(val)
+										}
+									}
+								},
+							},
+							Label{AssignTo: &a.uiFontValue, Text: "14"},
 						},
 					},
 					GroupBox{
-						Title: "Додатково",
+						Title:      "Додатково",
 						Background: SolidColorBrush{Color: colorSurface},
-						Layout: HBox{Margins: Margins{Left: 8, Top: 8, Right: 8, Bottom: 8}, Spacing: 8},
+						Layout:     HBox{Margins: Margins{Left: 8, Top: 8, Right: 8, Bottom: 8}, Spacing: 8},
 						Children: []Widget{
 							PushButton{Text: "Налаштування фільтрації", OnClicked: a.openRelayFilter},
 							PushButton{Text: "Кольори подій", OnClicked: a.openColorSettings},

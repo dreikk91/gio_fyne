@@ -11,6 +11,7 @@ import (
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
+	"github.com/lxn/win"
 )
 
 func (a *walkApp) openSelectedHistory() {
@@ -102,13 +103,20 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 			TableView{
 				Background:          SolidColorBrush{Color: colorSurface},
 				AssignTo:            &state.table,
+				StretchFactor:       1,
 				AlternatingRowBG:    true,
 				ColumnsOrderable:    true,
 				LastColumnStretched: true,
 				CustomHeaderHeight:  34,
 				CustomRowHeight:     32,
 				Model:               state.model,
+				OnSizeChanged: func() {
+					a.updateHistoryTableColumns(state)
+				},
 				StyleCell: func(style *walk.CellStyle) {
+					if state.table != nil && style.Row() == state.table.CurrentIndex() {
+						return
+					}
 					e, ok := state.model.Row(style.Row())
 					if !ok {
 						return
@@ -141,8 +149,10 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 
 	if state.table != nil {
 		state.model.SetTableView(state.table)
-		state.table.SetGridlines(false)
+		state.table.SetGridlines(true)
+		applyTableGridlineColor(state.table, win.RGB(214, 224, 236))
 		a.applyHistoryTableScale(state)
+		a.updateHistoryTableColumns(state)
 	}
 	state.filter.SetCurrentIndex(0)
 	state.dlg.Closing().Attach(func(canceled *bool, reason walk.CloseReason) {
@@ -152,6 +162,33 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 	a.reloadHistory(state)
 	state.dlg.Run()
 	state.closed.Store(true)
+}
+
+func (a *walkApp) updateHistoryTableColumns(state *historyDialog) {
+	if state == nil || state.table == nil {
+		return
+	}
+	cols := state.table.Columns()
+	if cols == nil || cols.Len() < 7 {
+		return
+	}
+	clientWidth := state.table.ClientBoundsPixels().Width
+	if clientWidth <= 0 {
+		return
+	}
+	const paddingWidth = 24
+	widths := fitColumnsToWidth(
+		clientWidth,
+		paddingWidth,
+		[]int{130, 70, 56, 108, 340, 140, 84},
+		[]int{88, 52, 42, 72, 96, 88, 66},
+		4,
+	)
+	state.table.SetSuspended(true)
+	defer state.table.SetSuspended(false)
+	for i, w := range widths {
+		_ = cols.At(i).SetWidth(w)
+	}
 }
 
 func (a *walkApp) reloadHistory(state *historyDialog) {

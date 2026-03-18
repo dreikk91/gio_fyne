@@ -21,11 +21,31 @@ func (a *walkApp) updateStatusBar() {
 	if strings.TrimSpace(a.statusErr) != "" {
 		msg = a.statusErr
 	}
-	
+
+	if a.headerTitle != nil {
+		a.headerTitle.SetText("CID Windigo")
+	}
+	if a.headerSubtitle != nil {
+		a.headerSubtitle.SetText(fmt.Sprintf("Objects: %d | Visible events: %d | Uptime: %s", len(a.filteredDevices), a.visibleEvents, a.stats.Uptime))
+	}
+	if a.headerStatus != nil {
+		state := boolText(a.stats.Connected, "ONLINE", "OFFLINE")
+		a.headerStatus.SetText(state)
+		if brush, err := walk.NewSolidColorBrush(firstColorByState(a.stats.Connected)); err == nil {
+			a.headerStatus.SetBackground(brush)
+		}
+	}
+	if a.headerClients != nil {
+		a.headerClients.SetText(fmt.Sprintf("Clients: %d", a.stats.Clients))
+	}
+	if a.headerEvents != nil {
+		a.headerEvents.SetText(fmt.Sprintf("Events: %d", a.visibleEvents))
+	}
+
 	a.statusLabel.SetText(fmt.Sprintf("Стан: %s [A:%d I:%d]", msg, a.activeDevices, a.inactiveDevices))
 	a.transportLabel.SetText(fmt.Sprintf("Мережа: %s", boolText(a.stats.Connected, "OK", "OFF")))
 	a.uptimeLabel.SetText(fmt.Sprintf("Up: %s", a.stats.Uptime))
-	
+
 	if a.acceptedLabel != nil {
 		a.acceptedLabel.SetText(fmt.Sprintf("Ack: %d", a.stats.Accepted))
 	}
@@ -39,15 +59,27 @@ func (a *walkApp) updateStatusBar() {
 	statusTip := fmt.Sprintf("Об'єкти: %d активних / %d неактивних", a.activeDevices, a.inactiveDevices)
 	transportTip := fmt.Sprintf("Uptime: %s | Clients: %d | Msg/s: %d", a.stats.Uptime, a.stats.Clients, a.stats.ReceivedPS)
 	metricsTip := fmt.Sprintf("Reconnects: %d | Evs: %d | Drop: %d/%d", a.stats.Reconnects, a.visibleEvents, a.dropDevices.Load(), a.dropEvents.Load())
-	
+
 	a.statusLabel.SetToolTipText(statusTip)
 	a.transportLabel.SetToolTipText(transportTip)
-	if a.acceptedLabel != nil { a.acceptedLabel.SetToolTipText(metricsTip) }
+	if a.acceptedLabel != nil {
+		a.acceptedLabel.SetToolTipText(metricsTip)
+	}
+}
+
+func firstColorByState(connected bool) walk.Color {
+	if connected {
+		return colorHeroChipOnline
+	}
+	return colorHeroChipOffline
 }
 
 func (a *walkApp) styleDeviceCell(style *walk.CellStyle) {
 	d, ok := a.deviceModel.Row(style.Row())
 	if !ok {
+		return
+	}
+	if a.objTable != nil && style.Row() == a.objTable.CurrentIndex() {
 		return
 	}
 	if style.Row()%2 == 0 {
@@ -67,6 +99,9 @@ func (a *walkApp) styleEventCell(style *walk.CellStyle) {
 	if !ok {
 		return
 	}
+	if a.eventTable != nil && style.Row() == a.eventTable.CurrentIndex() {
+		return
+	}
 	style.BackgroundColor, style.TextColor = priorityColors(a, e.Category, style.Row())
 }
 
@@ -84,7 +119,7 @@ func (a *walkApp) applyUIFont(size int) {
 		log.Warn().Err(err).Int("font_size", size).Msg("failed to apply ui font")
 		return
 	}
-	
+
 	// Avoid unnecessary updates if the font hasn't changed
 	if curFont := a.mw.Font(); curFont != nil && curFont.PointSize() == size {
 		return
@@ -112,7 +147,7 @@ func (a *walkApp) applyUILayoutScale(size int) {
 	scale := clampInt(size-10, 0, 18)
 	toolbarH := 42 + scale
 	footerH := 24 + scale/3
-	tableMinH := 300 + scale*9
+	tableMinH := 170 + scale*4
 	inputH := 30 + scale/2
 	checkboxH := 28 + scale/2
 
