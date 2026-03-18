@@ -165,7 +165,7 @@ func (m *model) newObjectsTable(headers []string) *widget.Table {
 			rowBg := rowAltColor(dataRow)
 			eventCat := m.getEventCategoryForDevice(d.ID)
 			if !stale && eventCat != "" {
-				rowBg = eventColor(eventCat, dataRow)
+				rowBg, _ = m.eventRowColors(eventCat, dataRow)
 			}
 
 			if stale {
@@ -233,10 +233,15 @@ func (m *model) newEventsList() *widget.List {
 			e := m.filteredEvents[idx]
 			m.mu.RUnlock()
 			bg, txt := getEventListItemParts(obj)
-			bg.FillColor = eventColor(e.Category, idx)
+			rowBg, rowFg := m.eventRowColors(e.Category, idx)
+			bg.FillColor = rowBg
 			bg.Refresh()
-			txt.Color = eventTextColor(e.Category)
-			txt.Text = formatEventLine(e)
+			txt.Color = rowFg
+			contentWidth := float32(0)
+			if m.evtScroll != nil {
+				contentWidth = m.evtScroll.Size().Width
+			}
+			txt.Text = m.formatEventLineAdaptive(e, contentWidth-12)
 			txt.TextSize = fyne.CurrentApp().Settings().Theme().Size(theme.SizeNameText)
 			txt.Refresh()
 		},

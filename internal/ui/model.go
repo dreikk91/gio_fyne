@@ -43,20 +43,20 @@ var (
 	cPanel2     = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
 	cPanel3     = color.NRGBA{R: 241, G: 245, B: 249, A: 255}
 	cBorder     = color.NRGBA{R: 226, G: 232, B: 240, A: 255} // Sleeker border
-	cOverlay    = color.NRGBA{R: 15, G: 23, B: 42, A: 160}  // Darker overlay
+	cOverlay    = color.NRGBA{R: 15, G: 23, B: 42, A: 160}    // Darker overlay
 	cModal      = color.NRGBA{R: 255, G: 255, B: 255, A: 255}
 	cModalH     = color.NRGBA{R: 248, G: 250, B: 252, A: 255}
 	cModalB     = color.NRGBA{R: 203, G: 213, B: 225, A: 255}
-	cText       = color.NRGBA{R: 15, G: 23, B: 42, A: 255}   // Slate-900 for text
+	cText       = color.NRGBA{R: 15, G: 23, B: 42, A: 255}    // Slate-900 for text
 	cSoft       = color.NRGBA{R: 100, G: 116, B: 139, A: 255} // Slate-500 for secondary text
-	cAccent     = color.NRGBA{R: 37, G: 99, B: 235, A: 255}  // Vibrant Blue
+	cAccent     = color.NRGBA{R: 37, G: 99, B: 235, A: 255}   // Vibrant Blue
 	cAccent2    = color.NRGBA{R: 219, G: 234, B: 254, A: 255} // Light Blue
 	cAccentSoft = color.NRGBA{R: 239, G: 246, B: 255, A: 255} // Extra Light Blue
-	cGood       = color.NRGBA{R: 22, G: 163, B: 74, A: 255}  // Green-600
+	cGood       = color.NRGBA{R: 22, G: 163, B: 74, A: 255}   // Green-600
 	cGoodSoft   = color.NRGBA{R: 220, G: 252, B: 231, A: 255} // Green-100
-	cWarn       = color.NRGBA{R: 217, G: 119, B: 6, A: 255}  // Amber-600
+	cWarn       = color.NRGBA{R: 217, G: 119, B: 6, A: 255}   // Amber-600
 	cWarnSoft   = color.NRGBA{R: 254, G: 243, B: 199, A: 255} // Amber-100
-	cBad        = color.NRGBA{R: 220, G: 38, B: 38, A: 255}  // Red-600
+	cBad        = color.NRGBA{R: 220, G: 38, B: 38, A: 255}   // Red-600
 	cBadSoft    = color.NRGBA{R: 254, G: 226, B: 226, A: 255} // Red-100
 )
 
@@ -107,14 +107,16 @@ type model struct {
 	pendingEvents  chan core.EventDTO
 
 	deviceCategoryCache map[int]string // New cache for optimized O(1) category lookup
+	categoryColors      map[string]color.NRGBA
+	categoryFontColors  map[string]color.NRGBA
 
-	bootCh   chan bootResult
-	eventsCh chan eventsResult
-	statsCh  chan core.StatsDTO
-	saveCh   chan saveResult
-	deleteCh chan deleteResult
-	hResult  chan historyResult
-	rfResult chan rfResult
+	bootCh         chan bootResult
+	eventsCh       chan eventsResult
+	statsCh        chan core.StatsDTO
+	saveCh         chan saveResult
+	deleteCh       chan deleteResult
+	hResult        chan historyResult
+	rfResult       chan rfResult
 	deletedDevices chan int
 
 	bootReqID       atomic.Uint64

@@ -13,6 +13,35 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+func (m *model) loadCategoryColors() {
+	types, err := m.rt.GetEventTypes(m.ctx)
+	if err != nil {
+		log.Error().Err(err).Msg("failed to load event type colors")
+		return
+	}
+
+	bgMap := make(map[string]color.NRGBA, len(types))
+	fgMap := make(map[string]color.NRGBA, len(types))
+	for _, et := range types {
+		key := strings.ToLower(strings.TrimSpace(et.Key))
+		if key == "" {
+			continue
+		}
+		if clr, ok := parseHexColor(et.Color); ok {
+			bgMap[key] = clr
+		}
+		if clr, ok := parseHexColor(et.FontColor); ok {
+			fgMap[key] = clr
+		}
+	}
+
+	m.mu.Lock()
+	m.eventTypes = types
+	m.categoryColors = bgMap
+	m.categoryFontColors = fgMap
+	m.mu.Unlock()
+}
+
 func (m *model) openColorSettings() {
 	types, err := m.rt.GetEventTypes(m.ctx)
 	if err != nil {
@@ -70,14 +99,15 @@ func (m *model) openColorSettings() {
 			if !strings.HasPrefix(newColor, "#") || len(newColor) != 7 {
 				continue
 			}
-			
+
 			key := m.eventTypes[i].Key
 			if err := m.rt.SaveEventTypeColors(m.ctx, key, newColor, m.eventTypes[i].FontColor); err != nil {
 				log.Error().Err(err).Str("key", key).Msg("failed to save color")
 			}
 		}
-		
+
 		// Refresh UI
+		m.loadCategoryColors()
 		m.statusMsg = "Colors saved"
 		m.refreshMainUI()
 	}, m.win)

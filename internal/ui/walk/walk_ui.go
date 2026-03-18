@@ -272,8 +272,8 @@ func (a *walkApp) createMainWindow() error {
 	err := MainWindow{
 		AssignTo: &mw,
 		Title:    "CID Windigo - Центр моніторингу",
-		MinSize:  Size{Width: 960, Height: 640},
-		Size:     Size{Width: 1320, Height: 860},
+		MinSize:  Size{Width: 800, Height: 540},
+		Size:     Size{Width: 800, Height: 600},
 		Font:     Font{Family: "Segoe UI", PointSize: 10},
 		Background: SolidColorBrush{
 			Color: colorWindow,

@@ -18,7 +18,7 @@ Logging:
     MaxAge: 28
     Compress: true
     Level: info
-    EnableConsole: true
+    EnableConsole: false
     EnableFile: true
     PrettyConsole: true
     SamplingEnabled: false

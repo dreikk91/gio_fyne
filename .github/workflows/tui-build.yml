@@ -1,0 +1,50 @@
+name: Build TUI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-tui:
+    name: Build ${{ matrix.os_name }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            os_name: windows
+            artifact_name: cidtea-windows.exe
+          - runner: ubuntu-latest
+            os_name: linux
+            artifact_name: cidtea-linux
+          - runner: macos-latest
+            os_name: macos
+            artifact_name: cidtea-macos
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.25.x"
+          cache: true
+
+      - name: Build TUI binary
+        shell: bash
+        run: |
+          mkdir -p build
+          go build -trimpath -o build/${{ matrix.artifact_name }} ./cmd/cidtea
+
+      - name: Upload TUI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tui-${{ matrix.os_name }}
+          path: build/${{ matrix.artifact_name }}
+          if-no-files-found: error

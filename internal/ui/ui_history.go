@@ -96,10 +96,15 @@ func (m *model) buildHistoryUI() {
 			e := m.hRows[idx]
 			m.mu.RUnlock()
 			bg, txt := getEventListItemParts(obj)
-			bg.FillColor = eventColor(e.Category, idx)
+			rowBg, rowFg := m.eventRowColors(e.Category, idx)
+			bg.FillColor = rowBg
 			bg.Refresh()
-			txt.Color = eventTextColor(e.Category)
-			txt.Text = formatEventLine(e)
+			txt.Color = rowFg
+			contentWidth := float32(0)
+			if m.hScroll != nil {
+				contentWidth = m.hScroll.Size().Width
+			}
+			txt.Text = m.formatEventLineAdaptive(e, contentWidth-12)
 			txt.TextSize = fyne.CurrentApp().Settings().Theme().Size(theme.SizeNameText)
 			txt.Refresh()
 		},
@@ -120,7 +125,15 @@ func (m *model) buildHistoryUI() {
 	m.hScroll.OnScrolled = func(pos fyne.Position) {
 		m.onHistScrolled(pos.Y)
 	}
-	center := cardContainer(cModal, container.NewBorder(newTableHeader(headers), nil, nil, nil, m.hScroll))
+	centerContent := container.NewBorder(newTableHeader(headers), nil, nil, nil, m.hScroll)
+	responsiveCenter := container.New(&refreshOnResizeLayout{
+		onResize: func(_ fyne.Size) {
+			if m.hList != nil {
+				m.hList.Refresh()
+			}
+		},
+	}, centerContent)
+	center := cardContainer(cModal, responsiveCenter)
 	content := container.NewBorder(top, nil, nil, nil, center)
 	m.hWin.SetContent(content)
 	m.hWin.Resize(fyne.NewSize(1024, 660))

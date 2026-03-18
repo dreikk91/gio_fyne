@@ -214,7 +214,8 @@ func (m *model) buildRelayFilterUI() {
 			}
 			row := m.rfFilteredCd[dataRow]
 
-			bg.FillColor = eventColor(row.Category, dataRow)
+			rowBg, _ := m.eventRowColors(row.Category, dataRow)
+			bg.FillColor = rowBg
 
 			switch id.Col {
 			case 0:

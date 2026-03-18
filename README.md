@@ -33,14 +33,21 @@
 
 ```bash
 go mod tidy
-go run ./cmd/cidgio
+go run ./cmd/cidtea
 ```
 
-Альтернативний entrypoint (сумісність):
+Альтернативний entrypoint:
 
 ```bash
-go run ./cmd/cidwindigo
+go run ./cmd/cidwalk
 ```
+
+`cidtea` (Bubble Tea TUI) має вкладки:
+- `Objects` (пошук, журнал, видалення, sync)
+- `Events` (фільтри, пошук, hide test, load more)
+- `Settings` (редагування+збереження конфігурації)
+- `Relay` (правила relay filter)
+- `Colors` (кольори категорій подій)
 
 ## Stress / Throughput тест
 

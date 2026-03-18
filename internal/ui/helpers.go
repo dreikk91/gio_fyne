@@ -57,6 +57,24 @@ func eventColor(cat string, row int) color.NRGBA {
 	}
 }
 
+func (m *model) eventRowColors(cat string, row int) (color.NRGBA, color.NRGBA) {
+	key := strings.ToLower(strings.TrimSpace(cat))
+	m.mu.RLock()
+	bg, bgOk := m.categoryColors[key]
+	fg, fgOk := m.categoryFontColors[key]
+	m.mu.RUnlock()
+	if bgOk {
+		if row%2 != 0 {
+			bg = shiftColor(bg, -8)
+		}
+		if !fgOk {
+			fg = cText
+		}
+		return bg, fg
+	}
+	return eventColor(cat, row), eventTextColor(cat)
+}
+
 func eventTextColor(cat string) color.NRGBA {
 	switch strings.ToLower(strings.TrimSpace(cat)) {
 	case "alarm":
@@ -72,6 +90,13 @@ func eventTextColor(cat string) color.NRGBA {
 	default:
 		return cText
 	}
+}
+
+func shiftColor(c color.NRGBA, delta int) color.NRGBA {
+	r := clamp(int(c.R)+delta, 0, 255)
+	g := clamp(int(c.G)+delta, 0, 255)
+	b := clamp(int(c.B)+delta, 0, 255)
+	return color.NRGBA{R: uint8(r), G: uint8(g), B: uint8(b), A: c.A}
 }
 
 func eventTextColorName(cat string) fyne.ThemeColorName {
@@ -173,6 +198,19 @@ func hexToColor(hex string) color.NRGBA {
 	var r, g, b uint8
 	fmt.Sscanf(hex, "%02x%02x%02x", &r, &g, &b)
 	return color.NRGBA{R: r, G: g, B: b, A: 255}
+}
+
+func parseHexColor(v string) (color.NRGBA, bool) {
+	s := strings.ToUpper(strings.TrimSpace(v))
+	if len(s) != 7 || !strings.HasPrefix(s, "#") {
+		return color.NRGBA{}, false
+	}
+	for _, ch := range s[1:] {
+		if !((ch >= '0' && ch <= '9') || (ch >= 'A' && ch <= 'F')) {
+			return color.NRGBA{}, false
+		}
+	}
+	return hexToColor(s), true
 }
 
 func formatAccountRanges(ranges []config.AccountRange) string {
@@ -292,6 +330,65 @@ func formatEventLine(e core.EventDTO) string {
 	}
 	b.WriteString(relay)
 	return b.String()
+}
+
+func fitCell(value string, width int) string {
+	v := strings.TrimSpace(value)
+	if width <= 0 {
+		return ""
+	}
+	r := []rune(v)
+	if len(r) > width {
+		if width > 3 {
+			return string(r[:width-3]) + "..."
+		}
+		return string(r[:width])
+	}
+	if len(r) < width {
+		return v + strings.Repeat(" ", width-len(r))
+	}
+	return v
+}
+
+func (m *model) formatEventLineAdaptive(e core.EventDTO, width float32) string {
+	if width <= 0 {
+		return formatEventLine(e)
+	}
+	relay := "OK"
+	if e.RelayBlocked {
+		relay = "Blocked"
+	}
+	textSize := fyne.CurrentApp().Settings().Theme().Size(theme.SizeNameText)
+	charWidth := textSize * 0.62
+	if charWidth < 6 {
+		charWidth = 6
+	}
+	total := int(width / charWidth)
+	if total < 36 {
+		total = 36
+	}
+
+	wTime := 19
+	wID := 4
+	wCode := 4
+	wType := 10
+	wZone := 14
+	wRelay := 7
+	fixed := wTime + wID + wCode + wType + wZone + wRelay + 6
+	wDesc := total - fixed
+	if wDesc < 12 {
+		wDesc = 12
+	}
+
+	return strings.Join([]string{
+		fitCell(e.Time.Format("2006-01-02 15:04:05"), wTime),
+		fitCell(e.DeviceID, wID),
+		fitCell(e.Code, wCode),
+		fitCell(e.Type, wType),
+		fitCell(e.Desc, wDesc),
+		fitCell(e.Zone, wZone),
+		fitCell(relay, wRelay),
+	}, " | ")
 }
 
 func filterTone(filter string) (color.NRGBA, color.NRGBA) {

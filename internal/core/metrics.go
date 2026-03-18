@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const receivedWindowSize = 5
+const receivedWindowSize = 60
 
 type Metrics struct {
 	accepted   atomic.Int64
@@ -38,22 +38,7 @@ func (m *Metrics) IncReceived() {
 	if m.receivedSec == 0 {
 		m.receivedSec = nowSec
 	}
-	if nowSec > m.receivedSec {
-		gap := nowSec - m.receivedSec
-		if gap >= receivedWindowSize {
-			for i := range m.receivedRing {
-				m.receivedRing[i] = 0
-			}
-			m.receivedTotal = 0
-		} else {
-			for step := int64(1); step <= gap; step++ {
-				idx := int((m.receivedSec + step) % receivedWindowSize)
-				m.receivedTotal -= m.receivedRing[idx]
-				m.receivedRing[idx] = 0
-			}
-		}
-		m.receivedSec = nowSec
-	}
+	m.advanceReceivedWindowLocked(nowSec)
 	idx := int(nowSec % receivedWindowSize)
 	m.receivedRing[idx]++
 	m.receivedTotal++
@@ -69,44 +54,53 @@ func (m *Metrics) SetClients(v int) { m.clients.Store(int64(v)) }
 
 func (m *Metrics) Snapshot() StatsDTO {
 	uptime := time.Since(m.started)
-	receivedPS := m.receivedRate()
+	receivedPS, receivedPM := m.receivedRates()
 	return StatsDTO{
 		Accepted:   m.accepted.Load(),
 		Rejected:   m.rejected.Load(),
 		Reconnects: m.reconnects.Load(),
 		ReceivedPS: receivedPS,
-		ReceivedPM: receivedPS * 60,
+		ReceivedPM: receivedPM,
 		Clients:    int(m.clients.Load()),
 		Uptime:     formatUptime(uptime),
 		Connected:  m.connected.Load() == 1,
 	}
 }
 
-func (m *Metrics) receivedRate() int64 {
+func (m *Metrics) advanceReceivedWindowLocked(nowSec int64) {
+	if m.receivedSec == 0 {
+		return
+	}
+	if nowSec <= m.receivedSec {
+		return
+	}
+	gap := nowSec - m.receivedSec
+	if gap >= receivedWindowSize {
+		for i := range m.receivedRing {
+			m.receivedRing[i] = 0
+		}
+		m.receivedTotal = 0
+		m.receivedSec = nowSec
+		return
+	}
+	for step := int64(1); step <= gap; step++ {
+		idx := int((m.receivedSec + step) % receivedWindowSize)
+		m.receivedTotal -= m.receivedRing[idx]
+		m.receivedRing[idx] = 0
+	}
+	m.receivedSec = nowSec
+}
+
+func (m *Metrics) receivedRates() (perSecond int64, perMinute int64) {
 	nowSec := time.Now().Unix()
 	m.receivedMu.Lock()
 	defer m.receivedMu.Unlock()
 
 	if m.receivedSec == 0 {
-		return 0
+		return 0, 0
 	}
-	if nowSec > m.receivedSec {
-		gap := nowSec - m.receivedSec
-		if gap >= receivedWindowSize {
-			for i := range m.receivedRing {
-				m.receivedRing[i] = 0
-			}
-			m.receivedTotal = 0
-		} else {
-			for step := int64(1); step <= gap; step++ {
-				idx := int((m.receivedSec + step) % receivedWindowSize)
-				m.receivedTotal -= m.receivedRing[idx]
-				m.receivedRing[idx] = 0
-			}
-		}
-		m.receivedSec = nowSec
-	}
-	return m.receivedTotal / receivedWindowSize
+	m.advanceReceivedWindowLocked(nowSec)
+	return m.receivedTotal / receivedWindowSize, m.receivedTotal
 }
 
 func formatUptime(d time.Duration) string {

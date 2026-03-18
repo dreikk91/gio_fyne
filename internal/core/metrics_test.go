@@ -5,17 +5,21 @@ import (
 	"time"
 )
 
-func TestMetricsReceivedRateUsesRollingWindow(t *testing.T) {
+func TestMetricsReceivedRatesUseRollingWindow(t *testing.T) {
 	m := NewMetrics()
 
 	m.receivedMu.Lock()
 	nowSec := time.Now().Unix()
 	m.receivedSec = nowSec
-	m.receivedRing = [receivedWindowSize]int64{10, 0, 0, 0, 0}
-	m.receivedTotal = 10
+	m.receivedRing = [receivedWindowSize]int64{120}
+	m.receivedTotal = 120
 	m.receivedMu.Unlock()
 
-	if got := m.receivedRate(); got != 2 {
-		t.Fatalf("receivedRate() = %d, want 2", got)
+	ps, pm := m.receivedRates()
+	if ps != 2 {
+		t.Fatalf("receivedRates() perSecond = %d, want 2", ps)
+	}
+	if pm != 120 {
+		t.Fatalf("receivedRates() perMinute = %d, want 120", pm)
 	}
 }

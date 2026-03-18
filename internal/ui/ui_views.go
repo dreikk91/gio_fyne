@@ -135,29 +135,34 @@ type objectTableLayout struct {
 	lastEventWidth  float32
 }
 
+type refreshOnResizeLayout struct {
+	onResize func(size fyne.Size)
+	lastSize fyne.Size
+}
+
+func (l *refreshOnResizeLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) {
+	for _, o := range objects {
+		o.Resize(size)
+		o.Move(fyne.NewPos(0, 0))
+	}
+	if l.onResize != nil && (l.lastSize.Width != size.Width || l.lastSize.Height != size.Height) {
+		l.lastSize = size
+		l.onResize(size)
+	}
+}
+
+func (l *refreshOnResizeLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
+	if len(objects) == 0 {
+		return fyne.NewSize(0, 0)
+	}
+	return objects[0].MinSize()
+}
+
 func (l *objectTableLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) {
 	if l.table != nil {
-		fixed := float32(85 + 65 + 160 + 150)
-		available := size.Width - fixed - 10
-		if available < 320 {
-			available = 320
-		}
-		clientWidth := available * 0.35
-		eventWidth := available * 0.65
-		if clientWidth < 140 {
-			clientWidth = 140
-			eventWidth = available - clientWidth
-			if eventWidth < 180 {
-				eventWidth = 180
-			}
-		}
-		if eventWidth < 200 {
-			eventWidth = 200
-			clientWidth = available - eventWidth
-			if clientWidth < 140 {
-				clientWidth = 140
-			}
-		}
+		widths := fitObjectColumnWidths(size.Width)
+		clientWidth := widths[2]
+		eventWidth := widths[3]
 		if l.lastClientWidth != clientWidth {
 			l.table.SetColumnWidth(2, clientWidth)
 			l.lastClientWidth = clientWidth
@@ -166,6 +171,10 @@ func (l *objectTableLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) 
 			l.table.SetColumnWidth(3, eventWidth)
 			l.lastEventWidth = eventWidth
 		}
+		l.table.SetColumnWidth(0, widths[0])
+		l.table.SetColumnWidth(1, widths[1])
+		l.table.SetColumnWidth(4, widths[4])
+		l.table.SetColumnWidth(5, widths[5])
 	}
 	for _, o := range objects {
 		o.Resize(size)
@@ -175,6 +184,58 @@ func (l *objectTableLayout) Layout(objects []fyne.CanvasObject, size fyne.Size) 
 
 func (l *objectTableLayout) MinSize(objects []fyne.CanvasObject) fyne.Size {
 	return fyne.NewSize(600, 300)
+}
+
+func fitObjectColumnWidths(totalWidth float32) [6]float32 {
+	minW := [6]float32{74, 58, 130, 190, 136, 126}
+	base := [6]float32{86, 64, 180, 360, 160, 150}
+
+	available := totalWidth - 12
+	if available < 480 {
+		available = 480
+	}
+
+	var baseSum float32
+	for _, w := range base {
+		baseSum += w
+	}
+	var minSum float32
+	for _, w := range minW {
+		minSum += w
+	}
+	if available <= minSum {
+		return minW
+	}
+	if available >= baseSum {
+		extra := available - baseSum
+		base[2] += extra * 0.35
+		base[3] += extra * 0.65
+		return base
+	}
+
+	needShrink := baseSum - available
+	shrinkCap := [6]float32{}
+	var capSum float32
+	for i := range base {
+		shrinkCap[i] = base[i] - minW[i]
+		if shrinkCap[i] > 0 {
+			capSum += shrinkCap[i]
+		}
+	}
+	if capSum <= 0 {
+		return minW
+	}
+	for i := range base {
+		if shrinkCap[i] <= 0 {
+			continue
+		}
+		delta := needShrink * (shrinkCap[i] / capSum)
+		base[i] -= delta
+		if base[i] < minW[i] {
+			base[i] = minW[i]
+		}
+	}
+	return base
 }
 
 func (m *model) buildEventsTab() fyne.CanvasObject {
@@ -224,7 +285,7 @@ func (m *model) buildEventsTab() fyne.CanvasObject {
 		filterWidth = 320
 	}
 	filterWrap := container.NewGridWrap(fyne.NewSize(filterWidth, rowHeight), container.NewCenter(filterRow))
-	
+
 	m.evtSearchEntry.SetPlaceHolder("Search events...")
 
 	toolbar := container.NewBorder(nil, nil, filterWrap, container.NewHBox(m.hideTestsCheck, m.hideBlockedCheck),
@@ -249,7 +310,15 @@ func (m *model) buildEventsTab() fyne.CanvasObject {
 	m.evtScroll.OnScrolled = func(pos fyne.Position) {
 		m.onEvtScrolled(pos.Y)
 	}
-	center := cardContainer(cPanel, container.NewBorder(newTableHeader(headers), nil, nil, nil, m.evtScroll))
+	centerContent := container.NewBorder(newTableHeader(headers), nil, nil, nil, m.evtScroll)
+	responsiveCenter := container.New(&refreshOnResizeLayout{
+		onResize: func(_ fyne.Size) {
+			if m.evtList != nil {
+				m.evtList.Refresh()
+			}
+		},
+	}, centerContent)
+	center := cardContainer(cPanel, responsiveCenter)
 	m.refreshEventFilterButtons()
 	return container.NewBorder(top, nil, nil, nil, center)
 }
@@ -473,7 +542,7 @@ func (m *model) updateHeaderStats() {
 		m.chipRejected.set(strconv.FormatInt(stats.Rejected, 10), cText, cPanel2)
 	}
 	if m.chipRate != nil {
-		m.chipRate.set(strconv.FormatInt(stats.ReceivedPS*60, 10), cAccent, cAccentSoft)
+		m.chipRate.set(strconv.FormatInt(stats.ReceivedPM, 10), cAccent, cAccentSoft)
 	}
 }
 
@@ -555,7 +624,6 @@ func (m *model) applyFontSize(size int) {
 		m.fontSizeSlider.SetValue(float64(size))
 	}
 }
-
 
 func (m *model) pprofURL() string {
 	host := strings.TrimSpace(m.cfgEntries["Profiling.Host"].Text)
