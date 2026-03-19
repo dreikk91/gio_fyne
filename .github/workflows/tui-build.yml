@@ -40,6 +40,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p build
+          export CGO_ENABLED=1
           go build -trimpath -o build/${{ matrix.artifact_name }} ./cmd/cidtea
 
       - name: Upload TUI artifact

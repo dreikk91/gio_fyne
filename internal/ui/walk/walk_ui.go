@@ -271,7 +271,7 @@ func (a *walkApp) createMainWindow() error {
 
 	err := MainWindow{
 		AssignTo: &mw,
-		Title:    "CID Windigo - Центр моніторингу",
+		Title:    "CID Walk - Центр моніторингу",
 		MinSize:  Size{Width: 800, Height: 540},
 		Size:     Size{Width: 800, Height: 600},
 		Font:     Font{Family: "Segoe UI", PointSize: 10},
@@ -288,7 +288,7 @@ func (a *walkApp) createMainWindow() error {
 					Composite{
 						Layout: VBox{MarginsZero: true, Spacing: 2},
 						Children: []Widget{
-							Label{AssignTo: &a.headerTitle, Text: "CID Windigo", TextColor: colorHeroTitle, Font: Font{Family: "Segoe UI Semibold", PointSize: 13}},
+							Label{AssignTo: &a.headerTitle, Text: "CID Walk", TextColor: colorHeroTitle, Font: Font{Family: "Segoe UI Semibold", PointSize: 13}},
 							Label{AssignTo: &a.headerSubtitle, Text: "Realtime relay control", TextColor: colorHeroSubtitle},
 						},
 					},

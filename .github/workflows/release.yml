@@ -24,23 +24,19 @@ jobs:
       - name: Install Fyne CLI
         run: go install fyne.io/fyne/v2/cmd/fyne@latest
 
-      - name: Build Walk (64-bit)
+      - name: Build Walk (amd64)
+        env:
+          CGO_ENABLED: "1"
+          GOARCH: amd64
         run: |
-          mkdir -p build
+          New-Item -ItemType Directory -Force -Path build | Out-Null
           go build -ldflags="-s -w -H=windowsgui" -o build/cidwalk-windows-amd64.exe ./cmd/cidwalk
 
-      - name: Build Walk (32-bit)
-        run: |
-          $env:GOARCH = "386"
-          go build -ldflags="-s -w -H=windowsgui" -o build/cidwalk-windows-386.exe ./cmd/cidwalk
-
-      - name: Build Fyne (64-bit)
+      - name: Build Fyne (amd64)
+        env:
+          CGO_ENABLED: "1"
+          GOARCH: amd64
         run: fyne package -os windows -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-windows-amd64
-
-      - name: Build Fyne (32-bit)
-        run: |
-          $env:GOARCH = "386"
-          fyne package -os windows -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-windows-386
 
       - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
@@ -48,7 +44,6 @@ jobs:
           name: windows-binaries
           path: |
             build/cidwalk-windows-amd64.exe
-            build/cidwalk-windows-386.exe
             *.exe
 
   build-linux:
@@ -74,13 +69,11 @@ jobs:
       - name: Install Fyne CLI
         run: go install fyne.io/fyne/v2/cmd/fyne@latest
 
-      - name: Build Fyne (64-bit)
+      - name: Build Fyne (amd64)
+        env:
+          CGO_ENABLED: "1"
+          GOARCH: amd64
         run: fyne package -os linux -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-linux-amd64
-
-      - name: Build Fyne (32-bit)
-        run: |
-          export GOARCH=386
-          fyne package -os linux -release -id com.example.cidgio -src ./cmd/cidfyne -name cidfyne-linux-386
 
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v4

@@ -23,7 +23,7 @@ func (a *walkApp) updateStatusBar() {
 	}
 
 	if a.headerTitle != nil {
-		a.headerTitle.SetText("CID Windigo")
+		a.headerTitle.SetText("CID Walk")
 	}
 	if a.headerSubtitle != nil {
 		a.headerSubtitle.SetText(fmt.Sprintf("Objects: %d | Visible events: %d | Uptime: %s", len(a.filteredDevices), a.visibleEvents, a.stats.Uptime))
