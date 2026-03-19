@@ -86,25 +86,36 @@ func (a *walkApp) openColorSettings() {
 
 func (d *colorSettingsDialog) run() (int, error) {
 	var db *walk.DataBinder
-	
+
 	// Pre-load types to ensure we have colors
 	d.app.loadCategoryColors()
 
 	return Dialog{
-		AssignTo:      &d.dlg,
-		Title:         "Налаштування кольорів подій",
-		MinSize:       Size{Width: 400, Height: 500},
-		Layout:        VBox{Margins: Margins{Left: 10, Top: 10, Right: 10, Bottom: 10}, Spacing: 10},
-		DataBinder:    DataBinder{AssignTo: &db, DataSource: d},
+		AssignTo:   &d.dlg,
+		Title:      "Кольори подій",
+		MinSize:    Size{Width: 700, Height: 620},
+		Layout:     VBox{Margins: Margins{Left: 12, Top: 12, Right: 12, Bottom: 12}, Spacing: 10},
+		DataBinder: DataBinder{AssignTo: &db, DataSource: d},
 		Children: []Widget{
-			Label{Text: "Виберіть колір фону для кожної категорії подій:", Font: Font{PointSize: 10, Bold: true}},
+			Composite{
+				Background: SolidColorBrush{Color: colorSurface},
+				Layout:     VBox{Margins: Margins{Left: 10, Top: 10, Right: 10, Bottom: 10}, Spacing: 2},
+				Children: []Widget{
+					Label{Text: "Палітра категорій подій", Font: Font{Family: "Segoe UI Semibold", PointSize: 11}},
+					Label{Text: "Налаштуйте фон і колір тексту для кожної категорії. Зміни застосовуються після натискання \"Застосувати\".", TextColor: colorSoft},
+				},
+			},
 			ScrollView{
-				Layout: VBox{MarginsZero: true, Spacing: 5},
+				Background: SolidColorBrush{Color: colorWindow},
+				Layout:     VBox{MarginsZero: true, Spacing: 8},
 				Children: d.createColorPickers(),
 			},
 			Composite{
-				Layout: HBox{MarginsZero: true, Spacing: 10},
+				Background: SolidColorBrush{Color: colorSurface},
+				Layout:     HBox{Margins: Margins{Left: 10, Top: 8, Right: 10, Bottom: 8}, Spacing: 10},
 				Children: []Widget{
+					Label{Text: "Порада: комбінуйте високий контраст для кращої читабельності.", TextColor: colorSoft},
+					HSpacer{},
 					HSpacer{},
 					PushButton{
 						Text: "Закрити",
@@ -123,13 +134,16 @@ func (d *colorSettingsDialog) createColorPickers() []Widget {
 	for _, et := range d.app.eventTypes {
 		etCopy := et // capture for closure
 
-		colorLabel := strings.TrimSpace(etCopy.Title)
-		if colorLabel == "" {
-			colorLabel = etCopy.Key
+		title := strings.TrimSpace(etCopy.Title)
+		if title == "" {
+			title = etCopy.Key
 		}
+		subtitle := fmt.Sprintf("Категорія: %s", etCopy.Key)
 
 		var preview *walk.Label
-		
+		var bgValueLabel *walk.Label
+		var fgValueLabel *walk.Label
+
 		// Ensure we have correct defaults based on hex parsing
 		bgCol := hexToColor(etCopy.Color)
 		if etCopy.Color == "" {
@@ -143,42 +157,80 @@ func (d *colorSettingsDialog) createColorPickers() []Widget {
 		currentBg := bgCol
 		currentFg := fgCol
 
+		updatePreview := func() {
+			if preview == nil {
+				return
+			}
+			brush, _ := walk.NewSolidColorBrush(currentBg)
+			preview.SetBackground(brush)
+			preview.SetTextColor(currentFg)
+			if bgValueLabel != nil {
+				bgValueLabel.SetText("Фон: " + colorHex(currentBg))
+			}
+			if fgValueLabel != nil {
+				fgValueLabel.SetText("Текст: " + colorHex(currentFg))
+			}
+		}
+
 		widgets = append(widgets, Composite{
-			Layout: HBox{MarginsZero: true, Spacing: 10},
+			Background: SolidColorBrush{Color: colorSurface},
+			Layout:     HBox{Margins: Margins{Left: 10, Top: 10, Right: 10, Bottom: 10}, Spacing: 10},
 			Children: []Widget{
-				Label{Text: colorLabel, MinSize: Size{Width: 100}},
+				Composite{
+					MinSize: Size{Width: 220},
+					Layout:  VBox{MarginsZero: true, Spacing: 1},
+					Children: []Widget{
+						Label{Text: title, Font: Font{Family: "Segoe UI Semibold", PointSize: 10}},
+						Label{Text: subtitle, TextColor: colorSoft},
+					},
+				},
 				Label{
-					AssignTo:   &preview,
-					Text:       " Text ",
-					TextColor:  currentFg,
-					MinSize:    Size{Width: 50, Height: 20},
-					Background: SolidColorBrush{Color: currentBg},
+					AssignTo:      &preview,
+					StretchFactor: 1,
+					Text:          " SAMPLE EVENT 1301 ALARM ",
+					TextColor:     currentFg,
+					MinSize:       Size{Width: 250, Height: 34},
+					Background:    SolidColorBrush{Color: currentBg},
+				},
+				Composite{
+					MinSize: Size{Width: 140},
+					Layout:  VBox{MarginsZero: true, Spacing: 2},
+					Children: []Widget{
+						Label{AssignTo: &bgValueLabel, Text: "Фон: " + colorHex(currentBg), TextColor: colorSoft},
+						Label{AssignTo: &fgValueLabel, Text: "Текст: " + colorHex(currentFg), TextColor: colorSoft},
+					},
 				},
 				PushButton{
-					Text: "Фон",
+					Text: "Фон...",
 					OnClicked: func() {
 						if newColor, ok := runColorDialog(d.dlg, currentBg); ok {
 							currentBg = newColor
-							brush, _ := walk.NewSolidColorBrush(currentBg)
-							preview.SetBackground(brush)
+							updatePreview()
 						}
 					},
 				},
 				PushButton{
-					Text: "Текст",
+					Text: "Текст...",
 					OnClicked: func() {
 						if newColor, ok := runColorDialog(d.dlg, currentFg); ok {
 							currentFg = newColor
-							preview.SetTextColor(currentFg)
+							updatePreview()
 						}
 					},
 				},
 				PushButton{
-					Text: "Зберегти",
+					Text: "Скинути",
 					OnClicked: func() {
-						// Convert walk.Color back to Hex
-						bgHex := fmt.Sprintf("#%02X%02X%02X", currentBg.R(), currentBg.G(), currentBg.B())
-						fgHex := fmt.Sprintf("#%02X%02X%02X", currentFg.R(), currentFg.G(), currentFg.B())
+						currentBg = bgCol
+						currentFg = fgCol
+						updatePreview()
+					},
+				},
+				PushButton{
+					Text: "Застосувати",
+					OnClicked: func() {
+						bgHex := colorHex(currentBg)
+						fgHex := colorHex(currentFg)
 
 						log.Info().Str("category", etCopy.Key).Str("bg", bgHex).Str("fg", fgHex).Msg("updating category color")
 
@@ -198,9 +250,12 @@ func (d *colorSettingsDialog) createColorPickers() []Widget {
 						}()
 					},
 				},
-				HSpacer{},
 			},
 		})
 	}
 	return widgets
+}
+
+func colorHex(c walk.Color) string {
+	return fmt.Sprintf("#%02X%02X%02X", c.R(), c.G(), c.B())
 }
