@@ -45,6 +45,16 @@ func (a *walkApp) updateStatusBar() {
 	a.statusLabel.SetText(fmt.Sprintf("Стан: %s [A:%d I:%d]", msg, a.activeDevices, a.inactiveDevices))
 	a.transportLabel.SetText(fmt.Sprintf("Мережа: %s", boolText(a.stats.Connected, "OK", "OFF")))
 	a.uptimeLabel.SetText(fmt.Sprintf("Up: %s", a.stats.Uptime))
+	if strings.TrimSpace(a.statusErr) != "" {
+		a.statusLabel.SetTextColor(colorBadText)
+	} else {
+		a.statusLabel.SetTextColor(colorText)
+	}
+	if a.stats.Connected {
+		a.transportLabel.SetTextColor(colorGoodText)
+	} else {
+		a.transportLabel.SetTextColor(colorBadText)
+	}
 
 	if a.acceptedLabel != nil {
 		a.acceptedLabel.SetText(fmt.Sprintf("Ack: %d", a.stats.Accepted))
@@ -146,7 +156,7 @@ func (a *walkApp) applyUIFont(size int) {
 func (a *walkApp) applyUILayoutScale(size int) {
 	scale := clampInt(size-10, 0, 18)
 	toolbarH := 42 + scale
-	footerH := 24 + scale/3
+	footerH := 28 + scale/2
 	tableMinH := 170 + scale*4
 	inputH := 30 + scale/2
 	checkboxH := 28 + scale/2

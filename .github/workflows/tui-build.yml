@@ -12,6 +12,8 @@ jobs:
   build-tui:
     name: Build ${{ matrix.os_name }}
     runs-on: ${{ matrix.runner }}
+    env:
+      GO111MODULE: "on"
     strategy:
       fail-fast: false
       matrix:
