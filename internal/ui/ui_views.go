@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	appLog "cid_fyne/internal/logger"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -669,3 +669,4 @@ func (m *model) openPprofWeb(path string) {
 	_ = openURL(viewURL)
 	m.refreshMainUI()
 }
+

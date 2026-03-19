@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/rs/zerolog/log"
 
@@ -1036,3 +1036,4 @@ func unixToLocal(v int64) time.Time {
 	}
 	return time.Unix(v, 0).Local()
 }
+

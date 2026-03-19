@@ -1,4 +1,4 @@
-module cid_fyne
+module github.com/dreikk91/gio_fyne
 
 go 1.25.4
 

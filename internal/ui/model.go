@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -331,3 +331,4 @@ type rfSummaryRow struct {
 	Global        bool
 	SpecificCodes string
 }
+

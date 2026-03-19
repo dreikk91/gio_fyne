@@ -3,7 +3,7 @@ package core
 import (
 	"context"
 	"time"
-	"cid_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/config"
 )
 
 // Backend defines the interface for the application logic,
@@ -29,3 +29,4 @@ type Backend interface {
 	GetEventTypes(ctx context.Context) ([]EventTypeDTO, error)
 	SaveEventTypeColors(ctx context.Context, key, color, fontColor string) error
 }
+

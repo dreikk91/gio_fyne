@@ -3,7 +3,7 @@ package core
 import (
 	"testing"
 
-	"cid_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/config"
 )
 
 func TestChangeAccountNumberAppliesConfiguredRangeAndCodeMap(t *testing.T) {
@@ -98,3 +98,4 @@ func TestChangeAccountNumberRejectsOutOfRangeAfterDelta(t *testing.T) {
 		t.Fatal("expected error for account overflow after delta")
 	}
 }
+

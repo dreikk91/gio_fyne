@@ -10,10 +10,10 @@ import (
 	"os"
 	"time"
 
-	"cid_fyne/internal/config"
-	appLog "cid_fyne/internal/logger"
-	appRuntime "cid_fyne/internal/runtime"
-	"cid_fyne/internal/ui"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
+	appRuntime "github.com/dreikk91/gio_fyne/internal/runtime"
+	"github.com/dreikk91/gio_fyne/internal/ui"
 	"github.com/rs/zerolog/log"
 )
 
@@ -58,3 +58,4 @@ func startPprof(cfg config.ProfilingConfig) {
 		}
 	}()
 }
+

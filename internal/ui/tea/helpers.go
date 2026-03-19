@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
 )
 
 var eventFilters = []string{"all", "alarm", "test", "fault", "guard", "disguard", "other"}
@@ -318,3 +318,4 @@ func parseHexColor(s string) string {
 	}
 	return "#" + s
 }
+

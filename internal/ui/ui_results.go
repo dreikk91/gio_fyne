@@ -4,7 +4,7 @@ import (
 	"image/color"
 	"strings"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/rs/zerolog/log"
 )
@@ -222,3 +222,4 @@ func (m *model) updateStatusBanner() {
 	m.statusBanner.bg.Refresh()
 	m.statusBanner.box.Refresh()
 }
+

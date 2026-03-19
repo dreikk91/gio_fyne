@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
-	appLog "cid_fyne/internal/logger"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
 
 	"github.com/rs/zerolog/log"
 )
@@ -151,3 +151,4 @@ func (r *RelayClient) clearConn(conn net.Conn) {
 	}
 	r.connMu.Unlock()
 }
+

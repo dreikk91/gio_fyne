@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
@@ -35,6 +35,7 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 		limit:     a.initialDeviceHistoryLimit(),
 		eventType: "all",
 	}
+	state.livePoll.Store(true)
 
 	err := Dialog{
 		AssignTo: &state.dlg,
@@ -79,6 +80,18 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 							state.limit = a.initialDeviceHistoryLimit()
 							state.allShown.Store(false)
 							a.reloadHistory(state)
+						},
+					},
+					CheckBox{
+						AssignTo: &state.live,
+						Text:     "Live polling",
+						Checked:  true,
+						OnCheckedChanged: func() {
+							enabled := state.live.Checked()
+							state.livePoll.Store(enabled)
+							if enabled {
+								a.reloadHistory(state)
+							}
 						},
 					},
 					LineEdit{
@@ -159,6 +172,7 @@ func (a *walkApp) openHistoryDialog(device core.DeviceDTO) {
 		state.closed.Store(true)
 	})
 	a.startHistoryAutoLoad(state)
+	a.startHistoryLivePolling(state)
 	a.reloadHistory(state)
 	state.dlg.Run()
 	state.closed.Store(true)
@@ -261,6 +275,30 @@ func (a *walkApp) startHistoryAutoLoad(state *historyDialog) {
 						a.reloadHistory(state)
 					}
 				})
+			}
+		}
+	}()
+}
+
+func (a *walkApp) startHistoryLivePolling(state *historyDialog) {
+	if state == nil || state.dlg == nil {
+		return
+	}
+	go func() {
+		ticker := time.NewTicker(uiRefreshTick)
+		defer ticker.Stop()
+		for {
+			if state.closed.Load() {
+				return
+			}
+			select {
+			case <-a.ctx.Done():
+				return
+			case <-ticker.C:
+				if state.closed.Load() || state.loading.Load() || !state.livePoll.Load() {
+					continue
+				}
+				a.reloadHistory(state)
 			}
 		}
 	}()
@@ -376,3 +414,4 @@ func (a *walkApp) loadMoreEvents() {
 		})
 	}(next)
 }
+

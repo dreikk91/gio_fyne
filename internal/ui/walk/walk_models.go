@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/lxn/walk"
 )
@@ -246,3 +246,4 @@ func eventSlicesEqual(a, b []core.EventDTO) bool {
 func sameTime(a, b time.Time) bool {
 	return a.Equal(b)
 }
+

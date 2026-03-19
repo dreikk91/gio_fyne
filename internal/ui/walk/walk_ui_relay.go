@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
@@ -775,3 +775,4 @@ func (m *rfSummaryTableModel) Value(row, col int) interface{} {
 	}
 	return nil
 }
+

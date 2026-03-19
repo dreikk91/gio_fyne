@@ -2,8 +2,9 @@
 
 package main
 
-import "cid_fyne/internal/appmain"
+import "github.com/dreikk91/gio_fyne/internal/appmain"
 
 func main() {
 	appmain.Run()
 }
+

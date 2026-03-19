@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
 	"github.com/lxn/walk"
 	"github.com/lxn/win"
 )
@@ -272,3 +272,4 @@ func resolveIconPath() string {
 	}
 	return "icon.ico"
 }
+

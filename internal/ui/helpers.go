@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/theme"
@@ -409,3 +409,4 @@ func filterTone(filter string) (color.NRGBA, color.NRGBA) {
 		return cAccent2, cAccent
 	}
 }
+

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 
-	"cid_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/config"
 )
 
 const (
@@ -149,3 +149,4 @@ func writeFourDigits(dst []byte, v int) {
 	v /= 10
 	dst[0] = byte('0' + (v % 10))
 }
+

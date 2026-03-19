@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cid_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/config"
 
 	"fyne.io/fyne/v2/widget"
 )
@@ -94,3 +94,4 @@ func (m *model) collectCfg() (config.AppConfig, error) {
 	config.Normalize(&cfg)
 	return cfg, nil
 }
+

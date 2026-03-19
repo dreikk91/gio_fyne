@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/rs/zerolog/log"
 
@@ -770,3 +770,4 @@ func (m *model) rebuildRfSummary() {
 		}
 	}
 }
+

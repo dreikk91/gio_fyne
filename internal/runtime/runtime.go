@@ -10,11 +10,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
-	"cid_fyne/internal/data"
-	appLog "cid_fyne/internal/logger"
-	"cid_fyne/internal/netrelay"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/data"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
+	"github.com/dreikk91/gio_fyne/internal/netrelay"
 
 	"github.com/rs/zerolog/log"
 )
@@ -714,3 +714,4 @@ func EventMatchesFilter(evt core.EventDTO, filter string, hideTests bool, query 
 	hay := strings.ToLower(strings.TrimSpace(evt.DeviceID + " " + evt.Code + " " + evt.Type + " " + evt.Desc + " " + evt.Zone))
 	return strings.Contains(hay, q)
 }
+

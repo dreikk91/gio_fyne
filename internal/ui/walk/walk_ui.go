@@ -12,9 +12,9 @@ import (
 	"time"
 	"unsafe"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
-	appLog "cid_fyne/internal/logger"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"
@@ -153,6 +153,7 @@ type historyDialog struct {
 	search    *walk.LineEdit
 	filter    *walk.ComboBox
 	hide      *walk.CheckBox
+	live      *walk.CheckBox
 	status    *walk.Label
 	model     *eventTableModel
 	device    core.DeviceDTO
@@ -161,6 +162,7 @@ type historyDialog struct {
 	closed    atomic.Bool
 	loading   atomic.Bool
 	allShown  atomic.Bool
+	livePoll  atomic.Bool
 	eventType string
 	hideTests bool
 	query     string
@@ -494,3 +496,4 @@ func setDwmWindowAttribute(hwnd uintptr, attribute uint32, value unsafe.Pointer,
 	}
 	return fmt.Errorf("DwmSetWindowAttribute failed: hresult=0x%X", uint32(hr))
 }
+

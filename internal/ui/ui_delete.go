@@ -3,7 +3,7 @@ package ui
 import (
 	"fmt"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"fyne.io/fyne/v2/dialog"
 )
@@ -23,3 +23,4 @@ func (m *model) openDeleteDialog(d core.DeviceDTO) {
 	}, m.win)
 	confirm.Show()
 }
+

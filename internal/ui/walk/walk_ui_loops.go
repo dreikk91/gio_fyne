@@ -5,7 +5,7 @@ package walk
 import (
 	"time"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 	"github.com/lxn/walk"
 )
 
@@ -139,3 +139,4 @@ func (a *walkApp) statsLoop() {
 		}
 	}
 }
+

@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"cid_fyne/internal/core"
+	"github.com/dreikk91/gio_fyne/internal/core"
 
 	"github.com/lxn/walk"
 	"github.com/rs/zerolog/log"
@@ -191,3 +191,4 @@ func setMinHeight(w minMaxSizer, height int) {
 	}
 	_ = w.SetMinMaxSize(walk.Size{Height: height}, walk.Size{})
 }
+

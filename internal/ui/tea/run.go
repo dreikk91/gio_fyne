@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"cid_fyne/internal/config"
-	"cid_fyne/internal/core"
-	appLog "cid_fyne/internal/logger"
+	"github.com/dreikk91/gio_fyne/internal/config"
+	"github.com/dreikk91/gio_fyne/internal/core"
+	appLog "github.com/dreikk91/gio_fyne/internal/logger"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
@@ -1775,3 +1775,4 @@ func collectRelayFields(fields []settingField) core.RelayFilterRule {
 	}
 	return rule
 }
+
